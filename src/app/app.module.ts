@@ -17,6 +17,7 @@ import { CustomVideoComponent } from './components/custom-video/custom-video.com
 import { CustomImgComponent } from './components/custom-img/custom-img.component';
 import { CustomMediaHiveComponent } from './components/custom-media-hive/custom-media-hive.component';
 import { CustomImgBaseComponent } from './components/custom-img-base/custom-img-base.component';
+import { MaterialMainComponent } from './views/material-main/material-main.component';
 
 
 
@@ -24,6 +25,7 @@ import { CustomImgBaseComponent } from './components/custom-img-base/custom-img-
   declarations: [
     AppComponent,
     MainComponent,
+    MaterialMainComponent,
     LoginComponent,
     CustomVideoComponent,
     CustomImgComponent,
