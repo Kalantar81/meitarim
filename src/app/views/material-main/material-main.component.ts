@@ -12,4 +12,8 @@ export class MaterialMainComponent implements OnInit {
   ngOnInit() {
   }
 
+  public alert(): void {
+    alert('This is an image button!');
+  }
+
 }

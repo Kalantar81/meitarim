@@ -6,6 +6,8 @@ import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-b
 import {MatButtonModule} from '@angular/material/button';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatGridListModule} from '@angular/material/grid-list';
+import {MatIconModule} from '@angular/material';
+
 /** #end UI modules from angule materials */
 
 import { Ng5SliderModule } from 'ng5-slider';
@@ -41,6 +43,7 @@ import { MaterialMainComponent } from './views/material-main/material-main.compo
     MatButtonModule,
     MatCheckboxModule,
     MatGridListModule,
+    MatIconModule,
 
     Ng5SliderModule
   ],
