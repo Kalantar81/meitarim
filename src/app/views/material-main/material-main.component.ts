@@ -58,8 +58,8 @@ export class MaterialMainComponent implements OnInit {
         {
           end:  this._currentDruation,
           start:  0,
-          height:  276, //  951
-          width:  168,  //  257
+          height:  500, //  951
+          width:  240,  //  257
           src:  '/assets/pictures/graph1.jpg',
           step:  1
         }
@@ -69,8 +69,8 @@ export class MaterialMainComponent implements OnInit {
         {
           end: this._currentDruation,
           start: 0,
-          height: 300, // 951
-          width: 168,  // 257
+          height: 500, // 951
+          width: 240,  // 257
           src: '/assets/pictures/graph2.jpg',
           step: 1
         }

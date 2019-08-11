@@ -41,7 +41,7 @@
     <div id="dosColumn">
       <div>
         <div class="title">DOS</div>
-        <div>
+        <div class="dosComponentDesign">
           <app-custom-img
             #img1
             (myOncanplaythrough)="mediaLoaded($event)">
@@ -49,24 +49,41 @@
         </div>
       </div>
     </div>
-    <div id="tdoColumn">TDO</div>
+    <div id="tdoColumn">
+        <div class="title">TDO</div>
+    </div>
     <div id="arpArsContainerColumn">
         <div id="arpCell">
-          ARP
-          <app-custom-video (myOncanplaythrough)="mediaLoaded($event)" #video1 ></app-custom-video>
+          <div class="title">ARP</div>
+          <div class="videoComponentDesign">
+              <app-custom-video
+                #video1
+                (myOncanplaythrough)="mediaLoaded($event)">
+              </app-custom-video>
+          </div>
         </div>
         <div id="arsCell">
-          ARS
-          <app-custom-img (myOncanplaythrough)="mediaLoaded($event)" #img2 ></app-custom-img>
+          <div class="title">ARS</div>
+          <div class="imageComponentDesign">
+            <app-custom-img
+              #img2
+              (myOncanplaythrough)="mediaLoaded($event)">
+            </app-custom-img>
+          </div>
         </div>
     </div>
     <div id="tcsArtContainerColumn">
       <div id="tcsCell">
-        TCS
-        <app-custom-video (myOncanplaythrough)="mediaLoaded($event)" #video2 ></app-custom-video>
+        <div class="title">TCS</div>
+        <div class="videoComponentDesign">
+          <app-custom-video
+            #video2
+            (myOncanplaythrough)="mediaLoaded($event)">
+          </app-custom-video>
+        </div>
       </div>
       <div id="artCell">
-        ART
+        <div class="title">ART</div>
         <app-custom-img (myOncanplaythrough)="mediaLoaded($event)" #img3 ></app-custom-img>
       </div>
     </div>
