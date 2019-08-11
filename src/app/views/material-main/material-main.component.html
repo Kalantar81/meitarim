@@ -1,36 +1,52 @@
 <div class="mainCotainer">
     <div id="menuColumn">
-      <h3>Menu</h3>
-      <!-- <div>
-        <button mat-raised-button style = "background-color: red">Primary</button>
-        <button mat-raised-button color = "primary">Primary</button>
+      <div class="title">Menu</div>
+      <div class="buttonsStyle">
+        <div>
+          <div class="buttonTitleStyle">
+            set video
+          </div>
+          <button
+            mat-icon-button
+            style = "background-color: lightgray"
+            (click)="setVideo()">
+            <mat-icon>movie</mat-icon>
+          </button>
+        </div>
+        <div>
+          <div class="buttonTitleStyle">
+            stop play
+          </div>
+          <button
+            mat-icon-button
+            style = "background-color: lightgray"
+            (click)="stopUpdateTimer()">
+            <mat-icon>stop</mat-icon>
+          </button>
+        </div>
+      <div>
+        <div class="buttonTitleStyle">
+          Play
+        </div>
         <button
           mat-icon-button
           style = "background-color: lightgray"
-          (click) = "alert()">
-            <mat-icon>movie</mat-icon>
-          </button>
-          <div>
-          </div>
-      </div> -->
-      <div>
-        <button (click)="setVideo()">
-                setVideo
+          (click)="startPlay()">
+            <mat-icon>play_circle_filled</mat-icon>
         </button>
-        &nbsp;
-        <button  (click)="stopUpdateTimer()">
-                stopPlay
-        </button>
-        &nbsp;
-        <button (click)="startPlay()">
-                Play
-        </button>
+      </div>
+
       </div>
     </div>
     <div id="dosColumn">
       <div>
-        <h3>DOS</h3>
-        <app-custom-img (myOncanplaythrough)="mediaLoaded($event)" #img1 ></app-custom-img>
+        <div class="title">DOS</div>
+        <div>
+          <app-custom-img
+            #img1
+            (myOncanplaythrough)="mediaLoaded($event)">
+          </app-custom-img>
+        </div>
       </div>
     </div>
     <div id="tdoColumn">TDO</div>
