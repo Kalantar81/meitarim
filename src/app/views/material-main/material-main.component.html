@@ -1,28 +1,57 @@
 <div class="mainCotainer">
     <div id="menuColumn">
-      Menu
-      <div>
+      <h3>Menu</h3>
+      <!-- <div>
         <button mat-raised-button style = "background-color: red">Primary</button>
         <button mat-raised-button color = "primary">Primary</button>
-        <button 
+        <button
           mat-icon-button
           style = "background-color: lightgray"
           (click) = "alert()">
             <mat-icon>movie</mat-icon>
           </button>
           <div>
-            <mat-icon>grade</mat-icon>
           </div>
+      </div> -->
+      <div>
+        <button (click)="setVideo()">
+                setVideo
+        </button>
+        &nbsp;
+        <button  (click)="stopUpdateTimer()">
+                stopPlay
+        </button>
+        &nbsp;
+        <button (click)="startPlay()">
+                Play
+        </button>
       </div>
     </div>
-    <div id="dosColumn">DOS</div>
+    <div id="dosColumn">
+      <div>
+        <h3>DOS</h3>
+        <app-custom-img (myOncanplaythrough)="mediaLoaded($event)" #img1 ></app-custom-img>
+      </div>
+    </div>
     <div id="tdoColumn">TDO</div>
     <div id="arpArsContainerColumn">
-        <div id="arpCell">ARP</div>
-        <div id="arsCell">ARS</div>
+        <div id="arpCell">
+          ARP
+          <app-custom-video (myOncanplaythrough)="mediaLoaded($event)" #video1 ></app-custom-video>
+        </div>
+        <div id="arsCell">
+          ARS
+          <app-custom-img (myOncanplaythrough)="mediaLoaded($event)" #img2 ></app-custom-img>
+        </div>
     </div>
     <div id="tcsArtContainerColumn">
-      <div id="tcsCell">TCS</div>
-      <div id="artCell">ART</div>
+      <div id="tcsCell">
+        TCS
+        <app-custom-video (myOncanplaythrough)="mediaLoaded($event)" #video2 ></app-custom-video>
+      </div>
+      <div id="artCell">
+        ART
+        <app-custom-img (myOncanplaythrough)="mediaLoaded($event)" #img3 ></app-custom-img>
+      </div>
     </div>
   </div>
