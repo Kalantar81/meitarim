@@ -51,6 +51,12 @@
     </div>
     <div id="tdoColumn">
         <div class="title">TDO</div>
+        <div class="dosComponentDesign">
+            <app-custom-img
+              #tdoImage
+              (myOncanplaythrough)="mediaLoaded($event)">
+            </app-custom-img>
+          </div>
     </div>
     <div id="arpArsContainerColumn">
         <div id="arpCell">

@@ -24,15 +24,21 @@
         <div #imageDiv  id="imageDiv"
             [ngStyle]="myStyle" >
         </div>
-        <div  style="background-color:red;position:relative;height: 2px;"
-            [style.top.px]="myTop" [style.width.px]="myWidth">
+        <div
+          style="background-color:red; position:relative; height: 2px;"
+          [style.top.px]="myTop"
+          [style.width.px]="myWidth">
         </div>
-        <div  style="position:relative;text-align: right;"
-            [style.top.px]="myTopOfSeconds"   >
+        <div
+          style="position:relative;text-align: right;"
+          [style.top.px]="myTopOfSeconds">
             <div style="position:relative;left:54px;">
-                <input type="number"  style="width:50px;" [value]="myValue" readonly  >
+                <input
+                  type="number"
+                  style="width:50px;"
+                  [value]="myValue"
+                  readonly>
             </div>
-
         </div>
     </div>
 </div>

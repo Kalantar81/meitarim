@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, OnDestroy } from '@angular/core';
 import { CustomImgComponent } from 'src/app/components/custom-img/custom-img.component';
 import { CustomVideoComponent } from 'src/app/components/custom-video/custom-video.component';
 
@@ -7,11 +7,12 @@ import { CustomVideoComponent } from 'src/app/components/custom-video/custom-vid
   templateUrl: './material-main.component.html',
   styleUrls: ['./material-main.component.less']
 })
-export class MaterialMainComponent implements OnInit {
+export class MaterialMainComponent implements OnInit, OnDestroy {
 
   @ViewChild ('img1', {static:  false}) img1Component: CustomImgComponent;
   @ViewChild ('img2', {static:  false}) img2Component: CustomImgComponent;
   @ViewChild ('img3', {static:  false}) img3Component: CustomImgComponent;
+  @ViewChild ('tdoImage', {static:  false}) tdoImage: CustomImgComponent;
 
   @ViewChild ('video1', {static:  false}) video1Component: CustomVideoComponent;
   @ViewChild ('video2', {static:  false}) video2Component: CustomVideoComponent;
@@ -19,7 +20,7 @@ export class MaterialMainComponent implements OnInit {
   private _itemsLoaded: number = 0;
   private _itemsCount: number = 0;
   private _currentTime:  number = 0;
-  private _currentDruation = 60;
+  private _currentDruation = 15;
 
   public get currentTime(): number {
     return this._currentTime;
@@ -39,7 +40,7 @@ export class MaterialMainComponent implements OnInit {
     this._currentTime = 1000;
   }
 
-  public setVideo () {
+  public setVideo() {
     try {
       this._itemsLoaded = 0;
       this._itemsCount = 5;
@@ -47,20 +48,30 @@ export class MaterialMainComponent implements OnInit {
         {
           end:  this._currentDruation,
           start:  0,
-          height:  750, //  951
-          width:  140,  //  257
-          src:  '/assets/pictures/specto.png',
+          height:  750,
+          width:  140,
+          src:  '/assets/pictures/dos.png',
           step:  1
         }
       );
+
+      this.tdoImage.setOptions(
+        {
+          end:  this._currentDruation,
+          start:  0,
+          height:  750,
+          width:  140,
+          src:  '/assets/pictures/dos.png',
+          step:  1
+        });
 
       this.img2Component.setOptions (
         {
           end:  this._currentDruation,
           start:  0,
-          height:  500, //  951
-          width:  240,  //  257
-          src:  '/assets/pictures/graph1.jpg',
+          height:  500,
+          width:  240,
+          src:  '/assets/pictures/ars.png',
           step:  1
         }
       );
@@ -69,9 +80,9 @@ export class MaterialMainComponent implements OnInit {
         {
           end: this._currentDruation,
           start: 0,
-          height: 500, // 951
-          width: 240,  // 257
-          src: '/assets/pictures/graph2.jpg',
+          height: 500,
+          width: 240,
+          src: '/assets/pictures/ars.png',
           step: 1
         }
       );
@@ -82,7 +93,7 @@ export class MaterialMainComponent implements OnInit {
           start: 0,
           height: 300,
           width: 400,
-          src: '/assets/moovies/big_buck_bunny.mp4',
+          src: '/assets/moovies/arp.mp4',
           step: 1
         }
       );
@@ -92,13 +103,13 @@ export class MaterialMainComponent implements OnInit {
             start: 0,
             height: 300,
             width: 400,
-            src: '/assets/moovies/big_buck_bunny2.mp4',
+            src: '/assets/moovies/arp.mp4',
             step: 1
           }
         );
 
    } catch (e) {
-      alert  (e.message)
+      alert  (e.message);
     }
 
   }
@@ -115,8 +126,8 @@ public startPlay() {
       this.stopTimer();
   }
 
-  private _myTimer:  any;
-  private _mySpeed:  number;
+  private _myTimer: any;
+  private _mySpeed: number;
 
   startUpdateTimer(): void {
 
@@ -128,6 +139,7 @@ public startPlay() {
         // console.log ('currentTime' + currentTime);
         if  (currentTime <= this._currentDruation) {
           this.img1Component.sync (currentTime);
+          this.tdoImage.sync(currentTime);
           this.img2Component.sync (currentTime);
           this.img3Component.sync (currentTime);
         } else {
@@ -144,14 +156,15 @@ public startPlay() {
     }
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.stopTimer ();
   }
 
   public mediaLoaded() {
     this._itemsLoaded ++;
-    if(this._itemsLoaded >= this._itemsCount)
+    if (this._itemsLoaded >= this._itemsCount) {
       this.startPlay ();
+    }
   }
 
 }
