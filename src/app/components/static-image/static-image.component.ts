@@ -1,15 +1,25 @@
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import { IPlayableMedia, IPlayableMediaOptions } from 'src/app/interfaces/mediainterfaces';
 
+import { Options } from 'ng5-slider';
 
 @Component({
-  selector: 'app-custom-img',
-  templateUrl: './custom-img.component.html',
-  styleUrls: ['./custom-img.component.css']
+  selector: 'app-static-image',
+  templateUrl: './static-image.component.html',
+  styleUrls: ['./static-image.component.css']
 })
 
-export class CustomImgComponent implements OnInit,IPlayableMedia {
+export class StaticImageComponent implements OnInit, IPlayableMedia {
 
+  verticalSlider: RangeSliderModel = {
+    minValue: 210,
+    maxValue: 570,
+    options: {
+      floor: 0,
+      ceil: 750,
+      vertical: true
+    }
+  };
 
   private _myOptions:IPlayableMediaOptions;
 
@@ -17,7 +27,6 @@ export class CustomImgComponent implements OnInit,IPlayableMedia {
   private _myHeight:string;
   private _myTransformOrigin:string;
   private _myTop : number;
-  private _myTopOfSeconds: number;
 
   private _myWidth: number;
   private _myVisibility: string;
@@ -31,7 +40,7 @@ export class CustomImgComponent implements OnInit,IPlayableMedia {
   _mySlider: HTMLInputElement;
 
   @Output()
-  myOncanplaythrough:EventEmitter<string> = new EventEmitter<string>();
+  myOncanplaythrough: EventEmitter<string> = new EventEmitter<string>();
 
   constructor() { }
 
@@ -41,7 +50,7 @@ export class CustomImgComponent implements OnInit,IPlayableMedia {
 
 
 
-  @ViewChild("slider",{static: false})
+  @ViewChild("slider", {static: false})
   set mainVideoEl(el: ElementRef) {
         this._mySlider = el.nativeElement;
         //this._mySlider.onmousedown = this.setMyNewValue.bind(this);
@@ -191,4 +200,10 @@ export class CustomImgComponent implements OnInit,IPlayableMedia {
   }
 
 
+}
+
+export interface RangeSliderModel {
+  minValue: number;
+  maxValue: number;
+  options: Options;
 }

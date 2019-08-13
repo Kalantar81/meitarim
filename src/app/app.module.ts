@@ -20,6 +20,10 @@ import { CustomImgComponent } from './components/custom-img/custom-img.component
 import { CustomMediaHiveComponent } from './components/custom-media-hive/custom-media-hive.component';
 import { CustomImgBaseComponent } from './components/custom-img-base/custom-img-base.component';
 import { MaterialMainComponent } from './views/material-main/material-main.component';
+import { VerticalRangeSliderComponent } from './drafts/vertical-range-slider/vertical-range-slider.component';
+import { FormsModule } from '@angular/forms';
+import { StaticImageComponent } from './components/static-image/static-image.component';
+
 
 
 
@@ -32,12 +36,15 @@ import { MaterialMainComponent } from './views/material-main/material-main.compo
     CustomVideoComponent,
     CustomImgComponent,
     CustomMediaHiveComponent,
-    CustomImgBaseComponent
+    CustomImgBaseComponent,
+    VerticalRangeSliderComponent,
+    StaticImageComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    FormsModule,
 
     NoopAnimationsModule,
     MatButtonModule,
