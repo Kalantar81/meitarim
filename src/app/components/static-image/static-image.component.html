@@ -1,25 +1,17 @@
 <div >
-    <!--div style="float: left;"  [style.height.px]="myHeight"   >
-            <ng5-slider [(value)]="verticalSlider1.value" [options]="verticalSlider1.options"></ng5-slider>
-
-    </div-->
-    <div
-
-      style="float: left;"
-      [style.height.px]="myHeight">
+  <div style="float: left;" [style.height.px]="myHeight">
       <ng5-slider
         class = "custom-slider"
         [(value)]="verticalSlider.minValue"
         [(highValue)]="verticalSlider.maxValue"
         [options]="verticalSlider.options">
       </ng5-slider>
-    </div>
+  </div>
 
-    <div class="inlinediv" >
-        <div #imageDiv  id="imageDiv"
-            [ngStyle]="myStyle" >
-        </div>
+  <div class="inlinediv">
+      <div #imageDiv id="imageDiv" [ngStyle]="myStyle" >
     </div>
+  </div>
 </div>
 
 

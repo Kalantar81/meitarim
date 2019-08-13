@@ -47,12 +47,12 @@ export class MaterialMainComponent implements OnInit, OnDestroy {
       this._itemsCount = 5;
       this.img1Component.setOptions (
         {
-          end:  this._currentDruation,
-          start:  0,
+          // end:  this._currentDruation,
+          // start:  0,
           height:  750,
           width:  140,
           src:  '/assets/pictures/dos.png',
-          step:  1
+          // step:  1
         }
       );
 
@@ -139,7 +139,7 @@ public startPlay() {
         const currentTime = this.video1Component.myCuurentTime ();
         // console.log ('currentTime' + currentTime);
         if  (currentTime <= this._currentDruation) {
-          this.img1Component.sync (currentTime);
+          // this.img1Component.sync (currentTime);
           this.tdoImage.sync(currentTime);
           this.img2Component.sync (currentTime);
           this.img3Component.sync (currentTime);
