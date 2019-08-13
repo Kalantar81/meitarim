@@ -1,0 +1,18 @@
+
+<div class="custom-slider" style="float: left; height: 750px; width: 30%">
+    <ng5-slider
+      [(value)]="verticalSlider.minValue"
+      [(highValue)]="verticalSlider.maxValue"
+      [options]="verticalSlider.options">
+    </ng5-slider>
+</div>
+
+<div style="float: left; width: 50%; height: 350px; background-color: gainsboro; border: 1px solid black">
+    <p>Low value: {{ verticalSlider.minValue }}</p>
+    <p>High value: {{ verticalSlider.maxValue }}</p>
+    <button (click)="resetForm()">Reset</button>
+    <p>Min value: <input type="number" [(ngModel)]="verticalSlider.minValue"></p>
+    <p>Max value: <input type="number" [(ngModel)]="verticalSlider.maxValue"></p>
+
+
+</div>
