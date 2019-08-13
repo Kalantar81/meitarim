@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, Input, OnDestroy } from '@angular/core';
 import { CustomImgComponent } from 'src/app/components/custom-img/custom-img.component';
 import { CustomVideoComponent } from 'src/app/components/custom-video/custom-video.component';
+import { StaticImageComponent } from 'src/app/components/static-image/static-image.component';
 
 @Component({
   selector: 'app-material-main',
@@ -9,7 +10,7 @@ import { CustomVideoComponent } from 'src/app/components/custom-video/custom-vid
 })
 export class MaterialMainComponent implements OnInit, OnDestroy {
 
-  @ViewChild ('img1', {static:  false}) img1Component: CustomImgComponent;
+  @ViewChild ('img1', {static:  false}) img1Component: StaticImageComponent;
   @ViewChild ('img2', {static:  false}) img2Component: CustomImgComponent;
   @ViewChild ('img3', {static:  false}) img3Component: CustomImgComponent;
   @ViewChild ('tdoImage', {static:  false}) tdoImage: CustomImgComponent;
