@@ -1,5 +1,5 @@
 <div >
-  <div style="float: left;" [style.height.px]="myHeight">
+  <div style="float: left;" [style.height.px]="sliderHeight">
       <ng5-slider
         class = "custom-slider"
         [(value)]="verticalSlider.minValue"
@@ -9,7 +9,7 @@
   </div>
 
   <div class="inlinediv">
-      <div #imageDiv id="imageDiv" [ngStyle]="myStyle" >
+      <div #imageDiv id="imageDiv" [ngStyle]="imageStyle" >
     </div>
   </div>
 </div>

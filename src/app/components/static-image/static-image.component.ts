@@ -11,20 +11,9 @@ import { Options } from 'ng5-slider';
 
 export class StaticImageComponent implements OnInit {
 
-  verticalSlider: RangeSliderModel = {
-    minValue: 210,
-    maxValue: 570,
-    options: {
-      floor: 0,
-      ceil: 750,
-      vertical: true
-    }
-  };
-
-  private myOptions: IStaticImageOptions;
-
-  protected myStyle: any;
-  protected myHeight: string;
+  protected verticalSlider: RangeSliderModel;
+  protected imageStyle: IImageStyle;
+  protected sliderHeight: string;
 
 
 
@@ -33,26 +22,34 @@ export class StaticImageComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {}
-
-  setOptions(option: IStaticImageOptions): void {
-    this.myOptions = option;
-    const myStyle = {
-      display: 'inline-block',
-      background: 'url(' + this.myOptions.src  + ') no-repeat center center',
-      width: this.myOptions.width + 'px',
-      height: this.myOptions.height + 'px'
-     };
-    this.myStyle = myStyle;
-    this.myHeight = option.height.toString();
+  ngOnInit() {
+    this.verticalSlider =  {
+      minValue: 210,
+      maxValue: 570,
+      options: {
+        floor: 0,
+        ceil: 750,
+        vertical: true
+      }
+    };
   }
 
-  setCurrentPosition(position: number): void {
-    throw new Error('Method not implemented.');
+  setOptions(options: IStaticImageOptions): void {
+    this.imageStyle = {
+      display: 'inline-block',
+      background: 'url(' + options.src  + ') no-repeat center center',
+      width: options.width + 'px',
+      height: options.height + 'px'
+    };
+    this.sliderHeight = options.height.toString();
   }
 
 
 }
+
+
+
+
 
 export interface RangeSliderModel {
   minValue: number;
@@ -64,4 +61,11 @@ export interface IStaticImageOptions {
   height: number;
   width: number;
   src: string;
+}
+
+export interface IImageStyle {
+  background: string;
+  display?: string;
+  width?: string;
+  height?: string;
 }
