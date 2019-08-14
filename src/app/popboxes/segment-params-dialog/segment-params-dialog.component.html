@@ -6,6 +6,7 @@
       <input
         matInput
         [(ngModel)]="data.name"
+        matTooltip="יש לתת שם לכ לחתך"
         required>
     </mat-form-field>
 
@@ -14,7 +15,8 @@
         <input
           type="number"
           matInput
-          [(ngModel)]="data.startPoint">
+          [(ngModel)]="data.startPoint"
+          matTooltip="ניתן להזין ידנית את נקודת התחלה. הגרף יתתקן בהתאם.">
       <mat-hint>הזן מספר בין {{data.minPossibleValue}} - {{data.maxPossibleValue - 1}}</mat-hint>
     </mat-form-field>
 
@@ -23,7 +25,8 @@
           <input
             type="number"
             matInput
-            [(ngModel)]="data.endPoint">
+            [(ngModel)]="data.endPoint"
+            matTooltip="אפשר להזין נקודת סוף ידנית וזה יתתקןבהתאם בגרף. כמו כן הנקודה לא יכולה להיות גדולה יותר מנק' התחלהץ מספרים מתתקנים למטה">
         <mat-hint>הזן מספר בין {{data.startPoint}} - {{data.maxPossibleValue}}</mat-hint>
     </mat-form-field>
   </div>
@@ -37,7 +40,8 @@
     <button
       mat-flat-button color="primary"
       [mat-dialog-close]="data"
-      cdkFocusInitial>
+      cdkFocusInitial
+      matTooltip="הכפתור שולח את הדאטה לשרת">
       בצע חתך
     </button>
   </div>
