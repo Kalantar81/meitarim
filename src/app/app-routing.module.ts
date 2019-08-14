@@ -11,7 +11,7 @@ import { DialogDemoComponent } from './drafts/popup/dialog-demo/dialog-demo.comp
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/popupDemo',
+    redirectTo: '/indexMaterial',
     pathMatch: 'full'
   },
   {

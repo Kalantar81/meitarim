@@ -3,11 +3,7 @@ import { NgModule } from '@angular/core';
 import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-browser/animations';
 
 /** #start UI modules from angule materials */
-import {MatButtonModule} from '@angular/material/button';
-import {MatCheckboxModule} from '@angular/material/checkbox';
-import {MatGridListModule} from '@angular/material/grid-list';
 import {MatIconModule, MatNativeDateModule} from '@angular/material';
-
 /** #end UI modules from angule materials */
 
 import { Ng5SliderModule } from 'ng5-slider';
@@ -26,6 +22,7 @@ import { StaticImageComponent } from './components/static-image/static-image.com
 import { DemoMaterialModule } from './material-module';
 import { DialogDemoComponent } from './drafts/popup/dialog-demo/dialog-demo.component';
 import { PopupComponent } from './drafts/popup/popup/popup.component';
+import { SegmentParamsDialogComponent } from './popboxes/segment-params-dialog/segment-params-dialog.component';
 
 
 
@@ -43,26 +40,25 @@ import { PopupComponent } from './drafts/popup/popup/popup.component';
     VerticalRangeSliderComponent,
     StaticImageComponent,
     DialogDemoComponent,
-    PopupComponent
+    PopupComponent,
+    SegmentParamsDialogComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
-
-    // NoopAnimationsModule,
-    // MatButtonModule,
-    // MatCheckboxModule,
-    // MatGridListModule,
-    // MatIconModule,
-    DemoMaterialModule,
-    MatNativeDateModule,
     ReactiveFormsModule,
 
+    DemoMaterialModule,
+    MatNativeDateModule,
     Ng5SliderModule
   ],
-  entryComponents: [DialogDemoComponent, PopupComponent],
+  entryComponents: [
+    DialogDemoComponent,
+    PopupComponent,
+    SegmentParamsDialogComponent
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

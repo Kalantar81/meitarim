@@ -1,0 +1,44 @@
+<div>
+  <h1 mat-dialog-title align = "center">פרטי חתך</h1>
+  <div mat-dialog-content align = "center">
+    <mat-form-field class="dialogFrame">
+        <mat-label>שם החתך</mat-label>
+      <input
+        matInput
+        [(ngModel)]="data.name"
+        required>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>נקודת התחלה</mat-label>
+        <input
+          type="number"
+          matInput
+          [(ngModel)]="data.startPoint">
+      <mat-hint>הזן מספר בין {{data.minPossibleValue}} - {{data.maxPossibleValue - 1}}</mat-hint>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>נקודת סוף</mat-label>
+          <input
+            type="number"
+            matInput
+            [(ngModel)]="data.endPoint">
+        <mat-hint>הזן מספר בין {{data.startPoint}} - {{data.maxPossibleValue}}</mat-hint>
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions align = "center">
+    <button
+      mat-flat-button color="primary"
+      (click)="onNoClick()">
+      בטל
+    </button>
+    <div style="padding-right: 10px"></div>
+    <button
+      mat-flat-button color="primary"
+      [mat-dialog-close]="data"
+      cdkFocusInitial>
+      בצע חתך
+    </button>
+  </div>
+</div>
