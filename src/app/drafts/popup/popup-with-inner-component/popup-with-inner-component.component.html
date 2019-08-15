@@ -1,0 +1,18 @@
+<h1 mat-dialog-title>Popbox with inner component</h1>
+<div mat-dialog-content>
+  <app-demo-for-popbox>Loading...</app-demo-for-popbox>
+</div>
+<div mat-dialog-actions>
+  <button
+    mat-button
+    (click)="onNoClick()">
+    No Thanks
+  </button>
+
+  <button
+    mat-button
+    [mat-dialog-close]="data"
+    cdkFocusInitial>
+    Ok
+  </button>
+</div>

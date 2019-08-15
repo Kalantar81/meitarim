@@ -23,6 +23,8 @@ import { DemoMaterialModule } from './material-module';
 import { DialogDemoComponent } from './drafts/popup/dialog-demo/dialog-demo.component';
 import { PopupComponent } from './drafts/popup/popup/popup.component';
 import { SegmentParamsDialogComponent } from './popboxes/segment-params-dialog/segment-params-dialog.component';
+import { DemoForPopboxComponent } from './drafts/popup/demo-for-popbox/demo-for-popbox.component';
+import { PopupWithInnerComponentComponent } from './drafts/popup/popup-with-inner-component/popup-with-inner-component.component';
 
 
 
@@ -41,7 +43,9 @@ import { SegmentParamsDialogComponent } from './popboxes/segment-params-dialog/s
     StaticImageComponent,
     DialogDemoComponent,
     PopupComponent,
-    SegmentParamsDialogComponent
+    SegmentParamsDialogComponent,
+    DemoForPopboxComponent,
+    PopupWithInnerComponentComponent
   ],
   imports: [
     BrowserModule,
@@ -57,6 +61,7 @@ import { SegmentParamsDialogComponent } from './popboxes/segment-params-dialog/s
   entryComponents: [
     DialogDemoComponent,
     PopupComponent,
+    PopupWithInnerComponentComponent,
     SegmentParamsDialogComponent
   ],
   providers: [],
