@@ -1,0 +1,39 @@
+h1 {
+  color:#111;
+  font-family: 'Trocchi', serif;
+  font-size: 25px;
+  font-weight: bold;
+  line-height: 48px;
+  margin: 0;
+  text-align: center;
+}
+
+.inputFormContailner {
+  border: 1px solid gainsboro; 
+  padding: 10px 10px 10px 10px;
+}
+
+.toggleRowContailner {
+  border: 1px solid gainsboro; 
+  padding: 10px 10px 10px 10px;
+  height: 120px;
+}
+
+.toggleFormContailner {
+  border: 1px solid gainsboro; 
+  padding: 10px 10px 10px 10px;
+  float: left;
+  margin-right: 20px;
+}
+
+label {
+  color:gray;
+  font-family: 'Trocchi', serif;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 25px;
+  margin: 0;
+  text-align: center;
+  padding-bottom: 5px;
+}
+

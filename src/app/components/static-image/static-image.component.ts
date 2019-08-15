@@ -1,9 +1,10 @@
-import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef, OnChanges } from '@angular/core';
 import { IPlayableMedia, IPlayableMediaOptions } from 'src/app/interfaces/mediainterfaces';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 import { Options } from 'ng5-slider';
 import { SegmentParamsDialogComponent } from 'src/app/popboxes/segment-params-dialog/segment-params-dialog.component';
+import { SliderConfigPopboxComponent } from 'src/app/popboxes/slider-config-popbox/slider-config-popbox.component';
 
 @Component({
   selector: 'app-static-image',
@@ -11,13 +12,14 @@ import { SegmentParamsDialogComponent } from 'src/app/popboxes/segment-params-di
   styleUrls: ['./static-image.component.css']
 })
 
-export class StaticImageComponent implements OnInit {
+export class StaticImageComponent implements OnInit, OnChanges {
 
   protected verticalSlider: RangeSliderModel;
   protected segmentParams: ISegmetParams;
   protected imageStyle: IImageStyle;
   protected sliderHeight: string;
 
+  protected options: Options;
 
   @Output()
   myOncanplaythrough: EventEmitter<string> = new EventEmitter<string>();
@@ -37,6 +39,8 @@ export class StaticImageComponent implements OnInit {
 
     this.initSegmentParams();
   }
+
+  ngOnChanges() {}
 
   setOptions(options: IStaticImageOptions): void {
     this.imageStyle = {
@@ -61,10 +65,13 @@ export class StaticImageComponent implements OnInit {
       );
 
       dialogRef.afterClosed().subscribe(result => {
-        console.log('The dialog was closed');
-        this.segmentParams = result;
-        this.changeVerticalSliderParams();
-        alert( ' חתך בשם ' + this.segmentParams.name + ' נשלח לשרת ');
+        if (result) {
+          console.log('The dialog was closed');
+          this.segmentParams = result;
+          this.changeVerticalSliderParams();
+          alert( ' חתך בשם ' + this.segmentParams.name + ' נשלח לשרת ');
+        }
+
       });
     }
 
@@ -90,6 +97,45 @@ export class StaticImageComponent implements OnInit {
   }
 
 /** #endDialogBox methods */
+
+/** #startSliderSettingsDialogBox methods */
+public openSliderSettingsDialog(): void {
+  const dialogRef = this.dialog.open(
+    SliderConfigPopboxComponent,
+    {
+      width: '800px',
+      height: '700px',
+      data: this.verticalSlider
+    }
+  );
+
+  dialogRef.afterClosed().subscribe(result => {
+    console.log('The dialog was closed');
+    if (result.options) {
+      this.options = result.options;
+      this.initOptions();
+    }
+  });
+}
+
+initOptions(): void {
+  this.verticalSlider = {
+    minValue: this.segmentParams.startPoint,
+    maxValue: this.segmentParams.endPoint,
+    options: {
+      floor: this.options.floor,
+      ceil: this.options.ceil,
+      vertical: this.options.vertical,
+      minLimit: this.options.minLimit,
+      maxLimit: this.options.maxLimit,
+      step: this.options.step,
+      showTicks: this.options.showTicks,
+      showTicksValues: this.options.showTicksValues,
+      disabled: this.options.disabled
+    }
+  };
+}
+/** #endSliderSettingsDialogBox methods */
 }
 
 

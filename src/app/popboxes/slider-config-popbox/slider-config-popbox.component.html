@@ -1,0 +1,107 @@
+
+<div >
+  <h1 mat-dialog-title>slider settings</h1>
+  <div mat-dialog-content>
+    <div class="inputFormContailner">
+      <mat-form-field appearance="outline" style="padding-right: 30px">
+          <mat-label>min border</mat-label>
+            <input
+              type="number"
+              matInput
+              [(ngModel)]="data.options.floor"
+              matTooltip="defines min possible border of slider">
+          <mat-hint> options.floor</mat-hint>
+      </mat-form-field>
+      
+      <mat-form-field appearance="outline" style="padding-right: 30px">
+          <mat-label>max border</mat-label>
+            <input
+              type="number"
+              matInput
+              [(ngModel)]="data.options.ceil"
+              matTooltip="Maximum value for a slider. Not applicable when using stepsArray">
+          <mat-hint> options.ceil</mat-hint>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+          <mat-label>step</mat-label>
+            <input
+              type="number"
+              matInput
+              [(ngModel)]="data.options.step"
+              matTooltip="Step between each value">
+          <mat-hint> options.step</mat-hint>
+      </mat-form-field>
+    </div>
+
+    <div style="padding-top: 10px"></div>
+
+    <div class="inputFormContailner">
+        <mat-form-field appearance="outline" style="padding-right: 30px">
+            <mat-label>min limit</mat-label>
+              <input
+                type="number"
+                matInput
+                [(ngModel)]="data.options.minLimit"
+                matTooltip="The minimum value authorized on the slider">
+            <mat-hint> options.minLimit</mat-hint>
+        </mat-form-field>
+        
+        <mat-form-field appearance="outline">
+            <mat-label>max limit</mat-label>
+              <input
+                type="number"
+                matInput
+                [(ngModel)]="data.options.maxLimit"
+                matTooltip="The maximum value authorized on the slider">
+            <mat-hint> options.maxLimit</mat-hint>
+        </mat-form-field>
+      </div>
+
+      <div style="padding-top: 10px"></div>
+
+      <div class="toggleRowContailner">
+        <div class="toggleFormContailner">
+          <div><label>show ticks on the bar</label></div>
+          <mat-radio-group 
+            aria-label="selectionBarGradient" 
+            [(ngModel)]="data.options.showTicks"
+            matTooltip= "in this bar too many values, so you will see the ticks, like one line. For see it better, put minBorder 0 and maxBorder 10">
+              <mat-radio-button value="true">true</mat-radio-button>
+              <mat-radio-button value="false">false</mat-radio-button>
+          </mat-radio-group>
+        </div>
+        <div class="toggleFormContailner">
+            <div><label>show ticks values on the bar</label></div>
+            <mat-radio-group aria-label="Select an option" [(ngModel)]="data.options.showTicksValues">
+                <mat-radio-button value="true">true</mat-radio-button>
+                <mat-radio-button value="false">false</mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <div class="toggleFormContailner">
+              <mat-radio-group aria-label="Select an option" [(ngModel)]="data.options.disabled">
+                  <div><label>don't allow to move the ticks</label></div>
+                  <mat-radio-button value="true">true</mat-radio-button>
+                  <mat-radio-button value="false">false</mat-radio-button>
+              </mat-radio-group>
+            </div>
+      </div>
+
+  </div>
+
+
+  <div mat-dialog-actions>
+    <button
+      mat-flat-button color="primary"
+      (click)="onNoClick()">
+      No Thanks
+    </button>
+    <div style="padding-right: 10px"></div>
+    <button
+      mat-flat-button color="primary"
+      [mat-dialog-close]="data"
+      cdkFocusInitial>
+      Ok
+    </button>
+  </div>
+</div>

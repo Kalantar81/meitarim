@@ -12,15 +12,28 @@
       <div #imageDiv id="imageDiv" [ngStyle]="imageStyle" >
     </div>
   </div>
-<div>
-    <button
-    mat-icon-button
-    style = "background-color: lightgray"
-    (click)="openDialog()"
-    matTooltip="יש ללחוץ על הכפתור על מנת לאשר שליחה">
-    <mat-icon>switch_video</mat-icon>
-  </button>
-</div>
+
+  <div>
+    <div style="float: left; padding-left: 20px">
+      <button
+        mat-icon-button
+        style = "background-color: lightgray"
+        (click)="openDialog()"
+        matTooltip="יש ללחוץ על הכפתור על מנת לאשר שליחה">
+        <mat-icon>switch_video</mat-icon>
+      </button>
+    </div>
+
+    <div style="float: left; padding-left: 20px">
+      <button
+        mat-icon-button
+        style = "background-color: lightgray"
+        (click)="openSliderSettingsDialog()"
+        matTooltip="אופציות שונות המאפשרות קסטומיזציה לסליידר">
+        <mat-icon>settings</mat-icon>
+        </button>
+    </div>
+  </div>
 </div>
 
 
