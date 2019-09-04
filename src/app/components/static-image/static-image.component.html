@@ -1,16 +1,15 @@
-<div >
+<div>
   <div style="float: left;" [style.height.px]="sliderHeight">
-      <ng5-slider
-        class = "custom-slider"
-        [(value)]="verticalSlider.minValue"
-        [(highValue)]="verticalSlider.maxValue"
-        [options]="verticalSlider.options">
-      </ng5-slider>
+
   </div>
 
   <div class="inlinediv">
-      <div #imageDiv id="imageDiv" [ngStyle]="imageStyle" >
-    </div>
+      <div
+        #imageDiv
+        id="imageDiv"
+        [ngStyle]="imageStyle"
+        >
+      </div>
   </div>
 
   <div>
@@ -22,16 +21,6 @@
         matTooltip="יש ללחוץ על הכפתור על מנת לאשר שליחה">
         <mat-icon>switch_video</mat-icon>
       </button>
-    </div>
-
-    <div style="float: left; padding-left: 20px">
-      <button
-        mat-icon-button
-        style = "background-color: lightgray"
-        (click)="openSliderSettingsDialog()"
-        matTooltip="אופציות שונות המאפשרות קסטומיזציה לסליידר">
-        <mat-icon>settings</mat-icon>
-        </button>
     </div>
   </div>
 </div>

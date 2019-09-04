@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { ISegmetParams, RangeSliderModel } from 'src/app/components/static-image/static-image.component';
+
 import { SegmentParamsDialogComponent } from '../segment-params-dialog/segment-params-dialog.component';
 
 @Component({
@@ -12,7 +12,7 @@ export class SliderConfigPopboxComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<SegmentParamsDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: RangeSliderModel
+    @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     console.log(data);
   }

@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DialogData } from 'src/app/drafts/popup/dialog-demo/dialog-demo.component';
-import { ISegmetParams } from 'src/app/components/static-image/static-image.component';
+
 
 @Component({
   selector: 'app-segment-params-dialog',
@@ -13,7 +13,7 @@ export class SegmentParamsDialogComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<SegmentParamsDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: ISegmetParams
+    @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     console.log(data);
   }

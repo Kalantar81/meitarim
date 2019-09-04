@@ -13,7 +13,7 @@ import { CanvasComponent } from './drafts/canvas/canvas.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/selectArea',
+    redirectTo: '/indexMaterial',
     pathMatch: 'full'
   },
   {
