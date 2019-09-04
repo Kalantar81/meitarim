@@ -1,0 +1,17 @@
+ /* #divBg {
+  background: url('/assets/pictures/graph1.jpg') no-repeat center center;
+  width: 500px;
+  height: 750px;
+} */
+
+#imageDiv {
+  border: 1px solid #000;
+  background: url('/assets/pictures/graph1.jpg');
+  width: 400px;
+  height: 700px;
+}
+
+#selectAreaDiv {
+  border: 1px dotted rgb(252, 248, 248);
+  position: absolute;
+}

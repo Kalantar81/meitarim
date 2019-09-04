@@ -10,24 +10,24 @@ import { CdkDragDrop } from '@angular/cdk/drag-drop';
   styleUrls: ['./custom-media-hive.component.css']
 })
 export class CustomMediaHiveComponent implements OnInit {
-  
+
   @ViewChild("img1",{static: false}) img1Component: CustomImgComponent;
   @ViewChild("img2",{static: false}) img2Component: CustomImgComponent;
   @ViewChild("img3",{static: false}) img3Component: CustomImgComponent;
 
-  @ViewChild("video1",{static: false}) video1Component: CustomVideoComponent; 
+  @ViewChild("video1",{static: false}) video1Component: CustomVideoComponent;
   @ViewChild("video2",{static: false}) video2Component: CustomVideoComponent;
-  
+
   private _itemsLoaded:number = 0;
   private _itemsCount:number = 0;
   private _currentTime: number = 0;
   private _currentDruation = 60;
- 
+
   public get currentTime(): number {
     return this._currentTime;
   }
 
-  
+
 
   @Input() public set currentTime(value: number) {
     this._currentTime = value;
@@ -44,7 +44,7 @@ export class CustomMediaHiveComponent implements OnInit {
   public setVideo(){
     try{
       this._itemsLoaded = 0;
-      this._itemsCount = 5; 
+      this._itemsCount = 5;
       this.img1Component.setOptions(
         {
           end:this._currentDruation,
@@ -77,7 +77,7 @@ export class CustomMediaHiveComponent implements OnInit {
           step:1
         }
       );
-        
+
       this.video1Component.setOptions(
         {
           end:this._currentDruation,
@@ -98,14 +98,14 @@ export class CustomMediaHiveComponent implements OnInit {
             step:1
           }
         );
-  
+
    }catch(e){
       alert (e.message)
     }
-    
+
   }
 
-  
+
 public startPlay(){
     this.video1Component.play();
     this.video2Component.play();
@@ -119,9 +119,9 @@ public startPlay(){
 
   private _myTimer: any;
   private _mySpeed: number;
-  
+
   startUpdateTimer(): void {
-    
+
     if (this._myTimer == undefined){
       this._myTimer = setInterval(() => {
 
@@ -155,5 +155,5 @@ public startPlay(){
     if (this._itemsLoaded >= this._itemsCount)
       this.startPlay();
   }
-  
+
 }

@@ -26,6 +26,8 @@ import { SegmentParamsDialogComponent } from './popboxes/segment-params-dialog/s
 import { DemoForPopboxComponent } from './drafts/popup/demo-for-popbox/demo-for-popbox.component';
 import { PopupWithInnerComponentComponent } from './drafts/popup/popup-with-inner-component/popup-with-inner-component.component';
 import { SliderConfigPopboxComponent } from './popboxes/slider-config-popbox/slider-config-popbox.component';
+import { SelectAreaComponent } from './drafts/select-area/select-area.component';
+import { CanvasComponent } from './drafts/canvas/canvas.component';
 
 
 
@@ -47,7 +49,9 @@ import { SliderConfigPopboxComponent } from './popboxes/slider-config-popbox/sli
     SegmentParamsDialogComponent,
     DemoForPopboxComponent,
     PopupWithInnerComponentComponent,
-    SliderConfigPopboxComponent
+    SliderConfigPopboxComponent,
+    SelectAreaComponent,
+    CanvasComponent
   ],
   imports: [
     BrowserModule,

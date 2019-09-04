@@ -6,12 +6,14 @@ import { MaterialMainComponent } from './views/material-main/material-main.compo
 import { VerticalRangeSliderComponent } from './drafts/vertical-range-slider/vertical-range-slider.component';
 import { StaticImageComponent } from './components/static-image/static-image.component';
 import { DialogDemoComponent } from './drafts/popup/dialog-demo/dialog-demo.component';
+import { SelectAreaComponent } from './drafts/select-area/select-area.component';
+import { CanvasComponent } from './drafts/canvas/canvas.component';
 
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/indexMaterial',
+    redirectTo: '/selectArea',
     pathMatch: 'full'
   },
   {
@@ -37,6 +39,14 @@ const routes: Routes = [
   {
     path: 'popupDemo',
     component: DialogDemoComponent,
+  },
+  {
+    path: 'selectArea',
+    component: SelectAreaComponent,
+  },
+  {
+    path: 'canvas',
+    component: CanvasComponent,
   }
 ];
 
