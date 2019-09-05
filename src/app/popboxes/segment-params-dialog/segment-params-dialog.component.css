@@ -1,0 +1,9 @@
+.text {
+  font-size: 20px;
+}
+
+.center {
+  margin: auto;
+  width: 90%;
+  border: 1px solid green;
+}

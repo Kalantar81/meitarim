@@ -1,35 +1,100 @@
 <div>
   <h1 mat-dialog-title align = "center">פרטי חתך</h1>
-  <div mat-dialog-content align = "center">
-    <mat-form-field class="dialogFrame">
-        <mat-label>שם החתך</mat-label>
-      <input
-        matInput
-        [(ngModel)]="data.name"
-        matTooltip="יש לתת שם לכ לחתך"
-        required>
-    </mat-form-field>
 
-    <mat-form-field appearance="outline">
-      <mat-label>נקודת התחלה</mat-label>
+  <div mat-dialog-content >
+    <div align = "center">
+      <mat-form-field class="dialogFrame">
+          <mat-label>שם החתך</mat-label>
         <input
-          type="number"
           matInput
-          [(ngModel)]="data.startPoint"
-          matTooltip="ניתן להזין ידנית את נקודת התחלה. הגרף יתתקן בהתאם.">
-      <mat-hint>הזן מספר בין {{data.minPossibleValue}} - {{data.maxPossibleValue - 1}}</mat-hint>
-    </mat-form-field>
+          [(ngModel)]="data.segmentName"
+          matTooltip="יש לתת שם לכל לחתך"
+          required>
+      </mat-form-field>
+    </div>
 
-    <mat-form-field appearance="outline">
-        <mat-label>נקודת סוף</mat-label>
-          <input
-            type="number"
-            matInput
-            [(ngModel)]="data.endPoint"
-            matTooltip="אפשר להזין נקודת סוף ידנית וזה יתתקןבהתאם בגרף. כמו כן הנקודה לא יכולה להיות גדולה יותר מנק' התחלהץ מספרים מתתקנים למטה">
-        <mat-hint>הזן מספר בין {{data.startPoint}} - {{data.maxPossibleValue}}</mat-hint>
-    </mat-form-field>
+    <div>
+      <div style="float: right; padding-right: 100px">
+        <mat-form-field
+          appearance="outline"
+          style="width: 100px">
+          <mat-label>זמן התחלה</mat-label>
+            <input
+              type="number"
+              matInput
+              [(ngModel)]="data.startPointX"
+              matTooltip="זמן תחילת הריצה"
+              required>
+        </mat-form-field>
+        <label class="text"> - זמן מ </label>
+      </div>
+      <div style="float: left; padding-left: 100px">
+          <mat-form-field
+            appearance="outline"
+            style="width: 100px">
+            <mat-label>זמן סוף</mat-label>
+              <input
+                type="number"
+                matInput
+                [(ngModel)]="data.endPointX"
+                matTooltip="זמן סוף הריצה"
+                required>
+          </mat-form-field>
+          <label class="text"> עד </label>
+        </div>
+    </div>
+
+    <div>
+        <div style="float: right; padding-right: 100px">
+          <mat-form-field
+            appearance="outline"
+            style="width: 100px">
+            <mat-label>תדר התחלתי</mat-label>
+              <input
+                type="number"
+                matInput
+                [(ngModel)]="data.startPointY"
+                matTooltip="תדר התחלתי"
+                required>
+          </mat-form-field>
+          <label class="text"> - תדר מ </label>
+        </div>
+        <div style="float: left; padding-left: 100px">
+            <mat-form-field
+              appearance="outline"
+              style="width: 100px">
+              <mat-label>תדר סופי</mat-label>
+                <input
+                  type="number"
+                  matInput
+                  [(ngModel)]="data.endPointY"
+                  matTooltip="זמן סוף הריצה"
+                  required>
+            </mat-form-field>
+            <label class="text"> עד </label>
+          </div>
+      </div>
   </div>
+
+  <div style="float: initial; padding-right: 200px; direction: rtl">
+    <h4>נוצר על ידי: {{data.createdBy}}</h4>
+    <h4>תהריך: {{date}}</h4>
+    <h4>שעה: {{time}}</h4>
+    <!-- <section class="example-section">
+        <label class="example-margin">חתך:</label>
+        <mat-radio-group [(ngModel)]="color">
+          <mat-radio-button class="example-margin" value="primary">
+            שמור
+          </mat-radio-button>
+          <mat-radio-button class="example-margin" value="accent">
+            על תשמור
+          </mat-radio-button>
+        </mat-radio-group>
+    </section> -->
+  </div>
+
+
+
   <div mat-dialog-actions align = "center">
     <button
       mat-flat-button color="primary"
@@ -42,7 +107,15 @@
       [mat-dialog-close]="data"
       cdkFocusInitial
       matTooltip="הכפתור שולח את הדאטה לשרת">
-      בצע חתך
+      שמור חתך
+    </button>
+    <div style="padding-right: 10px"></div>
+    <button
+      mat-flat-button color="primary"
+      [mat-dialog-close]="data"
+      cdkFocusInitial
+      matTooltip="הכפתור שולח את הדאטה לשרת">
+      טען חתך
     </button>
   </div>
 </div>

@@ -1,13 +1,15 @@
 <div>
-  <div style="float: left;" [style.height.px]="sliderHeight">
-
-  </div>
-
   <div class="inlinediv">
       <div
         #imageDiv
         id="imageDiv"
-        [ngStyle]="imageStyle"
+        >
+      </div>
+
+      <div
+        id="selectAreaDiv"
+        #selectAreaDiv
+        (dblclick)= "mouseClickAngular()"
         >
       </div>
   </div>
@@ -22,6 +24,15 @@
         <mat-icon>switch_video</mat-icon>
       </button>
     </div>
+    <div style="float: left; padding-left: 20px">
+        <button
+          mat-icon-button
+          style = "background-color: lightgray"
+          (click)="resetSelectedDiv()"
+          matTooltip="בטל בחירה">
+          <mat-icon>highlight_off</mat-icon>
+        </button>
+      </div>
   </div>
 </div>
 
