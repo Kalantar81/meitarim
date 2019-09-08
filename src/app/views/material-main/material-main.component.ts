@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, Input, OnDestroy } from '@angular/core';
 import { CustomImgComponent } from 'src/app/components/custom-img/custom-img.component';
 import { CustomVideoComponent } from 'src/app/components/custom-video/custom-video.component';
 import { StaticImageComponent } from 'src/app/components/static-image/static-image.component';
+import { ChatService, Message } from 'src/app/services/chat/chat.service';
 
 @Component({
   selector: 'app-material-main',
@@ -34,7 +35,49 @@ export class MaterialMainComponent implements OnInit, OnDestroy {
   }
 
 
-  constructor() { }
+
+
+  constructor(private chatService: ChatService) {
+    
+    let handleMessage = this.handleMessageWs.bind(this);
+    let handleError = this.onErrorWs.bind(this);
+    chatService.messages.subscribe(handleMessage,handleError);
+  }
+
+  private handleMessageWs(msg){
+    //TODO
+    alert ("got message "+msg);
+    //update this.filesArray[]
+    console.log("Response from websocket: " + msg);
+  }
+
+  private onErrorWs(error){
+     //TODO
+    alert ("Error:" + error);
+    console.log("Error from websocket: " + error);
+  }
+
+
+  private message : Message = {
+    clientId: "client1",
+    fileId: "this is a test message",
+    picDimensions:{
+      x1:100,
+      y1:101,
+      x2:300,
+      y2:500
+    }
+  };
+
+
+  private filesArray:any[];
+
+  sendMsg() {
+    console.log("send message ", this.message);
+    this.filesArray = [];
+    this.chatService.messages.next((this.message));
+    //this.message = " NEXT ONE";
+  }
 
   ngOnInit() {
     this._mySpeed = 100;
@@ -129,6 +172,12 @@ public startPlay() {
 
   private _myTimer: any;
   private _mySpeed: number;
+  imgSliderChanged(eventData){
+    this.video1Component.setCurrentPosition(eventData);
+    this.video2Component.setCurrentPosition(eventData);
+    
+
+  }
 
   startUpdateTimer(): void {
 
@@ -136,7 +185,7 @@ public startPlay() {
       this._myTimer = setInterval ( () => {
 
         // get video position
-        const currentTime = this.video1Component.myCuurentTime ();
+        const currentTime = this.video1Component.myCurrentTime ();
         // console.log ('currentTime' + currentTime);
         if  (currentTime <= this._currentDruation) {
           // this.img1Component.sync (currentTime);

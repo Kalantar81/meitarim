@@ -15,6 +15,9 @@ import { CustomVideoComponent } from './components/custom-video/custom-video.com
 import { CustomImgComponent } from './components/custom-img/custom-img.component';
 import { CustomMediaHiveComponent } from './components/custom-media-hive/custom-media-hive.component';
 import { CustomImgBaseComponent } from './components/custom-img-base/custom-img-base.component';
+import { ChatService } from 'src/app/services/chat/chat.service';
+import { WebsocketService } from "src/app/services/websocket/websocket.service"
+
 import { MaterialMainComponent } from './views/material-main/material-main.component';
 import { VerticalRangeSliderComponent } from './drafts/vertical-range-slider/vertical-range-slider.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -71,7 +74,7 @@ import { CanvasComponent } from './drafts/canvas/canvas.component';
     SegmentParamsDialogComponent,
     SliderConfigPopboxComponent
   ],
-  providers: [],
+  providers: [ChatService,WebsocketService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

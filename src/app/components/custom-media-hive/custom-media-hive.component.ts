@@ -3,6 +3,7 @@ import { IPlayableMedia, IPlayableMediaOptions } from 'src/app/interfaces/mediai
 import { CustomImgComponent } from '../custom-img/custom-img.component';
 import { CustomVideoComponent } from '../custom-video/custom-video.component';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
+import { ChatService, Message } from 'src/app/services/chat/chat.service';
 
 @Component({
   selector: 'app-custom-media-hive',
@@ -34,7 +35,53 @@ export class CustomMediaHiveComponent implements OnInit {
   }
 
 
-  constructor() { }
+ 
+
+
+  constructor(private chatService: ChatService) {
+    
+    let handleMessage = this.handleMessageWs.bind(this);
+    let handleError = this.onErrorWs.bind(this);
+    chatService.messages.subscribe(handleMessage,handleError);
+  }
+
+  private handleMessageWs(msg){
+    //TODO
+    alert ("got message "+msg);
+    //update this.filesArray[]
+    console.log("Response from websocket: " + msg);
+  }
+
+  private onErrorWs(error){
+     //TODO
+    alert ("Error:" + error);
+    console.log("Error from websocket: " + error);
+  }
+
+
+  private message : Message = {
+    clientId: "client1",
+    fileId: "this is a test message",
+    picDimensions:{
+      x1:100,
+      y1:101,
+      x2:300,
+      y2:500
+    }
+  };
+
+
+  private filesArray:any[];
+
+  sendMsg() {
+    console.log("send message ", this.message);
+    this.filesArray = [];
+    this.chatService.messages.next((this.message));
+    //this.message = " NEXT ONE";
+  }
+
+
+
 
   ngOnInit() {
     this._mySpeed = 100;
@@ -119,6 +166,13 @@ public startPlay(){
 
   private _myTimer: any;
   private _mySpeed: number;
+  
+  imgSliderChanged(eventData){
+    this.video1Component.setCurrentPosition(eventData);
+    this.video2Component.setCurrentPosition(eventData);
+    
+
+  }
 
   startUpdateTimer(): void {
 
@@ -126,7 +180,7 @@ public startPlay(){
       this._myTimer = setInterval(() => {
 
         //get video position
-        var currentTime = this.video1Component.myCuurentTime();
+        var currentTime = this.video1Component.myCurrentTime();
         //console.log("currentTime" + currentTime);
         if (currentTime<=this._currentDruation){
           this.img1Component.sync(currentTime);
