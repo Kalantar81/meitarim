@@ -3,21 +3,22 @@ import { CustomImgComponent } from 'src/app/components/custom-img/custom-img.com
 import { CustomVideoComponent } from 'src/app/components/custom-video/custom-video.component';
 import { StaticImageComponent } from 'src/app/components/static-image/static-image.component';
 import { ChatService, Message } from 'src/app/services/chat/chat.service';
+import { IMainVeiw } from 'src/app/interfaces/viewinterfaces';
 
 @Component({
   selector: 'app-material-main',
   templateUrl: './material-main.component.html',
   styleUrls: ['./material-main.component.less']
 })
-export class MaterialMainComponent implements OnInit, OnDestroy {
+export class MaterialMainComponent implements OnInit, OnDestroy,IMainVeiw {
 
-  @ViewChild ('img1', {static:  false}) img1Component: StaticImageComponent;
-  @ViewChild ('img2', {static:  false}) img2Component: CustomImgComponent;
-  @ViewChild ('img3', {static:  false}) img3Component: CustomImgComponent;
+  @ViewChild ('img1', {static:  false}) dosImage: StaticImageComponent;
+  @ViewChild ('img2', {static:  false}) arsImage: CustomImgComponent;
+  @ViewChild ('img3', {static:  false}) artImage: CustomImgComponent;
   @ViewChild ('tdoImage', {static:  false}) tdoImage: CustomImgComponent;
 
-  @ViewChild ('video1', {static:  false}) video1Component: CustomVideoComponent;
-  @ViewChild ('video2', {static:  false}) video2Component: CustomVideoComponent;
+  @ViewChild ('video1', {static:  false}) arpVideo: CustomVideoComponent;
+  @ViewChild ('video2', {static:  false}) tcsVideo: CustomVideoComponent;
 
   private _itemsLoaded: number = 0;
   private _itemsCount: number = 0;
@@ -88,7 +89,7 @@ export class MaterialMainComponent implements OnInit, OnDestroy {
     try {
       this._itemsLoaded = 0;
       this._itemsCount = 5;
-      this.img1Component.setOptions (
+      this.dosImage.setOptions (
         {
           // end:  this._currentDruation,
           // start:  0,
@@ -109,7 +110,7 @@ export class MaterialMainComponent implements OnInit, OnDestroy {
           step:  1
         });
 
-      this.img2Component.setOptions (
+      this.arsImage.setOptions (
         {
           end:  this._currentDruation,
           start:  0,
@@ -120,7 +121,7 @@ export class MaterialMainComponent implements OnInit, OnDestroy {
         }
       );
 
-      this.img3Component.setOptions (
+      this.artImage.setOptions (
         {
           end: this._currentDruation,
           start: 0,
@@ -131,7 +132,7 @@ export class MaterialMainComponent implements OnInit, OnDestroy {
         }
       );
 
-      this.video1Component.setOptions (
+      this.arpVideo.setOptions (
         {
           end: this._currentDruation,
           start: 0,
@@ -141,7 +142,7 @@ export class MaterialMainComponent implements OnInit, OnDestroy {
           step: 1
         }
       );
-      this.video2Component.setOptions (
+      this.tcsVideo.setOptions (
           {
             end: this._currentDruation,
             start: 0,
@@ -160,21 +161,21 @@ export class MaterialMainComponent implements OnInit, OnDestroy {
 
 
 public startPlay() {
-    this.video1Component.play ();
-    this.video2Component.play ();
+    this.arpVideo.play ();
+    this.tcsVideo.play ();
     this.startUpdateTimer ();
 }
   public stopUpdateTimer() {
-      this.video1Component.stop ();
-      this.video2Component.stop ();
+      this.arpVideo.stop ();
+      this.tcsVideo.stop ();
       this.stopTimer();
   }
 
   private _myTimer: any;
   private _mySpeed: number;
   imgSliderChanged(eventData){
-    this.video1Component.setCurrentPosition(eventData);
-    this.video2Component.setCurrentPosition(eventData);
+    this.arpVideo.setCurrentPosition(eventData);
+    this.tcsVideo.setCurrentPosition(eventData);
     
 
   }
@@ -185,13 +186,13 @@ public startPlay() {
       this._myTimer = setInterval ( () => {
 
         // get video position
-        const currentTime = this.video1Component.myCurrentTime ();
+        const currentTime = this.arpVideo.myCurrentTime ();
         // console.log ('currentTime' + currentTime);
         if  (currentTime <= this._currentDruation) {
           // this.img1Component.sync (currentTime);
           this.tdoImage.sync(currentTime);
-          this.img2Component.sync (currentTime);
-          this.img3Component.sync (currentTime);
+          this.arsImage.sync (currentTime);
+          this.artImage.sync (currentTime);
         } else {
           this.stopTimer ();
         }
