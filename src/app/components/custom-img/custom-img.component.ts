@@ -32,7 +32,10 @@ export class CustomImgComponent implements OnInit,IPlayableMedia {
 
   @Output()
   myOncanplaythrough:EventEmitter<string> = new EventEmitter<string>();
-
+  
+  
+  @Output()
+  myValueChanged:EventEmitter<number> = new EventEmitter<number>();
   constructor() { }
 
   ngOnInit() {
@@ -41,17 +44,25 @@ export class CustomImgComponent implements OnInit,IPlayableMedia {
 
 
 
-  @ViewChild("slider",{static: false})
+  @ViewChild("slider",{static: false})  
   set mainVideoEl(el: ElementRef) {
         this._mySlider = el.nativeElement;
-        //this._mySlider.onmousedown = this.setMyNewValue.bind(this);
-        //this._mySlider.onmouseup = this.setMyNewValue.bind(this);
+        this._mySlider.onmousedown = this.disableSlider.bind(this);
+        this._mySlider.onmouseup = this.enableSlider.bind(this);
+        this._mySlider.onchange = this.changeValue.bind(this);
   }
 
   private _isSliderDisabled = false;
   disableSlider (event:any){
     this._isSliderDisabled = true;
+  }
+  enableSlider (event:any){
+    this._isSliderDisabled = false;
+  }
 
+  changeValue (event:any){
+    var myValue:number = <number><unknown>(this._mySlider.value);
+      this.myValueChanged.emit(myValue);
   }
 
   setMyNewValue(newValue:number){
@@ -60,17 +71,17 @@ export class CustomImgComponent implements OnInit,IPlayableMedia {
     this.setMyTopValue();
   }
 
-  setMyTopValue() {
-    // var slider = this._mySlider;
-    const sliderPos = this.myValue / (this.myMax - this.myMin);
-    const myCursorStep = this._myOptions.height * sliderPos;
+  setMyTopValue(){
+    //var slider = this._mySlider;
+    var sliderPos =this.myValue / (this.myMax - this.myMin);
+    var myCursorStep = this._myOptions.height * sliderPos;
     // var myCursorStep  = ((this._myOptions.height) / (this.myMax - this.myMin +1));
-    // this.myTop = (-1) * Math.round(myCursorStep * this.myValue + this._myOffset);
+    //this.myTop = (-1) * Math.round(myCursorStep * this.myValue + this._myOffset);
     this.myTop = (-1) * myCursorStep  - this._myOffset;
   }
 
-  sync(currentTime: number): void {
-    if (this.myMax >= this.myValue) {
+  sync(currentTime:number): void {
+    if (this.myMax>=this.myValue && (!this._isSliderDisabled)){
       this.myValue = currentTime;
       this.setMyTopValue();
     }
@@ -78,7 +89,7 @@ export class CustomImgComponent implements OnInit,IPlayableMedia {
 
   setOptions(option: IPlayableMediaOptions): void {
     this._myOptions = option;
-    var myStyle:any =
+    var myStyle:any = 
     {
       display:"inline-block",
       background:"url('"+ this._myOptions.src  + "') no-repeat center center",

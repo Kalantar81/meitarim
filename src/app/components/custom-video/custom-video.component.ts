@@ -49,14 +49,14 @@ export class CustomVideoComponent implements OnInit,IPlayableMedia {
     return this._myOptions;
   }
   public setCurrentPosition(position: number): void {
-    throw new Error("Method not implemented.");
+    this.videoPlayer.currentTime = position;
   }
 
-  constructor() {
+  constructor() { 
     //this.mySrc = "/assets/moovies/popcorntest.mp4";
   }
-
-
+  
+  
   public get mySrc(){
       return this._mysSrc;
   }
@@ -83,7 +83,7 @@ export class CustomVideoComponent implements OnInit,IPlayableMedia {
 
   videoPlayer: HTMLVideoElement;
 
-  @ViewChild("videoPlayer", {static: false})
+  @ViewChild("videoPlayer",{static: false})  
   set mainVideoEl(el: ElementRef) {
         this.videoPlayer = el.nativeElement;
   }
@@ -92,7 +92,7 @@ export class CustomVideoComponent implements OnInit,IPlayableMedia {
     this.videoPlayer.play();
   }
 
-  public myCuurentTime(): number {
+  public myCurrentTime():number{
     return this.videoPlayer.currentTime;
   }
 
