@@ -1,0 +1,56 @@
+.example-headers-align .mat-expansion-panel-header-title,
+.example-headers-align .mat-expansion-panel-header-description {
+  flex-basis: 0;
+}
+
+.example-headers-align .mat-expansion-panel-header-description {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mat-expansion-panel-header {
+  background-color: black;
+  /* border: 1px solid gainsboro; */
+}
+
+.mat-expansion-panel {
+  background-color: black;
+}
+
+.accordionContainer {
+  border: 1px solid gainsboro;
+  background-color: black;
+  width: 200px;
+  height: 750px;
+}
+
+.accordionTitleStyle {
+  color: gainsboro;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', 'Arial';
+  font-size: 25px;
+  font-weight: bold;
+  /* padding-top: 15px;
+  padding-right: 3px; */
+}
+
+.titleIconStyle {
+  background-color: lightgray;
+  margin-left: 50px;
+}
+
+.accordionButtonTitleStyle {
+  color: gainsboro;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', 'Arial';
+  font-size: 15px;
+  padding-top: 10px;
+  padding-bottom: 5px;
+  float: left;
+  margin-top: 10px;
+}
+
+.accordionButtonStyle {
+  float: right;
+  margin-left: 15px;
+  background-color: gainsboro;
+  margin-top: 10px;
+}

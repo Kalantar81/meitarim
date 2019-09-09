@@ -31,6 +31,7 @@ import { PopupWithInnerComponentComponent } from './drafts/popup/popup-with-inne
 import { SliderConfigPopboxComponent } from './popboxes/slider-config-popbox/slider-config-popbox.component';
 import { SelectAreaComponent } from './drafts/select-area/select-area.component';
 import { CanvasComponent } from './drafts/canvas/canvas.component';
+import { AccordionDemoComponent } from './drafts/accordion-demo/accordion-demo.component';
 
 
 
@@ -54,7 +55,8 @@ import { CanvasComponent } from './drafts/canvas/canvas.component';
     PopupWithInnerComponentComponent,
     SliderConfigPopboxComponent,
     SelectAreaComponent,
-    CanvasComponent
+    CanvasComponent,
+    AccordionDemoComponent
   ],
   imports: [
     BrowserModule,

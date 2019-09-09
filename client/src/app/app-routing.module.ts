@@ -8,6 +8,7 @@ import { StaticImageComponent } from './components/static-image/static-image.com
 import { DialogDemoComponent } from './drafts/popup/dialog-demo/dialog-demo.component';
 import { SelectAreaComponent } from './drafts/select-area/select-area.component';
 import { CanvasComponent } from './drafts/canvas/canvas.component';
+import { AccordionDemoComponent } from './drafts/accordion-demo/accordion-demo.component';
 
 
 const routes: Routes = [
@@ -47,6 +48,10 @@ const routes: Routes = [
   {
     path: 'canvas',
     component: CanvasComponent,
+  },
+  {
+    path: 'accordionDemo',
+    component: AccordionDemoComponent,
   }
 ];
 
