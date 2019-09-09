@@ -6,10 +6,6 @@
           <div class="buttonTitleStyle">
             set video
           </div>
-          <button (click)="sendMsg()">
-             Get Msges
-          </button>&nbsp;
-
           <button
             mat-icon-button
             style = "background-color: lightgray"
@@ -17,6 +13,11 @@
             <mat-icon>movie</mat-icon>
           </button>
         </div>
+
+        <button (click)="sendMsg()">
+            Get Msges
+         </button>&nbsp;
+
         <div>
           <div class="buttonTitleStyle">
             stop play
@@ -42,24 +43,31 @@
 
       </div>
 
+<!-- accordion start ------------------------------------------------------------------------------>
       <mat-accordion>
           <mat-expansion-panel>
-            <mat-expansion-panel-header>
+            <mat-expansion-panel-header style="background-color: black">
               <mat-panel-title>
-                Personal data
+                  <div class="accordionTitleStyle">
+                      עריכה
+                  </div>
               </mat-panel-title>
-              <mat-panel-description>
-                Type your name and age
-              </mat-panel-description>
+               <!-- <mat-panel-description>
+
+              </mat-panel-description> -->
             </mat-expansion-panel-header>
 
-            <mat-form-field>
-              <input matInput placeholder="First name">
-            </mat-form-field>
-
-            <mat-form-field>
-              <input matInput placeholder="Age">
-            </mat-form-field>
+            <div>
+                <div class="buttonTitleStyle">
+                  set video
+                </div>
+                <button
+                  mat-icon-button
+                  style = "background-color: lightgray"
+                  (click)="setVideo()">
+                  <mat-icon>movie</mat-icon>
+                </button>
+              </div>
           </mat-expansion-panel>
           <mat-expansion-panel (opened)="panelOpenState = true"
                                (closed)="panelOpenState = false">
@@ -92,11 +100,12 @@
     <div id="tdoColumn">
         <div class="title">TDO</div>
         <div class="dosComponentDesign">
-            <app-custom-img
+            <!-- <app-custom-img
               #tdoImage
-			  (myValueChanged)="imgSliderChanged($event)" 
+			  (myValueChanged)="imgSliderChanged($event)"
               (myOncanplaythrough)="mediaLoaded($event)">
-            </app-custom-img>
+            </app-custom-img> -->
+            <app-static-image #tdoImage></app-static-image>
           </div>
     </div>
     <div id="arpArsContainerColumn">
@@ -114,7 +123,7 @@
           <div class="imageComponentDesign">
             <app-custom-img
               #img2
-			  (myValueChanged)="imgSliderChanged($event)" 
+			  (myValueChanged)="imgSliderChanged($event)"
               (myOncanplaythrough)="mediaLoaded($event)">
             </app-custom-img>
           </div>
