@@ -5,7 +5,7 @@ import { CustomImgComponent } from '../components/custom-img/custom-img.componen
 import { CustomVideoComponent } from '../components/custom-video/custom-video.component';
 
 
-export interface IMainVeiw {
+export interface IVeiwWindow {
     dosImage: StaticImageComponent;
     arsImage: CustomImgComponent;
     artImage: CustomImgComponent;
@@ -14,4 +14,13 @@ export interface IMainVeiw {
     arpVideo: CustomVideoComponent;
     tcsVideo: CustomVideoComponent;
 
+    setCurrentDuration(curDuration:number):void;
+    getCurrentDuration() : number;
+
+    currentTime: number;
+    startPlay():void ;
+    
+    stopUpdateTimer():void;
+    initItemsLoaded():void;
+    
 }

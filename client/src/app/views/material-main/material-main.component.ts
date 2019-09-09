@@ -3,14 +3,15 @@ import { CustomImgComponent } from 'src/app/components/custom-img/custom-img.com
 import { CustomVideoComponent } from 'src/app/components/custom-video/custom-video.component';
 import { StaticImageComponent } from 'src/app/components/static-image/static-image.component';
 import { ChatService, Message } from 'src/app/services/chat/chat.service';
-import { IMainVeiw } from 'src/app/interfaces/viewinterfaces';
+import { IVeiwWindow } from 'src/app/interfaces/viewinterfaces';
+import { ViewWindowBl } from './matirial-main-bl';
 
 @Component({
   selector: 'app-material-main',
   templateUrl: './material-main.component.html',
   styleUrls: ['./material-main.component.less']
 })
-export class MaterialMainComponent implements OnInit, OnDestroy,IMainVeiw {
+export class MaterialMainComponent implements OnInit, OnDestroy,IVeiwWindow {
 
   @ViewChild ('img1', {static:  false}) dosImage: StaticImageComponent;
   @ViewChild ('img2', {static:  false}) arsImage: CustomImgComponent;
@@ -25,138 +26,38 @@ export class MaterialMainComponent implements OnInit, OnDestroy,IMainVeiw {
   private _currentTime:  number = 0;
   private _currentDruation = 15;
 
+  private myViewWindowBl : ViewWindowBl;
+
   public get currentTime(): number {
     return this._currentTime;
   }
 
-
+  public initItemsLoaded(){
+    this._itemsLoaded = 0;
+  }
 
   @Input () public set currentTime(value: number) {
     this._currentTime = value;
   }
 
-
-
-
   constructor(private chatService: ChatService) {
-    
-    let handleMessage = this.handleMessageWs.bind(this);
-    let handleError = this.onErrorWs.bind(this);
-    chatService.messages.subscribe(handleMessage,handleError);
+    this.myViewWindowBl = new ViewWindowBl(this,chatService);
   }
 
-  private handleMessageWs(msg){
-    //TODO
-    alert ("got message "+msg);
-    //update this.filesArray[]
-    console.log("Response from websocket: " + msg);
-  }
+  
 
-  private onErrorWs(error){
-     //TODO
-    alert ("Error:" + error);
-    console.log("Error from websocket: " + error);
-  }
-
-
-  private message : Message = {
-    clientId: "client1",
-    fileId: "this is a test message",
-    picDimensions:{
-      x1:100,
-      y1:101,
-      x2:300,
-      y2:500
-    }
-  };
-
-
-  private filesArray:any[];
 
   sendMsg() {
-    console.log("send message ", this.message);
-    this.filesArray = [];
-    this.chatService.messages.next((this.message));
-    //this.message = " NEXT ONE";
+    this.myViewWindowBl.sendMsg();
   }
 
   ngOnInit() {
     this._mySpeed = 100;
-    this._currentTime = 1000;
+    this._currentTime = 0;
   }
 
   public setVideo() {
-    try {
-      this._itemsLoaded = 0;
-      this._itemsCount = 5;
-      this.dosImage.setOptions (
-        {
-          // end:  this._currentDruation,
-          // start:  0,
-          height:  750,
-          width:  140,
-          src:  '/assets/pictures/dos.png',
-          // step:  1
-        }
-      );
-
-      this.tdoImage.setOptions(
-        {
-          end:  this._currentDruation,
-          start:  0,
-          height:  750,
-          width:  140,
-          src:  '/assets/pictures/dos.png',
-          step:  1
-        });
-
-      this.arsImage.setOptions (
-        {
-          end:  this._currentDruation,
-          start:  0,
-          height:  500,
-          width:  240,
-          src:  '/assets/pictures/ars.png',
-          step:  1
-        }
-      );
-
-      this.artImage.setOptions (
-        {
-          end: this._currentDruation,
-          start: 0,
-          height: 500,
-          width: 240,
-          src: '/assets/pictures/ars.png',
-          step: 1
-        }
-      );
-
-      this.arpVideo.setOptions (
-        {
-          end: this._currentDruation,
-          start: 0,
-          height: 300,
-          width: 400,
-          src: '/assets/moovies/arp.mp4',
-          step: 1
-        }
-      );
-      this.tcsVideo.setOptions (
-          {
-            end: this._currentDruation,
-            start: 0,
-            height: 300,
-            width: 400,
-            src: '/assets/moovies/arp.mp4',
-            step: 1
-          }
-        );
-
-   } catch (e) {
-      alert  (e.message);
-    }
-
+    this.myViewWindowBl.setVideo();
   }
 
 
@@ -165,6 +66,7 @@ public startPlay() {
     this.tcsVideo.play ();
     this.startUpdateTimer ();
 }
+
   public stopUpdateTimer() {
       this.arpVideo.stop ();
       this.tcsVideo.stop ();
@@ -173,11 +75,10 @@ public startPlay() {
 
   private _myTimer: any;
   private _mySpeed: number;
+
   imgSliderChanged(eventData){
     this.arpVideo.setCurrentPosition(eventData);
     this.tcsVideo.setCurrentPosition(eventData);
-    
-
   }
 
   startUpdateTimer(): void {
@@ -218,4 +119,11 @@ public startPlay() {
     }
   }
 
+  public setCurrentDuration(curDuration:number){
+    this._currentDruation = curDuration;
+  }
+  public getCurrentDuration() : number{
+    return this._currentDruation ;
+  }
+  
 }

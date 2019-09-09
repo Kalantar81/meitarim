@@ -46,7 +46,7 @@ public class SessionManager implements IFileReadyCallBack {
 		   .map(o1->o1.get())
 		   //.buffer(5, OverflowStrategy.backpressure())
 		   .map(t->{
-			   //System.out.println("file out: " + t.getFileName());
+			   System.out.println("file out: " + t.getFileName());
 			   return TextMessage.create(t.toJson());
 		   });	  
 	 
