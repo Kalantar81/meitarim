@@ -6,8 +6,8 @@ export class ViewWindowBl  {
     private veiwWindow:IVeiwWindow;
     private chatService: ChatService;
     private itemsLoaded = 0;
-    private ITEMS_TO_LOAD:number =6;
-    private itemsCount:number = this.ITEMS_TO_LOAD;
+    public static ITEMS_TO_LOAD:number =6;
+    private itemsCount:number = ViewWindowBl.ITEMS_TO_LOAD;
     private currentDruation = 15;
 
     public message : Message = {
@@ -152,7 +152,76 @@ export class ViewWindowBl  {
  
   
     public setVideo() {
-     
+      try {
+        this.veiwWindow.initItemsLoaded();
+        //this.itemsCount =  this.ITEMS_TO_LOAD;
+        this.veiwWindow.dosImage.setOptions (
+          {
+            // end:  this._currentDruation,
+            // start:  0,
+            height:  750,
+            width:  140,
+            src:  '/assets/pictures/dos.png',
+            // step:  1
+          }
+        );
+  
+        this.veiwWindow.tdoImage.setOptions(
+          {
+            end:  this.currentDruation,
+            start:  0,
+            height:  750,
+            width:  140,
+            src:  '/assets/pictures/dos.png',
+            step:  1
+          });
+  
+        this.veiwWindow.arsImage.setOptions (
+          {
+            end:  this.currentDruation,
+            start:  0,
+            height:  500,
+            width:  240,
+            src:  '/assets/pictures/ars.png',
+            step:  1
+          }
+        );
+  
+        this.veiwWindow.artImage.setOptions (
+          {
+            end: this.currentDruation,
+            start: 0,
+            height: 500,
+            width: 240,
+            src: '/assets/pictures/ars.png',
+            step: 1
+          }
+        );
+  
+        this.veiwWindow.arpVideo.setOptions (
+          {
+            end: this.currentDruation,
+            start: 0,
+            height: 300,
+            width: 400,
+            src: '/assets/moovies/arp.mp4',
+            step: 1
+          }
+        );
+        this.veiwWindow.tcsVideo.setOptions (
+            {
+              end: this.currentDruation,
+              start: 0,
+              height: 300,
+              width: 400,
+              src: '/assets/moovies/arp.mp4',
+              step: 1
+            }
+          );
+  
+     } catch (e) {
+        alert  (e.message);
+      }
   
     }
 } 

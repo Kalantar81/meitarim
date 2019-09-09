@@ -22,7 +22,7 @@ export class MaterialMainComponent implements OnInit, OnDestroy,IVeiwWindow {
   @ViewChild ('video2', {static:  false}) tcsVideo: CustomVideoComponent;
 
   private _itemsLoaded: number = 0;
-  private _itemsCount: number = 0;
+  private _itemsCount: number = ViewWindowBl.ITEMS_TO_LOAD;
   private _currentTime:  number = 0;
   private _currentDruation = 15;
 
