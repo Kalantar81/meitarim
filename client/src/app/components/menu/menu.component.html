@@ -30,15 +30,7 @@
                 </div>
               </mat-panel-title>
             </mat-expansion-panel-header>
-
-            <mat-form-field>
-              <input matInput placeholder="Country">
-            </mat-form-field>
-
-            <img
-              class="iconDesign"
-              src="assets/icons/edit-video.png"
-              (click)='mouseClick()'/>
+            <app-accordion-video-player></app-accordion-video-player>
         </mat-expansion-panel>
       <!-- #end of accordion videoPlayer section -->
 
@@ -54,7 +46,7 @@
               </div>
             </mat-panel-title>
           </mat-expansion-panel-header>
-          TODO calculations component
+          <app-accordion-calculations></app-accordion-calculations>
         </mat-expansion-panel>
       <!-- #end of accordion calculations section -->
 
@@ -70,7 +62,7 @@
               </div>
             </mat-panel-title>
           </mat-expansion-panel-header>
-          TODO search component
+          <app-accordion-search></app-accordion-search>
         </mat-expansion-panel>
       <!-- #end of accordion search section -->
     </mat-accordion>
