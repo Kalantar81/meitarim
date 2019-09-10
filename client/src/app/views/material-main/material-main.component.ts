@@ -22,29 +22,32 @@ export class MaterialMainComponent implements OnInit, OnDestroy,IVeiwWindow {
   @ViewChild ('video2', {static:  false}) tcsVideo: CustomVideoComponent;
 
   private _itemsLoaded: number = 0;
-  private _itemsCount: number = ViewWindowBl.ITEMS_TO_LOAD;
-  private _currentTime:  number = 0;
+  private _itemsCount: number = ViewWindowBl.ITEMS_TO_LOAD_DYNAMIC_COMPONENTS ;//check only 2 videos and ars art images ViewWindowBl.ITEMS_TO_LOAD;
+  //private _currentTime:  number = 0;
   private _currentDruation = 15;
+
+
+
 
   private myViewWindowBl : ViewWindowBl;
 
-  public get currentTime(): number {
-    return this._currentTime;
-  }
+  // public get currentTime(): number {
+  //   return this._currentTime;
+  // }
 
   public initItemsLoaded(){
     this._itemsLoaded = 0;
+    this._itemsCount = ViewWindowBl.ITEMS_TO_LOAD_DYNAMIC_COMPONENTS;
+
   }
 
-  @Input () public set currentTime(value: number) {
-    this._currentTime = value;
-  }
+  // @Input () public set currentTime(value: number) {
+  //   this._currentTime = value;
+  // }
 
   constructor(private chatService: ChatService) {
     this.myViewWindowBl = new ViewWindowBl(this,chatService);
   }
-
-  
 
 
   sendMsg() {
@@ -52,19 +55,35 @@ export class MaterialMainComponent implements OnInit, OnDestroy,IVeiwWindow {
   }
 
   ngOnInit() {
-    this._mySpeed = 100;
-    this._currentTime = 0;
+    this._mySpeed = 1000;
+    //this._currentTime = 0;
   }
 
   public setVideo() {
     this.myViewWindowBl.setVideo();
   }
 
+private _startPlayTrials : number =0;
 
 public startPlay() {
-    this.arpVideo.play ();
-    this.tcsVideo.play ();
-    this.startUpdateTimer ();
+    if (this.arpVideo.isEnabledToPlay() && this.tcsVideo.isEnabledToPlay()){
+      this._startPlayTrials = 0;
+      setTimeout( ()=>{
+        this.arpVideo.play ();
+        this.tcsVideo.play ();
+        this.startUpdateTimer ();
+      },100);
+    }else{
+      if (this._startPlayTrials<10){
+        this._startPlayTrials ++;
+        setTimeout( ()=>{
+          this.startPlay();
+        },100);
+      }else{
+        this._startPlayTrials = 0;
+        alert ("תקלה בהפעלת קבצי וידאו, נא לנסות להטעין אותם מחדש");
+      }
+    }
 }
 
   public stopUpdateTimer() {
@@ -77,8 +96,15 @@ public startPlay() {
   private _mySpeed: number;
 
   imgSliderChanged(eventData){
-    this.arpVideo.setCurrentPosition(eventData);
-    this.tcsVideo.setCurrentPosition(eventData);
+    var newTime = parseFloat(eventData)
+    console.log ('imgSliderChanged: slider -> set vidio time:' + eventData);
+    this.stopUpdateTimer();
+    //this._itemsCount = 2;
+    //this._itemsLoaded =0;
+    this.arpVideo.setCurrentPosition(newTime);
+    this.tcsVideo.setCurrentPosition(newTime);
+    this.arsImage.sync (newTime);
+    this.artImage.sync (newTime);
   }
 
   startUpdateTimer(): void {
@@ -88,10 +114,11 @@ public startPlay() {
 
         // get video position
         const currentTime = this.arpVideo.myCurrentTime ();
-        // console.log ('currentTime' + currentTime);
+        console.log ('startUpdateTimer: currentTime' + currentTime);
+        
         if  (currentTime <= this._currentDruation) {
           // this.img1Component.sync (currentTime);
-          this.tdoImage.sync(currentTime);
+          //this.tdoImage.sync(currentTime);
           this.arsImage.sync (currentTime);
           this.artImage.sync (currentTime);
         } else {
@@ -114,7 +141,9 @@ public startPlay() {
 
   public mediaLoaded() {
     this._itemsLoaded ++;
-    if (this._itemsLoaded >= this._itemsCount) {
+    console.log ('mediaLoaded: Media loaded _itemsLoaded=' + this._itemsLoaded);
+    if (this._itemsLoaded == this._itemsCount) {
+      console.log ("mediaLoaded: startPlay()")
       this.startPlay ();
     }
   }

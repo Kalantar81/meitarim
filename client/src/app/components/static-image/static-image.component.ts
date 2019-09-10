@@ -79,7 +79,7 @@ export class StaticImageComponent implements OnInit, OnChanges {
     this.segmentParams.endPointY = e.clientY;
     this.reCalc_pr();
 
-    console.log('x1: ' + this.segmentParams.startPointX + ' y1: ' + this.segmentParams.startPointY + 'x2: ' + this.segmentParams.endPointX + ' y2: ' + this.segmentParams.endPointY);
+    //console.log('x1: ' + this.segmentParams.startPointX + ' y1: ' + this.segmentParams.startPointY + 'x2: ' + this.segmentParams.endPointX + ' y2: ' + this.segmentParams.endPointY);
   }
 
   private onMouseUp_pr(e) {
@@ -111,7 +111,7 @@ export class StaticImageComponent implements OnInit, OnChanges {
     this.selectAreaDiv.nativeElement.style.width = endPointX - startPointX + 'px';
     this.selectAreaDiv.nativeElement.style.height = endPointY - startPointY + 'px';
 
-    console.log('x1: ' + this.segmentParams.startPointX + ' y1: ' + this.segmentParams.startPointY + '---- x2: ' + this.segmentParams.endPointX + ' y2: ' + this.segmentParams.endPointY);
+    //console.log('x1: ' + this.segmentParams.startPointX + ' y1: ' + this.segmentParams.startPointY + '---- x2: ' + this.segmentParams.endPointX + ' y2: ' + this.segmentParams.endPointY);
 }
 
   /** #startDialogBox methods */

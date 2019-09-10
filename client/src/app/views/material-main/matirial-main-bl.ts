@@ -7,6 +7,7 @@ export class ViewWindowBl  {
     private chatService: ChatService;
     private itemsLoaded = 0;
     public static ITEMS_TO_LOAD:number =6;
+    public static ITEMS_TO_LOAD_DYNAMIC_COMPONENTS:number =4;
     private itemsCount:number = ViewWindowBl.ITEMS_TO_LOAD;
     private currentDruation = 15;
 
@@ -29,11 +30,13 @@ export class ViewWindowBl  {
       chatService.messages.subscribe(handleMessage,handleError);
     }
     private filesArray:any[];
+    
+    
     public sendMsg() {
       console.log("send message ", this.message);
       this.filesArray = [];
       this.veiwWindow.initItemsLoaded();
-      this.veiwWindow.currentTime = 0;
+      //this.veiwWindow.currentTime = 0;
       //this.chatService.messages.next((this.message));
       this.veiwWindow.stopUpdateTimer();
       this.chatService.sendRequest(this.message);
@@ -44,10 +47,12 @@ export class ViewWindowBl  {
       //TODO
       //alert ("got message "+msg.fileName);
       //update this.filesArray[]
-      console.log("Response from websocket: " + msg.fileName);
-      this.filesArray.push(msg);
-      this.updateFileData (msg);
-      
+      setTimeout(()=>{
+        console.log("handleMessageWs: update file:" + JSON.stringify(msg))
+        this.filesArray.push(msg);
+        this.updateFileData (msg);
+        
+      },10);
 
       // if (this.filesArray.length == this.ITEMS_TO_LOAD){
       //   setTimeout(()=>{
@@ -82,7 +87,8 @@ export class ViewWindowBl  {
               height:  750,
               width:  140,
               src: ChatService.SERVER_URL +  fileDat.filePath,
-              step:  1
+              step:  1,
+              name: "tdo"
             });
         }
         if (fileDat.fileName == "ars"){
@@ -93,7 +99,8 @@ export class ViewWindowBl  {
               height:  500,
               width:  240,
               src: ChatService.SERVER_URL +  fileDat.filePath,
-              step:  1
+              step:  1,
+              name: "ars"
             }
           );
         }
@@ -106,7 +113,8 @@ export class ViewWindowBl  {
               height: 500,
               width: 240,
               src: ChatService.SERVER_URL +  fileDat.filePath,
-              step: 1
+              step: 1,
+              name: "art"
             }
           );
         }
@@ -119,7 +127,8 @@ export class ViewWindowBl  {
               height: 300,
               width: 400,
               src: ChatService.SERVER_URL +  fileDat.filePath,
-              step: 1
+              step: 1,
+              name: "arp"
             }
           );
         }
@@ -132,7 +141,8 @@ export class ViewWindowBl  {
               height: 300,
               width: 400,
               src: ChatService.SERVER_URL +  fileDat.filePath,
-              step: 1
+              step: 1,
+              name: "tcs"
             }
           );
         }
@@ -173,7 +183,8 @@ export class ViewWindowBl  {
             height:  750,
             width:  140,
             src:  '/assets/pictures/dos.png',
-            step:  1
+            step:  1,
+            name: "dos"
           });
   
         this.veiwWindow.arsImage.setOptions (
@@ -183,7 +194,8 @@ export class ViewWindowBl  {
             height:  500,
             width:  240,
             src:  '/assets/pictures/ars.png',
-            step:  1
+            step:  1,
+            name: "ars"
           }
         );
   
@@ -194,7 +206,8 @@ export class ViewWindowBl  {
             height: 500,
             width: 240,
             src: '/assets/pictures/ars.png',
-            step: 1
+            step: 1,
+            name: "ars"
           }
         );
   
@@ -205,7 +218,8 @@ export class ViewWindowBl  {
             height: 300,
             width: 400,
             src: '/assets/moovies/arp.mp4',
-            step: 1
+            step: 1,
+            name: "arp1"
           }
         );
         this.veiwWindow.tcsVideo.setOptions (
@@ -215,7 +229,8 @@ export class ViewWindowBl  {
               height: 300,
               width: 400,
               src: '/assets/moovies/arp.mp4',
-              step: 1
+              step: 1,
+              name: "arp2"
             }
           );
   
@@ -224,4 +239,83 @@ export class ViewWindowBl  {
       }
   
     }
+
+    // public setVideoFromServer() {
+    //   try {
+    //     this.veiwWindow.initItemsLoaded();
+    //     //this.itemsCount =  this.ITEMS_TO_LOAD;
+    //     this.veiwWindow.dosImage.setOptions (
+    //       {
+    //         // end:  this._currentDruation,
+    //         // start:  0,
+    //         height:  750,
+    //         width:  140,
+    //         src:  'http://127.0.0.1:8080/getfile?fileName=dos.png',
+    //         // step:  1
+    //       }
+    //     );
+  
+    //     this.veiwWindow.tdoImage.setOptions(
+    //       {
+    //         end:  this.currentDruation,
+    //         start:  0,
+    //         height:  750,
+    //         width:  140,
+    //         src:  'http://127.0.0.1:8080/getfile?fileName=dos.png',
+    //         step:  1,
+    //         name: "dos"
+    //       });
+  
+    //     this.veiwWindow.arsImage.setOptions (
+    //       {
+    //         end:  this.currentDruation,
+    //         start:  0,
+    //         height:  500,
+    //         width:  240,
+    //         src:  'http://127.0.0.1:8080/getfile?fileName=ars.png',
+    //         step:  1,
+    //         name: "ars"
+    //       }
+    //     );
+  
+    //     this.veiwWindow.artImage.setOptions (
+    //       {
+    //         end: this.currentDruation,
+    //         start: 0,
+    //         height: 500,
+    //         width: 240,
+    //         src: 'http://127.0.0.1:8080/getfile?fileName=ars.png',
+    //         step: 1,
+    //         name: "ars"
+    //       }
+    //     );
+  
+    //     this.veiwWindow.arpVideo.setOptions (
+    //       {
+    //         end: this.currentDruation,
+    //         start: 0,
+    //         height: 300,
+    //         width: 400,
+    //         src: 'http://127.0.0.1:8080/getfile?fileName=arp.mp4',
+    //         step: 1,
+    //         name: "arp1"
+    //       }
+    //     );
+    //     this.veiwWindow.tcsVideo.setOptions (
+    //         {
+    //           end: this.currentDruation,
+    //           start: 0,
+    //           height: 300,
+    //           width: 400,
+    //           src: 'http://127.0.0.1:8080/getfile?fileName=tcs.mp4',
+    //           step: 1,
+    //           name: "arp2"
+    //         }
+    //       );
+  
+    //  } catch (e) {
+    //     alert  (e.message);
+    //   }
+  
+    // }
 } 

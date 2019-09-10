@@ -14,9 +14,14 @@ export class CustomVideoComponent implements OnInit,IPlayableMedia {
   protected _mysSrc : any;
   protected _myWidth: string;
   protected _myHeight: string;
+  protected _myIsEnabledToPlay: boolean;
 
   @Output()
   myOncanplaythrough:EventEmitter<string> = new EventEmitter();
+
+  public isEnabledToPlay(){
+    return this._myIsEnabledToPlay;
+  }
 
   public play(): void {
     this.videoPlayer.play();
@@ -24,22 +29,33 @@ export class CustomVideoComponent implements OnInit,IPlayableMedia {
   public stop(): void {
     this.videoPlayer.pause();
   }
+
+  private _oncanplaythroughInit:boolean = false;
+
   public setOptions(option: IPlayableMediaOptions): void {
     this._myOptions = option;
     this.myWidth =  this._myOptions.width + "px";
     this.myHeight =  this._myOptions.height + "px";
 
-    var vid =this._myOptions.src// URL.createObjectURL(this._myOptions.src); // IE10+
+    var newSrc =this._myOptions.src// URL.createObjectURL(this._myOptions.src); // IE10+
     // Video is now downloaded
     // and we can set it as source on the video element
-    this.mySrc = vid;// this._myOptions.src;
+    if (!this.mySrc) this.videoPlayer.pause();
+    this.mySrc = newSrc;// this._myOptions.src;
+    this.videoPlayer.src = newSrc;
     this.videoPlayer.load();
+    console.log ("setOptions: Video " + this._myOptions.src  + " can play" );
+    //this.oncanplaythroughLocal(null);
     //this.videoPlayer.addEventListener ("oncanplaythrough",this.oncanplaythroughLocal)
     //this.videoPlayer.addEventListener("oncanplaythrough",this.oncanplaythroughLocal)
-    this.videoPlayer.oncanplaythrough=this.oncanplaythroughLocal.bind(this);
+    //
+    if (!this._oncanplaythroughInit)
+      this.videoPlayer.oncanplaythrough=this.oncanplaythroughLocal.bind(this);
   }
 
   public oncanplaythroughLocal(event){
+    console.log ("oncanplaythroughLocal: Video " + this._myOptions.src  + " can play" );
+    this._myIsEnabledToPlay = true;
     this.myOncanplaythrough.emit(this.mySrc);
   }
 
@@ -49,10 +65,15 @@ export class CustomVideoComponent implements OnInit,IPlayableMedia {
     return this._myOptions;
   }
   public setCurrentPosition(position: number): void {
-    this.videoPlayer.currentTime = position;
+    if (this._myIsEnabledToPlay==true){
+      this.videoPlayer.currentTime = position;
+    }else{
+      console.log("setCurrentPosition is diabled for " + this._mysSrc );
+    }
   }
 
   constructor() { 
+    this._myIsEnabledToPlay = false;
     //this.mySrc = "/assets/moovies/popcorntest.mp4";
   }
   
@@ -97,7 +118,7 @@ export class CustomVideoComponent implements OnInit,IPlayableMedia {
   }
 
   ngOnInit() {
-
+    
   }
 
 }

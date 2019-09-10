@@ -99,7 +99,8 @@ export class CustomMediaHiveComponent implements OnInit {
           height:750, //951
           width:140,  //257
           src:"/assets/pictures/specto.png",
-          step:1
+          step:1,
+          name: "specto"
         }
       );
 
@@ -110,7 +111,8 @@ export class CustomMediaHiveComponent implements OnInit {
           height:276, //951
           width:168,  //257
           src:"/assets/pictures/graph1.jpg",
-          step:1
+          step:1,
+          name: "specto2"
         }
       );
 
@@ -121,7 +123,8 @@ export class CustomMediaHiveComponent implements OnInit {
           height:300, //951
           width:168,  //257
           src:"/assets/pictures/graph2.jpg",
-          step:1
+          step:1,
+          name: "spect3"
         }
       );
 
@@ -132,7 +135,8 @@ export class CustomMediaHiveComponent implements OnInit {
           height:300,
           width:400,
           src:"/assets/moovies/big_buck_bunny.mp4",
-          step:1
+          step:1,
+          name: "specto4"
         }
       );
       this.video2Component.setOptions(
@@ -142,7 +146,8 @@ export class CustomMediaHiveComponent implements OnInit {
             height:300,
             width:400,
             src:"/assets/moovies/big_buck_bunny2.mp4",
-            step:1
+            step:1,
+            name: "spect5"
           }
         );
 
