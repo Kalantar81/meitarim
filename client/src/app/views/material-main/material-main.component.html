@@ -1,6 +1,20 @@
 <div class="mainCotainer">
     <div id="menuColumn">
       <app-menu></app-menu>
+      <div>
+          <div class="buttonTitleStyle">
+            set video
+          </div>
+          <button
+            mat-icon-button
+            style = "background-color: lightgray"
+            (click)="setVideo()">
+            <mat-icon>movie</mat-icon>
+          </button>
+          <button (click)="sendMsg()">
+              Get Msges
+           </button>
+        </div>
     </div>
 
     <div id="dosColumn">
