@@ -32,8 +32,11 @@ import { SliderConfigPopboxComponent } from './popboxes/slider-config-popbox/sli
 import { SelectAreaComponent } from './drafts/select-area/select-area.component';
 import { CanvasComponent } from './drafts/canvas/canvas.component';
 import { AccordionDemoComponent } from './drafts/accordion-demo/accordion-demo.component';
-import { AccordionEditModeComponent } from './drafts/accordion-edit-mode/accordion-edit-mode.component';
 import { MenuComponent } from './components/menu/menu.component';
+import { AccordionEditModeComponent } from './components/menu/accordionBodyComponents/accordion-edit-mode/accordion-edit-mode.component';
+import { AccordionVideoPlayerComponent } from './components/menu/accordionBodyComponents/accordion-video-player/accordion-video-player.component';
+import { AccordionCalculationsComponent } from './components/menu/accordionBodyComponents/accordion-calculations/accordion-calculations.component';
+import { AccordionSearchComponent } from './components/menu/accordionBodyComponents/accordion-search/accordion-search.component';
 
 
 
@@ -60,7 +63,10 @@ import { MenuComponent } from './components/menu/menu.component';
     CanvasComponent,
     AccordionDemoComponent,
     AccordionEditModeComponent,
-    MenuComponent
+    MenuComponent,
+    AccordionVideoPlayerComponent,
+    AccordionCalculationsComponent,
+    AccordionSearchComponent
   ],
   imports: [
     BrowserModule,
