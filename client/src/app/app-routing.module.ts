@@ -10,12 +10,13 @@ import { SelectAreaComponent } from './drafts/select-area/select-area.component'
 import { CanvasComponent } from './drafts/canvas/canvas.component';
 import { AccordionDemoComponent } from './drafts/accordion-demo/accordion-demo.component';
 import { AccordionEditModeComponent } from './drafts/accordion-edit-mode/accordion-edit-mode.component';
+import { MenuComponent } from './components/menu/menu.component';
 
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/accordionDemo',
+    redirectTo: '/indexMaterial',
     pathMatch: 'full'
   },
   {
@@ -57,6 +58,10 @@ const routes: Routes = [
   {
     path: 'editMode',
     component: AccordionEditModeComponent,
+  },
+  {
+    path: 'menu',
+    component: MenuComponent,
   }
 ];
 

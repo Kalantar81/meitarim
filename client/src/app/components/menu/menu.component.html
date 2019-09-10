@@ -1,0 +1,77 @@
+<div class="title">Menu</div>
+
+<div class="accordionContainer">
+    <mat-accordion class="example-headers-align">
+      <!-- #end of accordion editMode section -->
+        <mat-expansion-panel
+          [expanded]="step === 0"
+          (opened)="setStep(0)"
+          hideToggle>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <div class="accordionTitleStyle">
+                    edit mode
+                </div>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <app-accordion-edit-mode></app-accordion-edit-mode>
+        </mat-expansion-panel>
+      <!-- #end of accordion editMode section -->
+
+      <!-- #start of accordion videoPlayer section -->
+        <mat-expansion-panel
+          [expanded]="step === 1"
+          (opened)="setStep(1)"
+          hideToggle>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <div class="accordionTitleStyle">
+                  video player
+                </div>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+
+            <mat-form-field>
+              <input matInput placeholder="Country">
+            </mat-form-field>
+
+            <img
+              class="iconDesign"
+              src="assets/icons/edit-video.png"
+              (click)='mouseClick()'/>
+        </mat-expansion-panel>
+      <!-- #end of accordion videoPlayer section -->
+
+      <!-- #start of accordion calculations section -->
+        <mat-expansion-panel
+          [expanded]="step === 2"
+          (opened)="setStep(2)"
+          hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <div class="accordionTitleStyle">
+                calculations
+              </div>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          TODO calculations component
+        </mat-expansion-panel>
+      <!-- #end of accordion calculations section -->
+
+      <!-- #start of accordion search section -->
+        <mat-expansion-panel
+          [expanded]="step === 3"
+          (opened)="setStep(3)"
+          hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <div class="accordionTitleStyle">
+                search
+              </div>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          TODO search component
+        </mat-expansion-panel>
+      <!-- #end of accordion search section -->
+    </mat-accordion>
+  </div>

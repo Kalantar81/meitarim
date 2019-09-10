@@ -1,0 +1,81 @@
+.example-headers-align .mat-expansion-panel-header-title,
+.example-headers-align .mat-expansion-panel-header-description {
+  flex-basis: 0;
+}
+
+.example-headers-align .mat-expansion-panel-header-description {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mat-expansion-panel-header {
+  background-color: black;
+  /* border: 1px solid gainsboro; */
+}
+
+.mat-expansion-panel {
+  background-color: black;
+}
+
+.title {
+  color: gainsboro;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', 'Arial';
+  font-size: 25px;
+  text-align: center;
+}
+
+
+.accordionContainer {
+  border: 1px solid gainsboro;
+  background-color: black;
+  /* width: 100%;
+  height: 100%; */
+}
+
+.accordionTitleStyle {
+  color: gainsboro;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', 'Arial';
+  font-size: 25px;
+  font-weight: bold;
+  /* padding-top: 15px;
+  padding-right: 3px; */
+}
+
+.titleIconStyle {
+  background-color: lightgray;
+  /* margin-left: 50px; */
+  float: right;
+
+}
+
+.accordionButtonTitleStyle {
+  color: gainsboro;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', 'Arial';
+  font-size: 17px;
+  padding-top: 10px;
+  padding-bottom: 5px;
+  float: left;
+  margin-top: 10px;
+}
+
+.accordionButtonStyle {
+  float: right;
+  margin-left: 15px;
+  background-color: gainsboro;
+  margin-top: 10px;
+}
+
+.iconDesign {
+  width: 30px;
+  height: 30px;
+  background-color: gainsboro;
+  float: right;
+  margin-top: 10px;
+}
+
+.accordionToggleStyle {
+  margin-top: 10px;
+  float: right;
+}
+
+
