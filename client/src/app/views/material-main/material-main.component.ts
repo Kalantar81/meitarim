@@ -5,6 +5,7 @@ import { StaticImageComponent } from 'src/app/components/static-image/static-ima
 import { ChatService, Message } from 'src/app/services/chat/chat.service';
 import { IVeiwWindow } from 'src/app/interfaces/viewinterfaces';
 import { ViewWindowBl } from './matirial-main-bl';
+import { SegmentParams } from 'src/app/components/static-image/static-image-interfaces';
 
 @Component({
   selector: 'app-material-main',
@@ -55,7 +56,7 @@ export class MaterialMainComponent implements OnInit, OnDestroy,IVeiwWindow {
   }
 
   ngOnInit() {
-    this._mySpeed = 1000;
+    //this._mySpeed = 1000;
     //this._currentTime = 0;
   }
 
@@ -93,7 +94,7 @@ public startPlay() {
   }
 
   private _myTimer: any;
-  private _mySpeed: number;
+  private _mySpeed: number = 100;
 
   imgSliderChanged(eventData){
     var newTime = parseFloat(eventData)
@@ -114,13 +115,16 @@ public startPlay() {
 
         // get video position
         const currentTime = this.arpVideo.myCurrentTime ();
-        console.log ('startUpdateTimer: currentTime' + currentTime);
+        //console.log ('startUpdateTimer: currentTime' + currentTime);
         
         if  (currentTime <= this._currentDruation) {
           // this.img1Component.sync (currentTime);
           //this.tdoImage.sync(currentTime);
           this.arsImage.sync (currentTime);
           this.artImage.sync (currentTime);
+          if (currentTime==this._currentDruation){
+            this.stopTimer ();
+          }
         } else {
           this.stopTimer ();
         }
@@ -153,6 +157,10 @@ public startPlay() {
   }
   public getCurrentDuration() : number{
     return this._currentDruation ;
+  }
+
+  public selectionAreaChanged (area:SegmentParams){ 
+    alert( ' חתך בשם ' + area.segmentName + ' נשלח לשרת ');
   }
   
 }
