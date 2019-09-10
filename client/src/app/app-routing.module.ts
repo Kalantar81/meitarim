@@ -9,7 +9,7 @@ import { DialogDemoComponent } from './drafts/popup/dialog-demo/dialog-demo.comp
 import { SelectAreaComponent } from './drafts/select-area/select-area.component';
 import { CanvasComponent } from './drafts/canvas/canvas.component';
 import { AccordionDemoComponent } from './drafts/accordion-demo/accordion-demo.component';
-import { AccordionEditModeComponent } from './drafts/accordion-edit-mode/accordion-edit-mode.component';
+import { AccordionEditModeComponent } from './components/menu/accordionBodyComponents/accordion-edit-mode/accordion-edit-mode.component';
 import { MenuComponent } from './components/menu/menu.component';
 
 
