@@ -17,7 +17,7 @@ export interface IVeiwWindow {
     setCurrentDuration(curDuration:number):void;
     getCurrentDuration() : number;
 
-    currentTime: number;
+    //currentTime: number;
     startPlay():void ;
     
     stopUpdateTimer():void;

@@ -60,14 +60,14 @@ export class ChatService {
 
     this.myWebSocketSMessages.subscribe({
       complete:() =>{
-        console.log("observerA completed ");
+        //console.log("observer completed ");
       },
-      next: (v) =>{
-        console.log("observerA: ${v}");
-        this.myMessages.next(v);
+      next: (m) =>{
+        //console.log("observer: ${v}");
+        this.myMessages.next(m);
       },
       error:(err) =>{
-        console.log("observerA error ");
+        console.log("observer error ");
         this.myMessages.error(err)
       }
     });

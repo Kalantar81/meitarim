@@ -10,6 +10,7 @@ export interface IPlayableMediaOptions{
     src:string;
     width:number;
     height:number;
+    name:String;
 }
 
 export interface IPlayableMedia {

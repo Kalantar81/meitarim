@@ -101,13 +101,18 @@ public class MediaServer {
 		 HttpHeader contLen = RawHeader.create("Content-Length", "" + array.length);
 		 HttpHeader contDisp = RawHeader.create("Content-Disposition","attachment; filename=\"" + fileName + "\"" );
 		 HttpHeader contTrans = RawHeader.create("Content-Transfer-Encoding","binary" );
+		 HttpHeader contAccept = RawHeader.create("Accept-Ranges","bytes" );
 
+		 
+		 
 		 HttpResponse response = HttpResponse.create()
+				 .addHeader(contAccept)
 				 .addHeader(contType)
 				 .addHeader(contLen)
 				 .addHeader(contDisp)
-				 .addHeader(contTrans)
-				 .withEntity(array);
+				 .addHeader(contTrans).withEntity(array);
+				 
+		 
 		 return response;
 	} catch (IOException e) {
 		// TODO Auto-generated catch block
@@ -146,7 +151,7 @@ public class MediaServer {
  private static String getFileExtension(String fileName) {
      String extension = "";
      try {
-            extension = fileName.substring(fileName.lastIndexOf(".")).toLowerCase();
+            extension = fileName.substring(fileName.lastIndexOf(".")+1).toLowerCase();
      } catch (Exception e) {
          extension = "";
      }

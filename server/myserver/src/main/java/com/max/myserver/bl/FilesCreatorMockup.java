@@ -19,7 +19,7 @@ public class FilesCreatorMockup extends Thread  {
 				f1= new FileData("tdo");//tdo
 				f1.setFilePath("dos.png");
 				callbackClass.setFileStatus("file4", true, f1, null);
-				Thread.sleep(5000);			
+				Thread.sleep(1000);			
 				f1= new FileData("ars");//ars
 				f1.setFilePath("ars.png");
 				callbackClass.setFileStatus("file3", true, f1, null);
@@ -34,7 +34,7 @@ public class FilesCreatorMockup extends Thread  {
 				
 				//Thread.sleep(3000);
 				f1= new FileData("tcs");//tcs
-				f1.setFilePath("arp.mp4");
+				f1.setFilePath("tcs.mp4");
 				callbackClass.setFileStatus("file0", true, f1, null);
 //				CompletableFuture.supplyAsync(()->{
 //					callbackClass.setFileStatus("file5", true, "fiel5.jpg", null);
