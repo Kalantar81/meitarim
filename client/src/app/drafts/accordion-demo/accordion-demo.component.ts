@@ -9,6 +9,10 @@ export class AccordionDemoComponent implements OnInit {
 
   public step = 0;
 
+  public color = 'accent';
+  public checked = false;
+  public disabled = false;
+
   constructor() { }
 
   ngOnInit() {
@@ -24,6 +28,10 @@ export class AccordionDemoComponent implements OnInit {
 
   prevStep() {
     this.step--;
+  }
+
+  private mouseClick() {
+    alert('hello world!');
   }
 
 }
