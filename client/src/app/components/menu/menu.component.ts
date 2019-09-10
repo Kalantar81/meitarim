@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-accordion-demo',
-  templateUrl: './accordion-demo.component.html',
-  styleUrls: ['./accordion-demo.component.css']
+  selector: 'app-menu',
+  templateUrl: './menu.component.html',
+  styleUrls: ['./menu.component.css']
 })
-export class AccordionDemoComponent implements OnInit {
+export class MenuComponent implements OnInit {
 
   public step = 0;
 
