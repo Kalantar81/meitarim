@@ -1,20 +1,30 @@
 <div>
-  <div class="accordionButtonTitleStyle" (click)='mouseClick()'>
-      set video
-  </div>
-  <img
-  class="iconDesign"
-  src="assets/icons/edit-video.png"
-  (click)='mouseClick()'/>
-</div>
-<div style="padding-top: 35px"></div>
-<div>
-  <div class="accordionButtonTitleStyle">
-      get msges
+  <button
+    mat-raised-button
+    (click)='mouseClick()'>
+    <div class="buttonTitleStyle">set video</div>
+  </button>
+
+  <div style="padding-top: 5px"></div>
+
+  <button
+    mat-raised-button
+    (click)='mouseClick()'>
+    <div class="buttonTitleStyle">get msges</div>
+  </button>
+
+  <div style="padding-top: 5px"></div>
+
+  <div class="buttonTitleStyle">
+    <div class="toggleTitle"> Save selected area:</div>
+    <mat-slide-toggle
+    [labelPosition] = '"before"'
+      [(ngModel)]="aaa">
+        <div class="buttonTitleStyle">
+          not
+        </div>
+      </mat-slide-toggle>
+      save
   </div>
 
-  <img
-  class="iconDesign"
-  src="assets/icons/video-editing.png"
-  (click)='mouseClick()'/>
 </div>

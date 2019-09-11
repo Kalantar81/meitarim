@@ -1,67 +1,34 @@
-
-
-.mat-expansion-panel-header {
-  background-color: black;
-  /* border: 1px solid gainsboro; */
+::ng-deep .mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-thumb {
+  background-color: gainsboro; /* toogle on circle */
 }
 
-.mat-expansion-panel {
-  background-color: black;
+::ng-deep .mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-bar {
+  background-color: aqua;  /* toogle on background */
 }
 
-.accordionContainer {
-  border: 1px solid gainsboro;
-  background-color: black;
-  width: 200px;
-  height: 750px;
+::ng-deep .mat-slide-toggle .mat-slide-toggle-thumb {
+  background-color: gainsboro; /* toogle off circle */
 }
 
-.accordionTitleStyle {
-  color: gainsboro;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', 'Arial';
-  font-size: 25px;
-  font-weight: bold;
-  /* padding-top: 15px;
-  padding-right: 3px; */
+::ng-deep .mat-slide-toggle .mat-slide-toggle-bar {
+  background-color: rgb(44, 179, 233);  /* toogle off background */
 }
 
-.titleIconStyle {
-  background-color: lightgray;
-  /* margin-left: 50px; */
-  float: right;
-
+button {
+  width: 100px;
+  background-color: gainsboro;
 }
 
-.accordionButtonTitleStyle {
-  color: gainsboro;
+.buttonTitleStyle {
+  color: gray;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', 'Arial';
   font-size: 14px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  float: left;
-  margin-top: 5px;
 }
 
-.accordionButtonStyle {
-  float: right;
-  margin-left: 15px;
-  background-color: gainsboro;
-  margin-top: 10px;
+.toggleTitle {
+  color: gray;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', 'Arial';
+  font-size: 17px;
 }
 
-.iconDesign {
-  width: 15px;
-  height: 15px;
-  background-color: gainsboro;
-  float: right;
-  margin-top: 10px;
-}
 
-.accordionToggleStyle {
-  margin-top: 10px;
-  float: right;
-}
-
-.accordionSectionContainer{
-  border: 1px solid black;
-}
