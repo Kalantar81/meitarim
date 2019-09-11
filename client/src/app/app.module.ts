@@ -38,7 +38,7 @@ import { AccordionVideoPlayerComponent } from './components/menu/accordionBodyCo
 import { AccordionCalculationsComponent } from './components/menu/accordionBodyComponents/accordion-calculations/accordion-calculations.component';
 import { AccordionSearchComponent } from './components/menu/accordionBodyComponents/accordion-search/accordion-search.component';
 
-
+import { NgxSpinnerModule } from "ngx-spinner";
 
 
 @NgModule({
@@ -77,7 +77,8 @@ import { AccordionSearchComponent } from './components/menu/accordionBodyCompone
 
     DemoMaterialModule,
     MatNativeDateModule,
-    Ng5SliderModule
+    Ng5SliderModule,
+    NgxSpinnerModule
   ],
   entryComponents: [
     DialogDemoComponent,

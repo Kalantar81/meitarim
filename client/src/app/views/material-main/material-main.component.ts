@@ -6,6 +6,7 @@ import { ChatService, Message } from 'src/app/services/chat/chat.service';
 import { IVeiwWindow } from 'src/app/interfaces/viewinterfaces';
 import { ViewWindowBl } from './matirial-main-bl';
 import { SegmentParams } from 'src/app/components/static-image/static-image-interfaces';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-material-main',
@@ -28,6 +29,33 @@ export class MaterialMainComponent implements OnInit, OnDestroy,IVeiwWindow {
   private _currentDruation = 15;
 
 
+  private _progressColor = "primary"; //primary,accent,warn
+  private _progressMode = "indeterminate";//determinate,indeterminate
+  private _progressValue = 20;
+
+  public get progressColor(){
+    return this._progressColor;
+  }
+
+  @Input() public set progressColor(p_value){
+    this._progressColor = p_value;
+  }
+
+  public get progressMode(){
+    return this._progressMode;
+  }
+
+  @Input() public set progressMode(p_value){
+  this._progressMode = p_value;
+  }
+
+  public get progressValue(){
+    return this._progressValue;
+  }
+
+  @Input() public set progressValue(p_value){
+  this._progressValue = p_value;
+  }
 
 
   private myViewWindowBl : ViewWindowBl;
@@ -46,13 +74,23 @@ export class MaterialMainComponent implements OnInit, OnDestroy,IVeiwWindow {
   //   this._currentTime = value;
   // }
 
-  constructor(private chatService: ChatService) {
+  constructor(private chatService: ChatService,private ngxSpinnerService:NgxSpinnerService) {
     this.myViewWindowBl = new ViewWindowBl(this,chatService);
+
   }
 
 
+  public hideSpinner(){
+    this.ngxSpinnerService.hide();
+  }
+
+  public showSpinner(){
+    this.ngxSpinnerService.show();
+  }
+
   sendMsg() {
     this.myViewWindowBl.sendMsg();
+   
   }
 
   ngOnInit() {
@@ -148,6 +186,7 @@ public startPlay() {
     console.log ('mediaLoaded: Media loaded _itemsLoaded=' + this._itemsLoaded);
     if (this._itemsLoaded == this._itemsCount) {
       console.log ("mediaLoaded: startPlay()")
+      this.hideSpinner();
       this.startPlay ();
     }
   }
@@ -160,7 +199,8 @@ public startPlay() {
   }
 
   public selectionAreaChanged (area:SegmentParams){ 
-    alert( ' חתך בשם ' + area.segmentName + ' נשלח לשרת ');
+    this.myViewWindowBl.changeSelectionArea(area);
+    //alert( ' חתך בשם ' + area.segmentName + ' נשלח לשרת ');
   }
   
 }
