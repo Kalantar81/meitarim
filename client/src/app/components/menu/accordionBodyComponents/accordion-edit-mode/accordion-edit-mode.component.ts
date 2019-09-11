@@ -7,12 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AccordionEditModeComponent implements OnInit {
 
+  aaa = false;
+
+
   constructor() { }
 
   ngOnInit() {
   }
 
   public mouseClick() {
-    alert('hello');
+    alert(this.aaa);
   }
 }
