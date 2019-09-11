@@ -12,6 +12,10 @@ export class DialogDemoComponent implements OnInit {
   animal: string;
   name: string;
 
+  title = 'materialApp';
+  disabled = false;
+  checked = false;
+
   constructor(public dialog: MatDialog) {}
 
   ngOnInit() {}
