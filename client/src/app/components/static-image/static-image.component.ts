@@ -21,6 +21,8 @@ export class StaticImageComponent implements OnInit, OnChanges {
   protected imageStyle: IImageStyle;
   protected segmentParams = new SegmentParams();
 
+  @Output()
+  myOnAreaSelected:EventEmitter<SegmentParams> = new EventEmitter<SegmentParams>();
 
   @Output()
   myOncanplaythrough: EventEmitter<string> = new EventEmitter<string>();
@@ -129,8 +131,8 @@ export class StaticImageComponent implements OnInit, OnChanges {
         if (result) {
           console.log('The dialog was closed');
           this.segmentParams = result;
-
-          alert( ' חתך בשם ' + this.segmentParams + ' נשלח לשרת ');
+          this.myOnAreaSelected.emit(this.segmentParams);
+          //alert( ' חתך בשם ' + this.segmentParams + ' נשלח לשרת ');
         }
 
       });

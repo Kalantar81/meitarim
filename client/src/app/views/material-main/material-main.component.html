@@ -21,7 +21,7 @@
       <div>
         <div class="title">DOS</div>
         <div class="dosComponentDesign">
-          <app-static-image #img1></app-static-image>
+          <app-static-image #img1 (myOnAreaSelected)="selectionAreaChanged($event)"></app-static-image>
         </div>
       </div>
     </div>
@@ -33,7 +33,7 @@
 			  (myValueChanged)="imgSliderChanged($event)"
               (myOncanplaythrough)="mediaLoaded($event)">
             </app-custom-img> -->
-            <app-static-image #tdoImage></app-static-image>
+            <app-static-image #tdoImage (myOnAreaSelected)="selectionAreaChanged($event)"></app-static-image>
           </div>
     </div>
     <div id="arpArsContainerColumn">
