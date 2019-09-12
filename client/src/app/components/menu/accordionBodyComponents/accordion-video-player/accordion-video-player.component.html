@@ -1,5 +1,35 @@
-<div style="color: white"> video player component</div>
-<img
-class="iconDesign"
-src="assets/icons/edit-video.png"
-(click)='mouseClick()'/>
+<!-- <div class="mediaPanel">
+  <img
+    class="iconDesign"
+    src="assets/icons/play.png"/>
+</div> -->
+
+<div>
+    <mat-icon
+      class="iconsDesign"
+      (click) = 'mouseClick()'
+      svgIcon="stop">
+    </mat-icon>
+    <mat-icon
+      class="iconsDesign"
+      svgIcon="pause">
+    </mat-icon>
+    <mat-icon
+      class="iconsDesign"
+      svgIcon="play">
+    </mat-icon>
+    <mat-icon
+      class="iconsDesign"
+      svgIcon="fast_rewind">
+    </mat-icon>
+    <mat-icon
+      class="iconsDesign"
+      svgIcon="fast_foward">
+    </mat-icon>
+</div>
+<div>
+  <input
+    class="timeInputDesign"
+    placeholder="00:00:00"
+    ([ngModel]) = 'aaa'>
+</div>

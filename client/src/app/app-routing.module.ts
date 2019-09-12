@@ -11,6 +11,7 @@ import { CanvasComponent } from './drafts/canvas/canvas.component';
 import { AccordionDemoComponent } from './drafts/accordion-demo/accordion-demo.component';
 import { AccordionEditModeComponent } from './components/menu/accordionBodyComponents/accordion-edit-mode/accordion-edit-mode.component';
 import { MenuComponent } from './components/menu/menu.component';
+import { IconsDemoComponent } from './drafts/icons-demo/icons-demo.component';
 
 
 const routes: Routes = [
@@ -62,6 +63,10 @@ const routes: Routes = [
   {
     path: 'menu',
     component: MenuComponent,
+  },
+  {
+    path: 'icons',
+    component: IconsDemoComponent,
   }
 ];
 

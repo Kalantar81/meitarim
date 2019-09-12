@@ -1,7 +1,33 @@
+
 .iconDesign {
   width: 30px;
   height: 30px;
   background-color: gainsboro;
   float: right;
   margin-top: 10px;
+}
+
+.mediaPanel {
+  width: 100%;
+  background-color: gray;
+}
+
+.iconsDesign {
+  background-color: gainsboro;
+  color: blue;
+}
+
+.inputStyle {
+  background-color: gainsboro;
+}
+
+.timeInputDesign {
+  width: 70%;
+  background-color: gainsboro;
+  color: gray;
+  padding: 5px 5px 5px 5px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', 'Arial';
+  font-size: 14px;
+  margin-top: 5px;
+  text-align: center;
 }
