@@ -22,5 +22,8 @@ export interface IVeiwWindow {
     
     stopUpdateTimer():void;
     initItemsLoaded():void;
+
+    hideSpinner():void;
+    showSpinner():void;
     
 }

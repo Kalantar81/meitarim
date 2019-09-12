@@ -1,5 +1,7 @@
 package com.max.myserver.data;
 
+import com.max.myserver.utils.SerializationUtils;
+
 public class FileData {
 	private String fileName;
 	private String filePath;
@@ -50,7 +52,8 @@ public class FileData {
 	
 	
 	public String toJson() {
-		String result = "{\"fileName\":\"" + this.getFileName() +"\",\"filePath\":\"" + this.getFilePath()  + "\"}";
+		//String result = "{\"fileName\":\"" + this.getFileName() +"\",\"filePath\":\"" + this.getFilePath()  + "\"}";
+		String result =  SerializationUtils.getJsonOfClass(this);
 		return result ;
 	}
 

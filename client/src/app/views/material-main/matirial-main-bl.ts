@@ -1,5 +1,6 @@
 import { IVeiwWindow } from 'src/app/interfaces/viewinterfaces';
 import { Message, ChatService } from 'src/app/services/chat/chat.service';
+import { SegmentParams } from 'src/app/components/static-image/static-image-interfaces';
 
 export class ViewWindowBl  {
     
@@ -10,6 +11,8 @@ export class ViewWindowBl  {
     public static ITEMS_TO_LOAD_DYNAMIC_COMPONENTS:number =4;
     private itemsCount:number = ViewWindowBl.ITEMS_TO_LOAD;
     private currentDruation = 15;
+    //private filesArray:any[];
+
 
     public message : Message = {
       clientId: "client1",
@@ -29,16 +32,41 @@ export class ViewWindowBl  {
       let handleError = this.onErrorWs.bind(this);
       chatService.messages.subscribe(handleMessage,handleError);
     }
-    private filesArray:any[];
     
     
+
+    private  createMessageBySelectedArea(selectedArea:SegmentParams):Message{
+       var newMsg:Message = {
+        clientId: "max",
+        fileId: "this is a test message",
+        picDimensions:{
+          x1:selectedArea.startPointX,
+          y1:selectedArea.startPointY,
+          x2:selectedArea.endPointX,
+          y2:selectedArea.endPointY
+        }
+       } 
+
+       return newMsg;
+    }
+
+    public changeSelectionArea(selectedArea:SegmentParams){
+      console.log("changeSelectionArea ", selectedArea);
+      //this.filesArray = [];
+      this.veiwWindow.initItemsLoaded();
+      this.veiwWindow.stopUpdateTimer();
+      var newMsg = this.createMessageBySelectedArea(selectedArea);
+      this.veiwWindow.showSpinner();
+      this.chatService.sendRequest(this.message);
+    }
+
     public sendMsg() {
       console.log("send message ", this.message);
-      this.filesArray = [];
+      //this.filesArray = [];
       this.veiwWindow.initItemsLoaded();
       //this.veiwWindow.currentTime = 0;
       //this.chatService.messages.next((this.message));
-      this.veiwWindow.stopUpdateTimer();
+      
       this.chatService.sendRequest(this.message);
       //this.message = " NEXT ONE";
     }
@@ -47,12 +75,13 @@ export class ViewWindowBl  {
       //TODO
       //alert ("got message "+msg.fileName);
       //update this.filesArray[]
-      setTimeout(()=>{
-        console.log("handleMessageWs: update file:" + JSON.stringify(msg))
-        this.filesArray.push(msg);
-        this.updateFileData (msg);
-        
-      },10);
+      //setTimeout(()=>{
+
+      console.log("handleMessageWs: update file:" + JSON.stringify(msg))
+      //this.filesArray.push(msg);
+      this.updateFileData (msg);
+      
+      //},10);
 
       // if (this.filesArray.length == this.ITEMS_TO_LOAD){
       //   setTimeout(()=>{
@@ -154,8 +183,10 @@ export class ViewWindowBl  {
 
     public onErrorWs(error){
        //TODO
-      alert ("Error:" + error);
-      console.log("Error from websocket: " + error);
+      this.veiwWindow.hideSpinner();
+      console.log("Error while connecting to the server: " + error.target.url);
+      alert ("Error while connecting to the server: " + error.target.url);
+     
     }
   
   

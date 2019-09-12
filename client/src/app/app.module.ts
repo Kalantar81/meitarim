@@ -40,7 +40,7 @@ import { AccordionSearchComponent } from './components/menu/accordionBodyCompone
 import { HttpClientModule } from '@angular/common/http';
 import { IconsDemoComponent } from './drafts/icons-demo/icons-demo.component';
 
-
+import { NgxSpinnerModule } from "ngx-spinner";
 
 
 @NgModule({
@@ -81,7 +81,8 @@ import { IconsDemoComponent } from './drafts/icons-demo/icons-demo.component';
 
     DemoMaterialModule,
     MatNativeDateModule,
-    Ng5SliderModule
+    Ng5SliderModule,
+    NgxSpinnerModule
   ],
   entryComponents: [
     DialogDemoComponent,
