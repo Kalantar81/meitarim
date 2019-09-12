@@ -71,6 +71,7 @@ import {HttpClientModule, HttpRequest, HttpResponse} from '@angular/common/http'
     AccordionVideoPlayerComponent,
     AccordionCalculationsComponent,
     AccordionSearchComponent,
+    CustomUploadComponent
   ],
   imports: [
     BrowserModule,
