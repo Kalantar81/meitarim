@@ -39,6 +39,8 @@ import { AccordionCalculationsComponent } from './components/menu/accordionBodyC
 import { AccordionSearchComponent } from './components/menu/accordionBodyComponents/accordion-search/accordion-search.component';
 
 import { NgxSpinnerModule } from "ngx-spinner";
+import { CustomUploadComponent } from './components/custom-upload/custom-upload.component';
+import {HttpClientModule, HttpRequest, HttpResponse} from '@angular/common/http';
 
 
 @NgModule({
@@ -66,7 +68,8 @@ import { NgxSpinnerModule } from "ngx-spinner";
     MenuComponent,
     AccordionVideoPlayerComponent,
     AccordionCalculationsComponent,
-    AccordionSearchComponent
+    AccordionSearchComponent,
+    CustomUploadComponent
   ],
   imports: [
     BrowserModule,
@@ -74,11 +77,11 @@ import { NgxSpinnerModule } from "ngx-spinner";
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-
     DemoMaterialModule,
     MatNativeDateModule,
     Ng5SliderModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    HttpClientModule
   ],
   entryComponents: [
     DialogDemoComponent,
