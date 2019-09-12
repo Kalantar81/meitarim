@@ -17,7 +17,7 @@ import { IconsDemoComponent } from './drafts/icons-demo/icons-demo.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/icons',
+    redirectTo: '/indexMaterial',
     pathMatch: 'full'
   },
   {

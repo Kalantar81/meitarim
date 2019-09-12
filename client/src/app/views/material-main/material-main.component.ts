@@ -90,7 +90,7 @@ export class MaterialMainComponent implements OnInit, OnDestroy,IVeiwWindow {
 
   sendMsg() {
     this.myViewWindowBl.sendMsg();
-   
+
   }
 
   ngOnInit() {
@@ -154,7 +154,7 @@ public startPlay() {
         // get video position
         const currentTime = this.arpVideo.myCurrentTime ();
         //console.log ('startUpdateTimer: currentTime' + currentTime);
-        
+
         if  (currentTime <= this._currentDruation) {
           // this.img1Component.sync (currentTime);
           //this.tdoImage.sync(currentTime);
@@ -198,9 +198,9 @@ public startPlay() {
     return this._currentDruation ;
   }
 
-  public selectionAreaChanged (area:SegmentParams){ 
+  public selectionAreaChanged (area:SegmentParams){
     this.myViewWindowBl.changeSelectionArea(area);
     //alert( ' חתך בשם ' + area.segmentName + ' נשלח לשרת ');
   }
-  
+
 }
