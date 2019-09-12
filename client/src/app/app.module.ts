@@ -37,6 +37,8 @@ import { AccordionEditModeComponent } from './components/menu/accordionBodyCompo
 import { AccordionVideoPlayerComponent } from './components/menu/accordionBodyComponents/accordion-video-player/accordion-video-player.component';
 import { AccordionCalculationsComponent } from './components/menu/accordionBodyComponents/accordion-calculations/accordion-calculations.component';
 import { AccordionSearchComponent } from './components/menu/accordionBodyComponents/accordion-search/accordion-search.component';
+import { HttpClientModule } from '@angular/common/http';
+import { IconsDemoComponent } from './drafts/icons-demo/icons-demo.component';
 
 
 
@@ -66,7 +68,8 @@ import { AccordionSearchComponent } from './components/menu/accordionBodyCompone
     MenuComponent,
     AccordionVideoPlayerComponent,
     AccordionCalculationsComponent,
-    AccordionSearchComponent
+    AccordionSearchComponent,
+    IconsDemoComponent
   ],
   imports: [
     BrowserModule,
@@ -74,6 +77,7 @@ import { AccordionSearchComponent } from './components/menu/accordionBodyCompone
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
 
     DemoMaterialModule,
     MatNativeDateModule,
