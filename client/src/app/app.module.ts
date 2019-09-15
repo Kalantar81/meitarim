@@ -17,6 +17,7 @@ import { CustomMediaHiveComponent } from './components/custom-media-hive/custom-
 import { CustomImgBaseComponent } from './components/custom-img-base/custom-img-base.component';
 import { ChatService } from 'src/app/services/chat/chat.service';
 import { WebsocketService } from "src/app/services/websocket/websocket.service"
+import {ServerProxyService} from "src/app/services/proxy/server-proxy.service"
 
 import { MaterialMainComponent } from './views/material-main/material-main.component';
 import { VerticalRangeSliderComponent } from './drafts/vertical-range-slider/vertical-range-slider.component';
@@ -37,7 +38,7 @@ import { AccordionEditModeComponent } from './components/menu/accordionBodyCompo
 import { AccordionVideoPlayerComponent } from './components/menu/accordionBodyComponents/accordion-video-player/accordion-video-player.component';
 import { AccordionCalculationsComponent } from './components/menu/accordionBodyComponents/accordion-calculations/accordion-calculations.component';
 import { AccordionSearchComponent } from './components/menu/accordionBodyComponents/accordion-search/accordion-search.component';
-
+import { AngularFileUploaderModule } from "angular-file-uploader";
 import { IconsDemoComponent } from './drafts/icons-demo/icons-demo.component';
 
 import { NgxSpinnerModule } from "ngx-spinner";
@@ -83,7 +84,8 @@ import {HttpClientModule, HttpRequest, HttpResponse} from '@angular/common/http'
     DemoMaterialModule,
     MatNativeDateModule,
     Ng5SliderModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    AngularFileUploaderModule
   ],
   entryComponents: [
     DialogDemoComponent,
@@ -92,7 +94,7 @@ import {HttpClientModule, HttpRequest, HttpResponse} from '@angular/common/http'
     SegmentParamsDialogComponent,
     SliderConfigPopboxComponent
   ],
-  providers: [ChatService,WebsocketService],
+  providers: [ChatService,WebsocketService,ServerProxyService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

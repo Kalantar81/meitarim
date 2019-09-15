@@ -11,8 +11,10 @@ export class ViewWindowBl  {
     public static ITEMS_TO_LOAD_DYNAMIC_COMPONENTS:number =4;
     private itemsCount:number = ViewWindowBl.ITEMS_TO_LOAD;
     private currentDruation = 15;
+    private currentWorkingFile:string;
     //private filesArray:any[];
 
+   
 
     public message : Message = {
       clientId: "client1",
@@ -50,11 +52,17 @@ export class ViewWindowBl  {
        return newMsg;
     }
 
+     
     public changeSelectionArea(selectedArea:SegmentParams){
       console.log("changeSelectionArea ", selectedArea);
       //this.filesArray = [];
       this.veiwWindow.initItemsLoaded();
       this.veiwWindow.stopUpdateTimer();
+      if (selectedArea.fileName == undefined){
+        selectedArea.fileName = this.currentWorkingFile;
+      }else{
+        this.currentWorkingFile = selectedArea.fileName;
+      }
       var newMsg = this.createMessageBySelectedArea(selectedArea);
       this.veiwWindow.showSpinner();
       this.chatService.sendRequest(this.message);
