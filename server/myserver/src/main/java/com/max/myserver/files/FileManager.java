@@ -4,9 +4,13 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+import akka.http.javadsl.model.ContentTypes;
 import akka.http.javadsl.model.HttpHeader;
 import akka.http.javadsl.model.HttpRequest;
 import akka.http.javadsl.model.HttpResponse;
+import akka.http.javadsl.model.MediaType;
+import akka.http.javadsl.model.MediaTypes;
+import akka.http.javadsl.model.ContentType;
 import akka.http.javadsl.model.headers.RawHeader;
 
 public class FileManager {
@@ -19,20 +23,16 @@ public class FileManager {
 			 String fileName = httpRequest.getUri().query().getOrElse("fileName", "NO_FILE");
 			 byte[] array;
 			 array = Files.readAllBytes(Paths.get(filePath + fileName));
-			 HttpHeader contType = RawHeader.create("Content-Type", getMimeType(fileName));
-			 HttpHeader contLen = RawHeader.create("Content-Length", "" + array.length);
+			 //HttpHeader contType = RawHeader.create("Content-Type", getMimeType(fileName));
+			 //HttpHeader contLen = RawHeader.create("Content-Length", "" + array.length);
 			 HttpHeader contDisp = RawHeader.create("Content-Disposition","attachment; filename=\"" + fileName + "\"" );
 			 HttpHeader contTrans = RawHeader.create("Content-Transfer-Encoding","binary" );
 			 HttpHeader contAccept = RawHeader.create("Accept-Ranges","bytes" );
-
-			 
-			 
-			 HttpResponse response = HttpResponse.create()
+    
+		     HttpResponse response = HttpResponse.create()
 					 .addHeader(contAccept)
-					 .addHeader(contType)
-					 .addHeader(contLen)
 					 .addHeader(contDisp)
-					 .addHeader(contTrans).withEntity(array);
+					 .addHeader(contTrans).withEntity(getMimeContentType(fileName),array);
 					 
 			 
 			 return response;
@@ -45,6 +45,30 @@ public class FileManager {
 		
 
 		 
+	 }
+	 
+	 public static ContentType getMimeContentType(String fileName) {
+		 ContentType mimeType = null;
+		 String fileExt = getFileExtension (fileName);
+		 switch (fileExt) {
+		 	case "jpeg":
+		 		mimeType = MediaTypes.IMAGE_JPEG.toContentType();
+		 		break;
+		 	case "jpg":
+		 		mimeType =MediaTypes.IMAGE_JPEG.toContentType();
+		 		break;		
+		 	case "png":
+		 		mimeType = MediaTypes.IMAGE_PNG.toContentType();
+		 		break;		
+		 	case "mp4":
+		 		mimeType =  MediaTypes.VIDEO_MP4.toContentType();
+		 		break;
+		 	default:
+		 		mimeType =  MediaTypes.APPLICATION_OCTET_STREAM.toContentType();
+		 		break;
+		 }
+		 return mimeType;
+		    
 	 }
 	 
 	 public static String getMimeType (String fileName) {

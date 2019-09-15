@@ -132,7 +132,7 @@ public startPlay() {
   }
 
   private _myTimer: any;
-  private _mySpeed: number = 100;
+  private _mySpeed: number = 50;
 
   imgSliderChanged(eventData){
     var newTime = parseFloat(eventData)

@@ -26,6 +26,7 @@ export interface Message {
 export class ChatService {
   public static  SERVER_URL = "http://127.0.0.1:8080/getfile?fileName=";
   public static CHAT_URL = "ws://127.0.0.1:8080/mediaChat";
+  public static UPLOAD_URL = "http://127.0.0.1:8080/upload";
   public get messages(): Subject<Message> {
     return this.myMessages;
   }
@@ -85,7 +86,7 @@ export class ChatService {
           this.sendRequest(msg,true)
          },1500)
        }else{
-        alert ("אירעה שגיאה בחיבור לשרת אנא נסה שנית מאוחר יותר");
+        alert ("Error while connecting to the server. Please try again later.");
        }
     }
   }

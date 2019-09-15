@@ -37,11 +37,15 @@ import { AccordionEditModeComponent } from './components/menu/accordionBodyCompo
 import { AccordionVideoPlayerComponent } from './components/menu/accordionBodyComponents/accordion-video-player/accordion-video-player.component';
 import { AccordionCalculationsComponent } from './components/menu/accordionBodyComponents/accordion-calculations/accordion-calculations.component';
 import { AccordionSearchComponent } from './components/menu/accordionBodyComponents/accordion-search/accordion-search.component';
-import { HttpClientModule } from '@angular/common/http';
+
 import { IconsDemoComponent } from './drafts/icons-demo/icons-demo.component';
 
 import { NgxSpinnerModule } from "ngx-spinner";
 import { InputDemoComponent } from './drafts/input-demo/input-demo.component';
+
+import { CustomUploadComponent } from './components/custom-upload/custom-upload.component';
+import {HttpClientModule, HttpRequest, HttpResponse} from '@angular/common/http';
+
 
 
 @NgModule({
@@ -71,7 +75,9 @@ import { InputDemoComponent } from './drafts/input-demo/input-demo.component';
     AccordionCalculationsComponent,
     AccordionSearchComponent,
     IconsDemoComponent,
-    InputDemoComponent
+    InputDemoComponent,
+    CustomUploadComponent
+
   ],
   imports: [
     BrowserModule,
@@ -80,7 +86,6 @@ import { InputDemoComponent } from './drafts/input-demo/input-demo.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-
     DemoMaterialModule,
     MatNativeDateModule,
     Ng5SliderModule,

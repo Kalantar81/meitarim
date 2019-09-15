@@ -1,0 +1,7 @@
+Version = {{version.full}} <br/>
+<input type="file" (change)="upload($event.target.files)" />
+Upload Percent: {{percentDone}}% <br />
+
+<ng-container *ngIf="uploadSuccess">
+    Upload Successful
+</ng-container> 
