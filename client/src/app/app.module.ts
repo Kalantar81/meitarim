@@ -41,6 +41,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { IconsDemoComponent } from './drafts/icons-demo/icons-demo.component';
 
 import { NgxSpinnerModule } from "ngx-spinner";
+import { InputDemoComponent } from './drafts/input-demo/input-demo.component';
 
 
 @NgModule({
@@ -69,7 +70,8 @@ import { NgxSpinnerModule } from "ngx-spinner";
     AccordionVideoPlayerComponent,
     AccordionCalculationsComponent,
     AccordionSearchComponent,
-    IconsDemoComponent
+    IconsDemoComponent,
+    InputDemoComponent
   ],
   imports: [
     BrowserModule,

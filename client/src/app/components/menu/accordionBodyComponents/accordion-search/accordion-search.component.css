@@ -1,0 +1,19 @@
+.timeInputDesign {
+  width: 70%;
+  background-color: gainsboro;
+  color: gray;
+  padding: 5px 5px 5px 5px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', 'Arial';
+  font-size: 14px;
+  text-align: center;
+}
+
+#block_container
+{
+    text-align:center;
+}
+
+#bloc1, #bloc2
+{
+    display:inline;
+}
