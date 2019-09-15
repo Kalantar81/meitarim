@@ -42,8 +42,11 @@ import { AngularFileUploaderModule } from "angular-file-uploader";
 import { IconsDemoComponent } from './drafts/icons-demo/icons-demo.component';
 
 import { NgxSpinnerModule } from "ngx-spinner";
+import { InputDemoComponent } from './drafts/input-demo/input-demo.component';
+
 import { CustomUploadComponent } from './components/custom-upload/custom-upload.component';
 import {HttpClientModule, HttpRequest, HttpResponse} from '@angular/common/http';
+
 
 
 @NgModule({
@@ -72,7 +75,10 @@ import {HttpClientModule, HttpRequest, HttpResponse} from '@angular/common/http'
     AccordionVideoPlayerComponent,
     AccordionCalculationsComponent,
     AccordionSearchComponent,
+    IconsDemoComponent,
+    InputDemoComponent,
     CustomUploadComponent
+
   ],
   imports: [
     BrowserModule,
