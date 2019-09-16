@@ -15,3 +15,20 @@
   border: 1px dotted rgb(252, 248, 248);
   position: absolute;
 }
+
+#bloc1
+{
+    display:inline;
+    width: 200px;
+    height: 700px;
+    border: 1px solid black
+}
+
+#bloc2 {
+  width: 1000px;
+  margin:0 auto;
+}
+
+#container {
+  text-align:center;
+}

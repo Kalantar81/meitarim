@@ -30,6 +30,7 @@ export class SelectAreaComponent implements OnInit, AfterViewInit {
     // this.selectAreaDiv.nativeElement.onmousedown = this.onMouseDownAngular.bind(this);
     // this.selectAreaDiv.nativeElement.onmouseup = this.onMouseUpAngular.bind(this);
     this.selectAreaDiv.nativeElement.click = this.mouseClickAngular.bind(this);
+    console.log('width: ' + window.innerWidth + ' height: ' + window.innerHeight);
   }
 
   public reCalc() {

@@ -18,8 +18,12 @@ export class StaticImageComponent implements OnInit, OnChanges {
   @ViewChild('selectAreaDiv', {static: true})
   public selectAreaDiv: ElementRef<HTMLElement>;
 
+  @ViewChild('inlineDiv', {static: true})
+  public inlineDiv: ElementRef<HTMLElement>;
+
   protected imageStyle: IImageStyle;
   protected segmentParams = new SegmentParams();
+
 
   @Output()
   myOnAreaSelected:EventEmitter<SegmentParams> = new EventEmitter<SegmentParams>();
@@ -41,6 +45,7 @@ export class StaticImageComponent implements OnInit, OnChanges {
     this.imageDiv.nativeElement.style.background = 'url(' + options.src  + ') no-repeat center center';
     this.imageDiv.nativeElement.style.width = options.width + 'px';
     this.imageDiv.nativeElement.style.height = options.height + 'px';
+    console.log('static image width: ' + document.getElementById('inlineDiv').clientWidth + ' static image height: ' + document.getElementById('inlineDiv').clientHeight);
     this.initImageDiv_pr();
   }
 
@@ -81,7 +86,7 @@ export class StaticImageComponent implements OnInit, OnChanges {
     this.segmentParams.endPointY = e.clientY;
     this.reCalc_pr();
 
-    //console.log('x1: ' + this.segmentParams.startPointX + ' y1: ' + this.segmentParams.startPointY + 'x2: ' + this.segmentParams.endPointX + ' y2: ' + this.segmentParams.endPointY);
+    console.log('x1: ' + this.segmentParams.startPointX + ' y1: ' + this.segmentParams.startPointY + 'x2: ' + this.segmentParams.endPointX + ' y2: ' + this.segmentParams.endPointY);
   }
 
   private onMouseUp_pr(e) {
