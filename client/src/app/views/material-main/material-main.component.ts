@@ -7,6 +7,8 @@ import { IVeiwWindow } from 'src/app/interfaces/viewinterfaces';
 import { ViewWindowBl } from './matirial-main-bl';
 import { SegmentParams } from 'src/app/components/static-image/static-image-interfaces';
 import { NgxSpinnerService } from "ngx-spinner";
+import { AngularFileUploaderComponent } from "angular-file-uploader";
+import { ServerProxyService } from 'src/app/services/proxy/server-proxy.service';
 
 @Component({
   selector: 'app-material-main',
@@ -22,6 +24,38 @@ export class MaterialMainComponent implements OnInit, OnDestroy,IVeiwWindow {
 
   @ViewChild ('video1', {static:  false}) arpVideo: CustomVideoComponent;
   @ViewChild ('video2', {static:  false}) tcsVideo: CustomVideoComponent;
+  @ViewChild ('fileUpload1', {static:  false}) fileUpload1: AngularFileUploaderComponent;
+
+
+  resetVar:boolean = false;
+  afuConfig = {
+    multiple: false,
+    formatsAllowed: ".xdat",
+    maxSize: "900",
+    uploadAPI:  {
+      url:ChatService.UPLOAD_URL,
+
+    },
+    theme: "dragNDrop",
+    hideProgressBar: true,
+    hideResetBtn: false,
+    hideSelectBtn: false,
+    replaceTexts: {
+      selectFileBtn: 'Select Files',
+      resetBtn: 'Reset',
+      uploadBtn: 'Upload',
+      dragNDropBox: 'Drag N Drop',
+      attachPinBtn: 'Attach Files...',
+      afterUploadMsg_success: 'Done !',
+      afterUploadMsg_error: 'Upload Failed !'
+    }
+};
+ 
+ public DocUpload(event1){
+    //alert ("DocUpload"  + event1);
+    //refresh  current list of files
+    this.getFilesList()
+ }
 
   private _itemsLoaded: number = 0;
   private _itemsCount: number = ViewWindowBl.ITEMS_TO_LOAD_DYNAMIC_COMPONENTS ;//check only 2 videos and ars art images ViewWindowBl.ITEMS_TO_LOAD;
@@ -74,11 +108,32 @@ export class MaterialMainComponent implements OnInit, OnDestroy,IVeiwWindow {
   //   this._currentTime = value;
   // }
 
-  constructor(private chatService: ChatService,private ngxSpinnerService:NgxSpinnerService) {
+  constructor(private chatService: ChatService,private ngxSpinnerService:NgxSpinnerService,
+    private serverProxyService: ServerProxyService) {
     this.myViewWindowBl = new ViewWindowBl(this,chatService);
 
   }
 
+  filesList:String[] = [];
+  /*
+  Get list of availible files on the server
+  */
+  getFilesList(){
+    this.serverProxyService.getData(ChatService.GET_FILES_LIST)
+      .subscribe(
+        (data: any) =>  {
+          console.log(data)
+          this.filesList = data.files;
+          //alert ("ok") ;
+        }
+       );
+  }
+
+  setFile(fileName:string){
+    var segmentParams:SegmentParams = new SegmentParams();
+    segmentParams.fileName = fileName;
+    this.selectionAreaChanged (segmentParams);
+  }
 
   public hideSpinner(){
     this.ngxSpinnerService.hide();
@@ -96,6 +151,11 @@ export class MaterialMainComponent implements OnInit, OnDestroy,IVeiwWindow {
   ngOnInit() {
     //this._mySpeed = 1000;
     //this._currentTime = 0;
+    // this.fileUpload1.ngOnInit = (item) => {
+    //   item.withCredentials = false;
+    // }
+    //this.fileUpload1.
+    
   }
 
   public setVideo() {

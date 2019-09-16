@@ -27,6 +27,7 @@ export class ChatService {
   public static  SERVER_URL = "http://127.0.0.1:8080/getfile?fileName=";
   public static CHAT_URL = "ws://127.0.0.1:8080/mediaChat";
   public static UPLOAD_URL = "http://127.0.0.1:8080/upload";
+  public static GET_FILES_LIST = "http://127.0.0.1:8080/getData?op=getFilesList"
   public get messages(): Subject<Message> {
     return this.myMessages;
   }

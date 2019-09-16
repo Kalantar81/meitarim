@@ -63,11 +63,12 @@ const routes: Routes = [
   {
     path: 'menu',
     component: MenuComponent,
-  },
-  {
-    path: 'icons',
-    component: IconsDemoComponent,
   }
+  //,
+  //{
+  //  path: 'icons',
+  //  component: IconsDemoComponent,
+  //}
 ];
 
 @NgModule({

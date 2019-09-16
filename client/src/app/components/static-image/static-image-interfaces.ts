@@ -19,4 +19,5 @@ export class SegmentParams {
   endPointX: number;
   startPointY: number;
   endPointY: number;
+  fileName?:string;
 }
