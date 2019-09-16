@@ -9,6 +9,9 @@ import { SegmentParams } from 'src/app/components/static-image/static-image-inte
 import { NgxSpinnerService } from "ngx-spinner";
 import { AngularFileUploaderComponent } from "angular-file-uploader";
 import { ServerProxyService } from 'src/app/services/proxy/server-proxy.service';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { UploadDialogComponent } from 'src/app/popboxes/upload-dialog/upload-dialog.component';
+import { DataStoreService } from 'src/app/services/data-store/data-store.service';
 
 @Component({
   selector: 'app-material-main',
@@ -24,38 +27,7 @@ export class MaterialMainComponent implements OnInit, OnDestroy,IVeiwWindow {
 
   @ViewChild ('video1', {static:  false}) arpVideo: CustomVideoComponent;
   @ViewChild ('video2', {static:  false}) tcsVideo: CustomVideoComponent;
-  @ViewChild ('fileUpload1', {static:  false}) fileUpload1: AngularFileUploaderComponent;
-
-
-  resetVar:boolean = false;
-  afuConfig = {
-    multiple: false,
-    formatsAllowed: ".xdat",
-    maxSize: "900",
-    uploadAPI:  {
-      url:ChatService.UPLOAD_URL,
-
-    },
-    theme: "dragNDrop",
-    hideProgressBar: true,
-    hideResetBtn: false,
-    hideSelectBtn: false,
-    replaceTexts: {
-      selectFileBtn: 'Select Files',
-      resetBtn: 'Reset',
-      uploadBtn: 'Upload',
-      dragNDropBox: 'Drag N Drop',
-      attachPinBtn: 'Attach Files...',
-      afterUploadMsg_success: 'Done !',
-      afterUploadMsg_error: 'Upload Failed !'
-    }
-};
  
- public DocUpload(event1){
-    //alert ("DocUpload"  + event1);
-    //refresh  current list of files
-    this.getFilesList()
- }
 
   private _itemsLoaded: number = 0;
   private _itemsCount: number = ViewWindowBl.ITEMS_TO_LOAD_DYNAMIC_COMPONENTS ;//check only 2 videos and ars art images ViewWindowBl.ITEMS_TO_LOAD;
@@ -108,13 +80,16 @@ export class MaterialMainComponent implements OnInit, OnDestroy,IVeiwWindow {
   //   this._currentTime = value;
   // }
 
-  constructor(private chatService: ChatService,private ngxSpinnerService:NgxSpinnerService,
-    private serverProxyService: ServerProxyService) {
-    this.myViewWindowBl = new ViewWindowBl(this,chatService);
+  constructor(private chatService: ChatService,
+    private ngxSpinnerService:NgxSpinnerService,
+    private serverProxyService: ServerProxyService,
+    private dialog: MatDialog,
+    private dataStoreService:DataStoreService) {
+    this.myViewWindowBl = new ViewWindowBl(this,chatService,dataStoreService);
 
   }
 
-  filesList:String[] = [];
+  //filesList:String[] = [];
   /*
   Get list of availible files on the server
   */
@@ -123,7 +98,13 @@ export class MaterialMainComponent implements OnInit, OnDestroy,IVeiwWindow {
       .subscribe(
         (data: any) =>  {
           console.log(data)
-          this.filesList = data.files;
+          this.dataStoreService.clearList();
+          if (data!=undefined && data.files!=undefined && data.files.length>0){
+            data.files.forEach((item)=>{
+              this.dataStoreService.addFile(item);
+            })
+          }
+       
           //alert ("ok") ;
         }
        );
@@ -143,10 +124,7 @@ export class MaterialMainComponent implements OnInit, OnDestroy,IVeiwWindow {
     this.ngxSpinnerService.show();
   }
 
-  sendMsg() {
-    this.myViewWindowBl.sendMsg();
 
-  }
 
   ngOnInit() {
     //this._mySpeed = 1000;
@@ -155,9 +133,10 @@ export class MaterialMainComponent implements OnInit, OnDestroy,IVeiwWindow {
     //   item.withCredentials = false;
     // }
     //this.fileUpload1.
-    
+    this.getFilesList();
   }
 
+  
   public setVideo() {
     this.myViewWindowBl.setVideo();
   }
@@ -263,4 +242,6 @@ public startPlay() {
     //alert( ' חתך בשם ' + area.segmentName + ' נשלח לשרת ');
   }
 
+
+ 
 }

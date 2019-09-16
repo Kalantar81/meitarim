@@ -10,21 +10,52 @@
   <button
     mat-raised-button
     (click)='mouseClick()'>
-    <div class="buttonTitleStyle">get msges</div>
+    <div class="buttonTitleStyle">Add File Test</div>
   </button>
 
   <div style="padding-top: 5px"></div>
 
+  <div>
+      <!--button
+       mat-raised-button mat-flat-button color="primary"
+        style = "background-color: lightgray"
+        (click)="setVideo()">
+      </button-->
+      <button (click)="sendMsg()" mat-raised-button >
+          Load Demo
+       </button>
+       <br/>
+        <button (click)="openDialog()" mat-raised-button>
+          Upload File
+       </button>
+      <!--button (click)="getFilesList()" mat-flat-button color="primary">
+          get files
+       </button-->
+
+       <!--app-todo 
+       *ngFor="let file of dataStoreService.files$ | async; trackBy: filesTrackFn"
+       [todo]="file"
+       (complete)="dataStoreService.setCompleted(file.id, $event)"
+       (remove)="dataStoreService.removeTodo($event)">
+      </app-todo-->
+
+        <button mat-flat-button  *ngFor="let file of dataStoreService.files$ | async; trackBy: filesTrackFn"
+         (click)="setFile(file)">
+          <b>{{file.fileName}}</b>
+        </button>
+  </div>
+  
+  <div style="padding-top: 5px"></div>
   <div class="buttonTitleStyle">
-    <div class="toggleTitle"> Save selected area:</div>
+    <div class="toggleTitle">Edit mode:</div>
     <mat-slide-toggle
     [labelPosition] = '"before"'
       [(ngModel)]="aaa">
         <div class="buttonTitleStyle">
-          not
+          read only
         </div>
       </mat-slide-toggle>
-      save
+      edit
   </div>
 
 </div>

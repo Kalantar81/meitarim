@@ -1,6 +1,7 @@
 import { IVeiwWindow } from 'src/app/interfaces/viewinterfaces';
 import { Message, ChatService } from 'src/app/services/chat/chat.service';
 import { SegmentParams } from 'src/app/components/static-image/static-image-interfaces';
+import { DataStoreService, FileData } from 'src/app/services/data-store/data-store.service';
 
 export class ViewWindowBl  {
     
@@ -27,15 +28,36 @@ export class ViewWindowBl  {
       }
     };
 
-    constructor(mainView:IVeiwWindow,chatService: ChatService){
+    constructor(mainView:IVeiwWindow,chatService: ChatService,dataStoreService:DataStoreService){
       this.veiwWindow =   mainView;
       this.chatService = chatService;
       let handleMessage = this.handleMessageWs.bind(this);
       let handleError = this.onErrorWs.bind(this);
       chatService.messages.subscribe(handleMessage,handleError);
+      dataStoreService.fileMessage.subscribe(this.onFileChanged.bind(this),
+        this.onFileChangedError.bind(this));
     }
     
-    
+    private onFileChangedError(err:any){
+        alert ("System Error: " + err);
+    }
+
+    private onFileChanged(file:FileData){
+      //TO DO get Size for x and y2
+      var newSegment:SegmentParams = {
+        segmentName: "",
+        createdBy: "",
+        date: new Date(),
+        startPointX: 0,
+        endPointX: 200,
+        startPointY: 0,
+        endPointY: 500,
+        fileName:file.fileName
+      
+       } 
+
+       this.changeSelectionArea(newSegment);
+    }
 
     private  createMessageBySelectedArea(selectedArea:SegmentParams):Message{
        var newMsg:Message = {

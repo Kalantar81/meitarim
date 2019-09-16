@@ -18,6 +18,9 @@ import { CustomImgBaseComponent } from './components/custom-img-base/custom-img-
 import { ChatService } from 'src/app/services/chat/chat.service';
 import { WebsocketService } from "src/app/services/websocket/websocket.service"
 import {ServerProxyService} from "src/app/services/proxy/server-proxy.service"
+import { DataStoreService } from "src/app/services/data-store/data-store.service";
+
+
 
 import { MaterialMainComponent } from './views/material-main/material-main.component';
 import { VerticalRangeSliderComponent } from './drafts/vertical-range-slider/vertical-range-slider.component';
@@ -46,7 +49,7 @@ import { InputDemoComponent } from './drafts/input-demo/input-demo.component';
 
 import { CustomUploadComponent } from './components/custom-upload/custom-upload.component';
 import {HttpClientModule, HttpRequest, HttpResponse} from '@angular/common/http';
-
+import { UploadDialogComponent } from './popboxes/upload-dialog/upload-dialog.component';
 
 
 @NgModule({
@@ -77,7 +80,8 @@ import {HttpClientModule, HttpRequest, HttpResponse} from '@angular/common/http'
     AccordionSearchComponent,
     IconsDemoComponent,
     InputDemoComponent,
-    CustomUploadComponent
+    CustomUploadComponent,
+    UploadDialogComponent
 
   ],
   imports: [
@@ -98,9 +102,10 @@ import {HttpClientModule, HttpRequest, HttpResponse} from '@angular/common/http'
     PopupComponent,
     PopupWithInnerComponentComponent,
     SegmentParamsDialogComponent,
-    SliderConfigPopboxComponent
+    SliderConfigPopboxComponent,
+    UploadDialogComponent
   ],
-  providers: [ChatService,WebsocketService,ServerProxyService],
+  providers: [ChatService,WebsocketService,ServerProxyService,DataStoreService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
