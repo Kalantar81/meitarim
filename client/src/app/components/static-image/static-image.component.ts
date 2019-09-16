@@ -62,7 +62,7 @@ export class StaticImageComponent implements OnInit, OnChanges {
     this.segmentParams.startPointY = 0;
     this.segmentParams.endPointX = 0;
     this.segmentParams.endPointY = 0;
-    this.segmentParams.createdBy = 'קלנטרוב דמיטרי';
+    this.segmentParams.createdBy = 'Dima';
     this.segmentParams.date = new Date();
   }
 

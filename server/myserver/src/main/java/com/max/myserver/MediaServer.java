@@ -131,6 +131,10 @@ public class MediaServer {
       // Your exception handler
       final ExceptionHandler exceptionHandler = ExceptionHandler.newBuilder()
               .match(NoSuchElementException.class, ex -> complete(StatusCodes.NOT_FOUND, ex.getMessage()))
+              .match(Throwable.class, ex -> {
+            	  Logger.writeError("ExceptionHandler:", ex);
+            	  return complete(StatusCodes.INTERNAL_SERVER_ERROR,"{\"error\":\""+  ex.getMessage() + "\"}");
+              })
               .build();
 
       // Combining the two handlers only for convenience

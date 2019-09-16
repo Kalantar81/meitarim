@@ -24,6 +24,7 @@ import akka.http.javadsl.unmarshalling.Unmarshaller;
 import akka.japi.Pair;
 import akka.stream.Materializer;
 import akka.stream.javadsl.FileIO;
+import scala.util.control.Exception;
 
 public class FileUploadManager {
 	
@@ -40,10 +41,11 @@ public class FileUploadManager {
 		
 		final Function<FileInfo, File> temporaryDestination = (info) -> {
           try {
-            return  File.createTempFile(info.getFileName(), "", new File(FileUploadManager.getUploadPath()));
+        	  
+        	  return  File.createTempFile(info.getFileName(), "", new File(FileUploadManager.getUploadPath()));
 			   
             		//File.createTempFile(info.getFileName(), ".tmp");
-          } catch (Exception e) {
+          } catch (Throwable e) {
         	  Logger.writeError("storeUploadedFileTo", e);
         	  throw new RuntimeException(e);
           }
@@ -52,11 +54,19 @@ public class FileUploadManager {
         final Route routeUploadedFile = storeUploadedFile("file0", temporaryDestination, (info, file) -> {
           // do something with the file and file metadata ...
           //file.delete();
-          String path = FileUploadManager.getUploadPath();
-          file.renameTo(new File(path + info.getFileName()));
-          return complete(StatusCodes.OK);
+          String path = FileUploadManager.getUploadPath();	
+        	
+          String fileName =path + info.getFileName();
+      	  
+          File f = new File(fileName);
+      	  if (f.exists()) {
+      		file.delete();
+      		return complete("The file already exists (" + info.getFileName() + ")");
+      	  }	else {
+      		file.renameTo(new File(fileName));
+      		 return complete(StatusCodes.OK);
+      	  }
         });
-        
         return routeUploadedFile;
 	}
 	

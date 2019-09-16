@@ -1,93 +1,97 @@
 <div>
-  <h1 mat-dialog-title align = "center">פרטי חתך</h1>
+  <h1 mat-dialog-title align = "center">Segment details</h1>
 
   <div mat-dialog-content >
     <div align = "center">
       <mat-form-field class="dialogFrame">
-          <mat-label>שם החתך</mat-label>
+          <mat-label>Segment Name</mat-label>
         <input
           matInput
           [(ngModel)]="data.segmentName"
-          matTooltip="יש לתת שם לכל לחתך"
+          matTooltip="enter segment name"
           required>
       </mat-form-field>
     </div>
 
     <div>
-      <div style="float: right; padding-right: 100px">
-        <mat-form-field
+      <div style="float: left; padding-left: 100px">
+          <label class="text"> from-</label>
+         <mat-form-field
           appearance="outline"
           style="width: 100px">
-          <mat-label>זמן התחלה</mat-label>
+          <mat-label>start time</mat-label>
             <input
               type="number"
               matInput
               [(ngModel)]="data.startPointX"
-              matTooltip="זמן תחילת הריצה"
+              matTooltip="start time"
               required>
         </mat-form-field>
-        <label class="text"> - זמן מ </label>
+        
       </div>
-      <div style="float: left; padding-left: 100px">
+      <div style="float: right; padding-right: 100px">
+          <label class="text"> till-</label>  
           <mat-form-field
             appearance="outline"
             style="width: 100px">
-            <mat-label>זמן סוף</mat-label>
+            <mat-label>end time</mat-label>
               <input
                 type="number"
                 matInput
                 [(ngModel)]="data.endPointX"
-                matTooltip="זמן סוף הריצה"
+                matTooltip="end time"
                 required>
           </mat-form-field>
-          <label class="text"> עד </label>
+          
         </div>
     </div>
 
     <div>
-        <div style="float: right; padding-right: 100px">
+        <div style="float: left; padding-left: 100px">
+          <label class="text"> from-</label>
           <mat-form-field
             appearance="outline"
             style="width: 100px">
-            <mat-label>תדר התחלתי</mat-label>
+            <mat-label>start frequency</mat-label>
               <input
                 type="number"
                 matInput
                 [(ngModel)]="data.startPointY"
-                matTooltip="תדר התחלתי"
+                matTooltip="frequency start"
                 required>
           </mat-form-field>
-          <label class="text"> - תדר מ </label>
+         
         </div>
-        <div style="float: left; padding-left: 100px">
+        <div style="float: right; padding-right: 100px">
+            <label class="text"> till-</label>  
             <mat-form-field
               appearance="outline"
               style="width: 100px">
-              <mat-label>תדר סופי</mat-label>
+              <mat-label>frequency end</mat-label>
                 <input
                   type="number"
                   matInput
                   [(ngModel)]="data.endPointY"
-                  matTooltip="זמן סוף הריצה"
+                  matTooltip="frequency end"
                   required>
             </mat-form-field>
-            <label class="text"> עד </label>
+            
           </div>
       </div>
   </div>
 
-  <div style="float: initial; padding-right: 200px; direction: rtl">
-    <h4>נוצר על ידי: {{data.createdBy}}</h4>
-    <h4>תהריך: {{date}}</h4>
-    <h4>שעה: {{time}}</h4>
+  <div style="float: initial; padding-left: 200px;">
+    <h4>Created: {{data.createdBy}}</h4>
+    <h4>Date: {{date}}</h4>
+    <h4>Time: {{time}}</h4>
     <!-- <section class="example-section">
-        <label class="example-margin">חתך:</label>
+        <label class="example-margin">segment:</label>
         <mat-radio-group [(ngModel)]="color">
           <mat-radio-button class="example-margin" value="primary">
-            שמור
+            save
           </mat-radio-button>
           <mat-radio-button class="example-margin" value="accent">
-            על תשמור
+            exit
           </mat-radio-button>
         </mat-radio-group>
     </section> -->
@@ -96,26 +100,26 @@
 
 
   <div mat-dialog-actions align = "center">
+      <button
+      mat-flat-button color="primary"
+      [mat-dialog-close]="data"
+      cdkFocusInitial
+      matTooltip="load segment on the page">
+      load current segment
+    </button>
+    <div style="padding-right: 10px"></div>
     <button
+      mat-flat-button color="primary"
+      [mat-dialog-close]="data"
+      cdkFocusInitial
+      matTooltip="save current segment in database">
+      save segment
+    </button>
+    <div style="padding-right: 10px"></div>
+      <button
       mat-flat-button color="primary"
       (click)="onNoClick()">
-      בטל
-    </button>
-    <div style="padding-right: 10px"></div>
-    <button
-      mat-flat-button color="primary"
-      [mat-dialog-close]="data"
-      cdkFocusInitial
-      matTooltip="הכפתור שולח את הדאטה לשרת">
-      שמור חתך
-    </button>
-    <div style="padding-right: 10px"></div>
-    <button
-      mat-flat-button color="primary"
-      [mat-dialog-close]="data"
-      cdkFocusInitial
-      matTooltip="הכפתור שולח את הדאטה לשרת">
-      טען חתך
+      cancel
     </button>
   </div>
 </div>
