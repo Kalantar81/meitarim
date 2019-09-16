@@ -9,7 +9,18 @@
     <div id="bloc2">
       <mat-icon
         svgIcon="search"
-        style="background-color: gainsboro; width: 30px; height: 30px; color: black;">
+        style="background-color: gainsboro; width: 30px; height: 30px; color: black;"
+        (click) = "searchResults()">
       </mat-icon>
+    </div>
+
+    <div
+      class="searchResaultContainer"
+      *ngIf="showSearchResults">
+      <cdk-virtual-scroll-viewport itemSize="100" class="example-viewport">
+          <div *cdkVirtualFor="let item of searchResultArray" class="example-item">
+            <app-search-result></app-search-result>
+          </div>
+      </cdk-virtual-scroll-viewport>
     </div>
   </div>

@@ -49,6 +49,7 @@ import { InputDemoComponent } from './drafts/input-demo/input-demo.component';
 
 import { CustomUploadComponent } from './components/custom-upload/custom-upload.component';
 import {HttpClientModule, HttpRequest, HttpResponse} from '@angular/common/http';
+import { SearchResultComponent } from './components/menu/accordionBodyComponents/accordion-search/search-result/search-result.component';
 import { UploadDialogComponent } from './popboxes/upload-dialog/upload-dialog.component';
 
 
@@ -81,7 +82,8 @@ import { UploadDialogComponent } from './popboxes/upload-dialog/upload-dialog.co
     IconsDemoComponent,
     InputDemoComponent,
     CustomUploadComponent,
-    UploadDialogComponent
+    UploadDialogComponent,
+    SearchResultComponent
 
   ],
   imports: [

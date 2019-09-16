@@ -1,0 +1,27 @@
+.example-card {
+  max-width: 100px;
+  height: 150px;
+}
+
+.example-header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+}
+
+.imageDesign {
+  width: 50px;
+  height: 50px;
+}
+
+.searchResultContainer {
+  width: 90%;
+  height: 100%;
+  background-color: gray;
+  margin: 5px 0px 5px 0px;
+  text-align:center;
+}
+
+#bloc1, #bloc2
+{
+    display:inline;
+}
