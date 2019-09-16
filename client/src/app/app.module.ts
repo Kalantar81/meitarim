@@ -45,6 +45,7 @@ import { InputDemoComponent } from './drafts/input-demo/input-demo.component';
 
 import { CustomUploadComponent } from './components/custom-upload/custom-upload.component';
 import {HttpClientModule, HttpRequest, HttpResponse} from '@angular/common/http';
+import { SearchResultComponent } from './components/menu/accordionBodyComponents/accordion-search/search-result/search-result.component';
 
 
 
@@ -76,7 +77,8 @@ import {HttpClientModule, HttpRequest, HttpResponse} from '@angular/common/http'
     AccordionSearchComponent,
     IconsDemoComponent,
     InputDemoComponent,
-    CustomUploadComponent
+    CustomUploadComponent,
+    SearchResultComponent
 
   ],
   imports: [

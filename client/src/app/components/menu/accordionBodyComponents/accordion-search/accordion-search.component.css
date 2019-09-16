@@ -17,3 +17,20 @@
 {
     display:inline;
 }
+
+.searchResaultContainer{
+  width: 100%;
+  /* border: 1px solid gainsboro; */
+  margin-top: 10px;
+}
+
+.example-viewport {
+  height: 250px;
+  max-height: 300px;
+  width: 100%;
+  /* border: 1px solid gainsboro; */
+}
+
+.example-item {
+  height: 110px;
+}
