@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { UploadDialogComponent } from 'src/app/popboxes/upload-dialog/upload-dialog.component';
-import { ChatService } from 'src/app/services/chat/chat.service';
+import { ChatService } from 'src/app/services/websocket-chat/chat.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { MatDialog } from '@angular/material/dialog';
-import { DataStoreService, FileData, FileMessage } from 'src/app/services/data-store/data-store.service';
+import { DataStoreService, FileData } from 'src/app/services/data-store/data-store.service';
+import { AppMessagesService, FileMessage } from 'src/app/services/app-messages/app-messages.service';
 
 @Component({
   selector: 'app-accordion-edit-mode',
@@ -13,14 +14,14 @@ import { DataStoreService, FileData, FileMessage } from 'src/app/services/data-s
 export class AccordionEditModeComponent implements OnInit {
 
   aaa = false;
-  // optimization, rerenders only todos that change instead of the entire list of todos
+  // optimization, rerenders only files that change instead of the entire list of files
   filesTrackFn = (i, file) => file.id;
-
 
   constructor(private chatService: ChatService,
     private ngxSpinnerService:NgxSpinnerService,
     public dialog: MatDialog,
-    private dataStoreService:DataStoreService
+    private dataStoreService:DataStoreService,
+    private appMessagesService:AppMessagesService
     ) {
     
   }
@@ -32,9 +33,14 @@ export class AccordionEditModeComponent implements OnInit {
     this.dataStoreService.addFile("TestFile")
     //alert(this.aaa);
   }
-  sendMsg() {
-     //TODO
-    //this.myViewWindowBl.sendMsg();
+
+  sendDemoMsg() {
+    var fileMessage : FileMessage = {
+      file :{
+        fileName: "stam"
+      }
+    }
+    this.appMessagesService.sendFileMessage(fileMessage);
   }
 
     /** #startDialogBox methods */
@@ -65,6 +71,6 @@ export class AccordionEditModeComponent implements OnInit {
     var fileMessage : FileMessage = {
       file :file
     }
-    this.dataStoreService.sendFileMessage(fileMessage);
+    this.appMessagesService.sendFileMessage(fileMessage);
   }
 }

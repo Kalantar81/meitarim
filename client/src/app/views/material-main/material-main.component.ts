@@ -2,16 +2,17 @@ import { Component, OnInit, ViewChild, Input, OnDestroy } from '@angular/core';
 import { CustomImgComponent } from 'src/app/components/custom-img/custom-img.component';
 import { CustomVideoComponent } from 'src/app/components/custom-video/custom-video.component';
 import { StaticImageComponent } from 'src/app/components/static-image/static-image.component';
-import { ChatService, Message } from 'src/app/services/chat/chat.service';
+import { ChatService, Message } from 'src/app/services/websocket-chat/chat.service';
 import { IVeiwWindow } from 'src/app/interfaces/viewinterfaces';
 import { ViewWindowBl } from './matirial-main-bl';
 import { SegmentParams } from 'src/app/components/static-image/static-image-interfaces';
 import { NgxSpinnerService } from "ngx-spinner";
 import { AngularFileUploaderComponent } from "angular-file-uploader";
-import { ServerProxyService } from 'src/app/services/proxy/server-proxy.service';
+import { ServerProxyService } from 'src/app/services/server-proxy/server-proxy.service';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { UploadDialogComponent } from 'src/app/popboxes/upload-dialog/upload-dialog.component';
 import { DataStoreService } from 'src/app/services/data-store/data-store.service';
+import { AppMessagesService } from 'src/app/services/app-messages/app-messages.service';
 
 @Component({
   selector: 'app-material-main',
@@ -84,8 +85,9 @@ export class MaterialMainComponent implements OnInit, OnDestroy,IVeiwWindow {
     private ngxSpinnerService:NgxSpinnerService,
     private serverProxyService: ServerProxyService,
     private dialog: MatDialog,
-    private dataStoreService:DataStoreService) {
-    this.myViewWindowBl = new ViewWindowBl(this,chatService,dataStoreService);
+    private dataStoreService:DataStoreService,
+    private appMessagesService:AppMessagesService) {
+    this.myViewWindowBl = new ViewWindowBl(this,chatService,dataStoreService,appMessagesService);
 
   }
 

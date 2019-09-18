@@ -1,6 +1,6 @@
 import { Component,VERSION, OnInit } from '@angular/core';
 import { HttpClient, HttpResponse, HttpEventType} from '@angular/common/http';
-import { ChatService } from 'src/app/services/chat/chat.service';
+import { ChatService } from 'src/app/services/websocket-chat/chat.service';
 
 @Component({
   selector: 'app-custom-upload',

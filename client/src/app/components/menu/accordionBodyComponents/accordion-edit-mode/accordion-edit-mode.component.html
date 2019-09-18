@@ -1,5 +1,5 @@
 <div>
-  <button
+  <!-- <button
     mat-raised-button
     (click)='mouseClick()'>
     <div class="buttonTitleStyle">set video</div>
@@ -11,9 +11,11 @@
     mat-raised-button
     (click)='mouseClick()'>
     <div class="buttonTitleStyle">Add File Test</div>
-  </button>
+  </button> 
 
   <div style="padding-top: 5px"></div>
+  -->
+
 
   <div>
       <!--button
@@ -21,7 +23,7 @@
         style = "background-color: lightgray"
         (click)="setVideo()">
       </button-->
-      <button (click)="sendMsg()" mat-raised-button >
+      <button (click)="sendDemoMsg()" mat-raised-button >
           Load Demo
        </button>
        <br/>
@@ -38,11 +40,20 @@
        (complete)="dataStoreService.setCompleted(file.id, $event)"
        (remove)="dataStoreService.removeTodo($event)">
       </app-todo-->
+      <div style="padding-top: 5px">Files List</div>
+      <cdk-virtual-scroll-viewport itemSize="100" class="example-viewport">
+         
+              <ul>
+                  <li *cdkVirtualFor="let file of dataStoreService.files$ | async; trackBy: filesTrackFn">
+                    <a class="buttonlink"  
+                    (click)="setFile(file)" href="javascript:void(0)">
+                      <b>{{file.fileName}}</b>
+                    </a>
+                 </li>
+              </ul>
+       
+      </cdk-virtual-scroll-viewport>
 
-        <button mat-flat-button  *ngFor="let file of dataStoreService.files$ | async; trackBy: filesTrackFn"
-         (click)="setFile(file)">
-          <b>{{file.fileName}}</b>
-        </button>
   </div>
   
   <div style="padding-top: 5px"></div>

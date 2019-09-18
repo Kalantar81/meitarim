@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, Inject } from '@angular/core';
 import { AngularFileUploaderComponent } from 'angular-file-uploader';
-import { ChatService } from 'src/app/services/chat/chat.service';
+import { ChatService } from 'src/app/services/websocket-chat/chat.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({

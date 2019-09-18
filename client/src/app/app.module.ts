@@ -15,10 +15,11 @@ import { CustomVideoComponent } from './components/custom-video/custom-video.com
 import { CustomImgComponent } from './components/custom-img/custom-img.component';
 import { CustomMediaHiveComponent } from './components/custom-media-hive/custom-media-hive.component';
 import { CustomImgBaseComponent } from './components/custom-img-base/custom-img-base.component';
-import { ChatService } from 'src/app/services/chat/chat.service';
+import { ChatService } from 'src/app/services/websocket-chat/chat.service';
 import { WebsocketService } from "src/app/services/websocket/websocket.service"
-import {ServerProxyService} from "src/app/services/proxy/server-proxy.service"
+import {ServerProxyService} from "src/app/services/server-proxy/server-proxy.service"
 import { DataStoreService } from "src/app/services/data-store/data-store.service";
+import { AppMessagesService } from "src/app/services/app-messages/app-messages.service";
 
 
 
@@ -107,7 +108,13 @@ import { UploadDialogComponent } from './popboxes/upload-dialog/upload-dialog.co
     SliderConfigPopboxComponent,
     UploadDialogComponent
   ],
-  providers: [ChatService,WebsocketService,ServerProxyService,DataStoreService],
+  providers: [
+    ChatService,
+    WebsocketService,
+    ServerProxyService,
+    DataStoreService,
+    AppMessagesService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

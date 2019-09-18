@@ -6,3 +6,31 @@
 .col-xs-3 {
     width: 100px;
 }
+
+.buttonlink:link {
+    color: red;
+    background-color: transparent; 
+    text-decoration: none;
+    font-size: 12px;
+  }
+  
+  .buttonlink:visited {
+    color: red;
+    background-color: transparent;
+    text-decoration: none;
+    font-size: 12px;
+  }
+  
+  .buttonlink:hover {
+    color:darkred;
+    background-color: transparent;
+    text-decoration: underline;
+    font-size: 12px;
+  }
+  
+  .buttonlink:active {
+    color: red;
+    background-color: transparent;
+    text-decoration: underline;
+    font-size: 12px;
+  }

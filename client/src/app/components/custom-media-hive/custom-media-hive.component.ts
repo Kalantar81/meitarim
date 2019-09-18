@@ -3,7 +3,7 @@ import { IPlayableMedia, IPlayableMediaOptions } from 'src/app/interfaces/mediai
 import { CustomImgComponent } from '../custom-img/custom-img.component';
 import { CustomVideoComponent } from '../custom-video/custom-video.component';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
-import { ChatService, Message } from 'src/app/services/chat/chat.service';
+import { ChatService, Message } from 'src/app/services/websocket-chat/chat.service';
 
 @Component({
   selector: 'app-custom-media-hive',

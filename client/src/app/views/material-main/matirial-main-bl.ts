@@ -1,7 +1,8 @@
 import { IVeiwWindow } from 'src/app/interfaces/viewinterfaces';
-import { Message, ChatService } from 'src/app/services/chat/chat.service';
+import { Message, ChatService } from 'src/app/services/websocket-chat/chat.service';
 import { SegmentParams } from 'src/app/components/static-image/static-image-interfaces';
 import { DataStoreService, FileData } from 'src/app/services/data-store/data-store.service';
+import { AppMessagesService } from 'src/app/services/app-messages/app-messages.service';
 
 export class ViewWindowBl  {
     
@@ -28,14 +29,19 @@ export class ViewWindowBl  {
       }
     };
 
-    constructor(mainView:IVeiwWindow,chatService: ChatService,dataStoreService:DataStoreService){
+    constructor(mainView:IVeiwWindow,chatService: ChatService,
+      dataStoreService:DataStoreService,
+      appMessagesService:AppMessagesService){
+        
       this.veiwWindow =   mainView;
       this.chatService = chatService;
       let handleMessage = this.handleMessageWs.bind(this);
       let handleError = this.onErrorWs.bind(this);
       chatService.messages.subscribe(handleMessage,handleError);
-      dataStoreService.fileMessage.subscribe(this.onFileChanged.bind(this),
+      appMessagesService.fileMessage.subscribe(this.onFileChanged.bind(this),
         this.onFileChangedError.bind(this));
+
+      appMessagesService.fileDemoMessage.subscribe(this.setVideo.bind(this)) 
     }
     
     private onFileChangedError(err:any){
