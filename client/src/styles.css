@@ -34,3 +34,18 @@
     text-decoration: underline;
     font-size: 12px;
   }
+
+  ul li::before {
+    content: "\2022";
+    color: red;
+    font-weight: bold;
+    display: inline-block; 
+    width: 1em;
+    margin-left: -1em;
+  }
+
+  .MenuSubTitle{
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+  }

@@ -40,7 +40,7 @@ export class AccordionEditModeComponent implements OnInit {
         fileName: "stam"
       }
     }
-    this.appMessagesService.sendFileMessage(fileMessage);
+    this.appMessagesService.sendFileDemoMessage(fileMessage);
   }
 
     /** #startDialogBox methods */
