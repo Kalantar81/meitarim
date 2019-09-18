@@ -19,5 +19,12 @@ export class SegmentParams {
   endPointX: number;
   startPointY: number;
   endPointY: number;
-  fileName?:string;
+  fileName?: string;
+}
+
+export class SelectAreaParams {
+  startPointX: number;
+  endPointX: number;
+  startPointY: number;
+  endPointY: number;
 }

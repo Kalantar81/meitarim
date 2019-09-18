@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef, 
 
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { SegmentParamsDialogComponent } from 'src/app/popboxes/segment-params-dialog/segment-params-dialog.component';
-import { IStaticImageOptions, IImageStyle, SegmentParams } from './static-image-interfaces';
+import { IStaticImageOptions, IImageStyle, SegmentParams, SelectAreaParams } from './static-image-interfaces';
 
 
 @Component({
@@ -23,6 +23,7 @@ export class StaticImageComponent implements OnInit, OnChanges {
 
   protected imageStyle: IImageStyle;
   protected segmentParams = new SegmentParams();
+  protected selectAreaParams = new SelectAreaParams();
 
 
   @Output()
@@ -76,21 +77,40 @@ export class StaticImageComponent implements OnInit, OnChanges {
 
   private onMouseDown_pr(e) {
     this.selectAreaDiv.nativeElement.hidden = false;
-    this.segmentParams.startPointX = e.clientX;
-    this.segmentParams.startPointY = e.clientY;
+    this.selectAreaParams.startPointX = e.clientX;
+    this.selectAreaParams.startPointY = e.clientY;
+
+    this.segmentParams.startPointX = e.offsetX;
+    this.segmentParams.startPointY = 750 - e.offsetY;
+
     this.reCalc_pr();
+
   }
 
   private onMouseMove_pr(e) {
-    this.segmentParams.endPointX = e.clientX;
-    this.segmentParams.endPointY = e.clientY;
-    this.reCalc_pr();
+    this.selectAreaParams.endPointX = e.clientX;
+    this.selectAreaParams.endPointY = e.clientY;
 
-    console.log('x1: ' + this.segmentParams.startPointX + ' y1: ' + this.segmentParams.startPointY + 'x2: ' + this.segmentParams.endPointX + ' y2: ' + this.segmentParams.endPointY);
+    this.reCalc_pr();
   }
 
   private onMouseUp_pr(e) {
-    this.selectAreaDiv.nativeElement.hidden = true;
+    const minPointX = Math.min(this.segmentParams.startPointX, e.offsetX);
+    const maxPointX = Math.max(this.segmentParams.startPointX, e.offsetX);
+    const minPointY = Math.min(this.segmentParams.startPointY, (750 - e.offsetY));
+    const maxPointY = Math.max(this.segmentParams.startPointY, (750 - e.offsetY));
+
+    this.segmentParams.startPointX = minPointX;
+    this.segmentParams.endPointX = maxPointX;
+    this.segmentParams.startPointY = minPointY;
+    this.segmentParams.endPointY = maxPointY;
+
+    // this.selectAreaDiv.nativeElement.hidden = true;
+    this.selectAreaDiv.nativeElement.style.border = '4px solid white';
+    // this.segmentParams.endPointX = e.offsetX;
+    // this.segmentParams.endPointY = 750 - e.offsetY;
+    this.openDialog();
+    this.imageDiv.nativeElement.onmousemove = null;
   }
 
 /** #endImageDiv methods */
@@ -108,18 +128,18 @@ export class StaticImageComponent implements OnInit, OnChanges {
   }
 
   private reCalc_pr() {
-    const startPointX = Math.min(this.segmentParams.startPointX, this.segmentParams.endPointX);
-    const endPointX = Math.max(this.segmentParams.startPointX, this.segmentParams.endPointX);
-    const startPointY = Math.min(this.segmentParams.startPointY, this.segmentParams.endPointY);
-    const endPointY = Math.max(this.segmentParams.startPointY, this.segmentParams.endPointY);
+    const startPointX = Math.min(this.selectAreaParams.startPointX, this.selectAreaParams.endPointX);
+    const endPointX = Math.max(this.selectAreaParams.startPointX, this.selectAreaParams.endPointX);
+    const startPointY = Math.min(this.selectAreaParams.startPointY, this.selectAreaParams.endPointY);
+    const endPointY = Math.max(this.selectAreaParams.startPointY, this.selectAreaParams.endPointY);
 
     this.selectAreaDiv.nativeElement.style.left = startPointX + 'px';
     this.selectAreaDiv.nativeElement.style.top = startPointY + 'px';
     this.selectAreaDiv.nativeElement.style.width = endPointX - startPointX + 'px';
     this.selectAreaDiv.nativeElement.style.height = endPointY - startPointY + 'px';
 
-    //console.log('x1: ' + this.segmentParams.startPointX + ' y1: ' + this.segmentParams.startPointY + '---- x2: ' + this.segmentParams.endPointX + ' y2: ' + this.segmentParams.endPointY);
 }
+
 
   /** #startDialogBox methods */
     public openDialog(): void {

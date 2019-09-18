@@ -23,14 +23,14 @@
             <input
               type="number"
               matInput
-              [(ngModel)]="data.startPointX"
+              [(ngModel)]="data.startPointY"
               matTooltip="start time"
               required>
         </mat-form-field>
-        
+
       </div>
       <div style="float: right; padding-right: 100px">
-          <label class="text"> till-</label>  
+          <label class="text"> till-</label>
           <mat-form-field
             appearance="outline"
             style="width: 100px">
@@ -38,11 +38,11 @@
               <input
                 type="number"
                 matInput
-                [(ngModel)]="data.endPointX"
+                [(ngModel)]="data.endPointY"
                 matTooltip="end time"
                 required>
           </mat-form-field>
-          
+
         </div>
     </div>
 
@@ -56,14 +56,14 @@
               <input
                 type="number"
                 matInput
-                [(ngModel)]="data.startPointY"
+                [(ngModel)]="data.startPointX"
                 matTooltip="frequency start"
                 required>
           </mat-form-field>
-         
+
         </div>
         <div style="float: right; padding-right: 100px">
-            <label class="text"> till-</label>  
+            <label class="text"> till-</label>
             <mat-form-field
               appearance="outline"
               style="width: 100px">
@@ -71,11 +71,11 @@
                 <input
                   type="number"
                   matInput
-                  [(ngModel)]="data.endPointY"
+                  [(ngModel)]="data.endPointX"
                   matTooltip="frequency end"
                   required>
             </mat-form-field>
-            
+
           </div>
       </div>
   </div>
