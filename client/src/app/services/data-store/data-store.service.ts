@@ -6,7 +6,7 @@ import { Subject } from "rxjs/Rx";
 export interface FileData {
   id?: string;
   fileName: string;
-  isCompleted?: boolean;
+  isSelected?: boolean;
 }
 
 
@@ -31,8 +31,8 @@ export class DataStoreService {
 
   // we'll compose the files$ observable with map operator to create a stream of only completed files
   // tutorial function
-  readonly completedFiles$ = this.files$.pipe(
-    map(files => files.filter(file => file.isCompleted))
+  readonly selectedFile$ = this.files$.pipe(
+    map(files => files.filter(file => (file.isSelected!=undefined)? file.isSelected:false  ))
   )
 
   // the getter will return the last value emitted in _files subject
@@ -57,7 +57,7 @@ export class DataStoreService {
     // with automatically assigned ID ( don't do this at home, use uuid() )
     this.files = [
       ...this.files, 
-      {id:""+ this.files.length + 1, fileName, isCompleted: false}
+      {id:""+ this.files.length + 1, fileName, isSelected: false}
     ];
   }
 
@@ -65,7 +65,7 @@ export class DataStoreService {
     this.files = this.files.filter(file => file.id !== id);
   }
 
-  setCompleted(id: string, isCompleted: boolean) {
+  setSelected(id: string, isSelected: boolean) {
     let file = this.files.find(file => file.id === id);
 
     if(file) {
@@ -75,8 +75,15 @@ export class DataStoreService {
       const index = this.files.indexOf(file);
       this.files[index] = {
         ...file,
-        isCompleted
+        isSelected
       }
+
+      this.files.forEach(f=>{
+        if (f.id!=file.id){
+          f.isSelected = false;
+        }
+      })
+
       this.files = [...this.files];
     }
   }

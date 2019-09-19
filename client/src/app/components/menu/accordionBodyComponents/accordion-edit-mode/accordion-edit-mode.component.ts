@@ -68,6 +68,8 @@ export class AccordionEditModeComponent implements OnInit {
   }
 
   public setFile(file: FileData){
+    file.isSelected = true;
+    this.dataStoreService.setSelected(file.id,true);
     var fileMessage : FileMessage = {
       file :file
     }

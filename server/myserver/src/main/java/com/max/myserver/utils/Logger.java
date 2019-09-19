@@ -1,4 +1,4 @@
-package com.max.myserver.bl;
+package com.max.myserver.utils;
 
 public class Logger {
 	public static void writeError (String subject, Throwable ex) {

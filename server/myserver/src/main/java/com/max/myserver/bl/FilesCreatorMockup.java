@@ -1,6 +1,7 @@
 package com.max.myserver.bl;
 
 import com.max.myserver.data.FileData;
+import com.max.myserver.utils.Logger;
 
 public class FilesCreatorMockup extends Thread  {
 

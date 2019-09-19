@@ -6,6 +6,8 @@ import java.util.concurrent.CompletableFuture;
 import com.max.myserver.data.Constants;
 import com.max.myserver.data.FileData;
 import com.max.myserver.data.QueueItem;
+import com.max.myserver.utils.Logger;
+
 import akka.NotUsed;
 import akka.dispatch.MessageDispatcher;
 import akka.http.javadsl.model.ws.Message;
@@ -227,10 +229,9 @@ public class SessionManager implements IFileReadyCallBack {
 
 //TODO:
 //json to Objects convertor
-//Configuration application.conf (custome data)
 //Logging
 //Errors Handling - Try Cactch
 //Error handling of akka stream
 //Alex Integration
-//Dima Integration
+//Authentication
 //

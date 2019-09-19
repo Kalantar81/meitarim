@@ -26,11 +26,11 @@ import akka.http.javadsl.server.RejectionHandler;
 import akka.http.javadsl.server.Route;
 
 import com.max.myserver.appbl.DataSupplier;
-import com.max.myserver.bl.Logger;
 import com.max.myserver.bl.SessionManager;
 import com.max.myserver.files.FileManager;
 import com.max.myserver.files.FileUploadManager;
 import com.max.myserver.utils.Configuration;
+import com.max.myserver.utils.Logger;
 import com.max.myserver.utils.ServerUtils;
 import com.typesafe.config.Config;
 import com.typesafe.config.ConfigFactory;

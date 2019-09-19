@@ -4,11 +4,11 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-import com.max.myserver.bl.Logger;
 import com.max.myserver.data.FilesListResult;
 import com.max.myserver.data.RequestInput;
 import com.max.myserver.data.Result;
 import com.max.myserver.utils.Configuration;
+import com.max.myserver.utils.Logger;
 
 public class GetFilesListAction {
 	

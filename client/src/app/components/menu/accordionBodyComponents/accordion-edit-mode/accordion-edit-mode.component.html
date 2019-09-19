@@ -23,13 +23,7 @@
         style = "background-color: lightgray"
         (click)="setVideo()">
       </button-->
-      <button (click)="sendDemoMsg()" mat-raised-button >
-          Load Demo
-       </button>
-       <br/>
-        <button (click)="openDialog()" mat-raised-button>
-          Upload File
-       </button>
+     
       <!--button (click)="getFilesList()" mat-flat-button color="primary">
           get files
        </button-->
@@ -40,20 +34,26 @@
        (complete)="dataStoreService.setCompleted(file.id, $event)"
        (remove)="dataStoreService.removeTodo($event)">
       </app-todo-->
-      <div class="MenuSubTitle" style="padding-top: 5px">Files List</div>
-      <cdk-virtual-scroll-viewport itemSize="100" class="example-viewport">
-         
-              <ul>
-                  <li *cdkVirtualFor="let file of dataStoreService.files$ | async; trackBy: filesTrackFn">
-                    <a class="buttonlink"  
-                    (click)="setFile(file)" href="javascript:void(0)">
-                      <b>{{file.fileName}}</b>
-                    </a>
-                 </li>
-              </ul>
-       
-      </cdk-virtual-scroll-viewport>
-
+      <div class="MenuSubTitle" style="padding-top: 5px">Files List:</div>
+      <!--*cdkVirtualFor <cdk-virtual-scroll-viewport itemSize="100" class="example-viewport"> -->
+          <ul>
+              <li  *ngFor="let file of dataStoreService.files$ | async; trackBy: filesTrackFn">
+                <a class="buttonlink"  (click)="setFile(file)" href="javascript:void(0)">
+                  <ng-template [ngIf]="file.isSelected" [ngIfElse]="elseBlock">
+                    <b><u>{{file.fileName}}</u></b>
+                  </ng-template>
+                  <ng-template #elseBlock><b>{{file.fileName}}</b></ng-template>
+                </a>
+              </li>
+          </ul>
+      <!-- </cdk-virtual-scroll-viewport> -->
+      <button  (click)="sendDemoMsg()" mat-raised-button >
+          Demo
+       </button>
+       &nbsp;
+        <button  (click)="openDialog()" mat-raised-button>
+          Upload
+       </button>
   </div>
   
   <div style="padding-top: 5px"></div>

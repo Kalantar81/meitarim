@@ -15,7 +15,7 @@ import java.util.function.Function;
 
 import javax.management.RuntimeErrorException;
 
-import com.max.myserver.bl.Logger;
+import com.max.myserver.utils.Logger;
 
 import akka.http.javadsl.model.StatusCodes;
 import akka.http.javadsl.server.Route;
