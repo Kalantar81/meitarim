@@ -2,12 +2,7 @@ import { Injectable } from '@angular/core';
 import {BehaviorSubject} from 'rxjs'
 import {shareReplay, map} from 'rxjs/operators'
 import { Subject } from "rxjs/Rx";
-import { FileData } from '../data-store/data-store.service';
-
-
-export interface FileMessage {
-  file: FileData;
-}
+import { FileMessage, PlayMediaMessage } from 'src/app/interfaces/datainterfaces';
 
 
 @Injectable({
@@ -22,6 +17,18 @@ export class AppMessagesService {
    //myFileDemoMessage - Subject to set current selected file to DEMO 
   private myFileDemoMessage: Subject<FileMessage> = new Subject<FileMessage>();
   
+   //myFileDemoMessage - Subject to set current selected file to DEMO 
+   private myPlayerMessage: Subject<PlayMediaMessage> = new Subject<PlayMediaMessage>();
+
+   public get playMediaMessage(): Subject<PlayMediaMessage> {
+    return this.myPlayerMessage;
+  }
+
+  public set playMediaMessage(value: Subject<PlayMediaMessage>) {
+    this.myPlayerMessage = value;
+  }
+
+
   public get fileMessage(): Subject<FileMessage> {
     return this.myFileMessage;
   }
@@ -58,4 +65,13 @@ export class AppMessagesService {
     }
   }
 
+  public sendPlayMediaMessage(playMediaMessage: PlayMediaMessage){
+    try{
+      this.myPlayerMessage.next(playMediaMessage);
+    }
+    catch(ex){
+        console.log(ex)
+        alert ("System error:" + ex.message);
+    }
+  }
 }

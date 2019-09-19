@@ -187,13 +187,25 @@ public startPlay() {
     this.artImage.sync (newTime);
   }
 
+  getCurrentTime():number{
+    this.dataStoreService.currentTimmeOfMedia = this.arpVideo.myCurrentTime ();
+    return this.dataStoreService.currentTimmeOfMedia;
+    // try{
+     
+    // }
+    // catch(e){
+    //   console.log ("error in getCurrentTime" + e)
+    //   return 0;
+    // }
+  }
+
   startUpdateTimer(): void {
 
     if  (this._myTimer === undefined) {
       this._myTimer = setInterval ( () => {
 
         // get video position
-        const currentTime = this.arpVideo.myCurrentTime ();
+        const currentTime = this.getCurrentTime ();
         //console.log ('startUpdateTimer: currentTime' + currentTime);
 
         if  (currentTime <= this._currentDruation) {

@@ -65,5 +65,23 @@
           <app-accordion-search></app-accordion-search>
         </mat-expansion-panel>
       <!-- #end of accordion search section -->
+
+
+      <!-- #start of accordion search section -->
+        <mat-expansion-panel
+        [expanded]="step === 4"
+        (opened)="setStep(4)"
+        hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <div class="accordionTitleStyle">
+              settings
+            </div>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <app-accordion-settings></app-accordion-settings>
+        </mat-expansion-panel>
+      <!-- #end of accordion search section -->
+      
     </mat-accordion>
   </div>

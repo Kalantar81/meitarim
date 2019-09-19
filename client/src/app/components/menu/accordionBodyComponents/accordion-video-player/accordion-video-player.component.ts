@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatIconRegistry } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser';
+import { AppMessagesService } from 'src/app/services/app-messages/app-messages.service';
+import { PlayMediaMessage, EnumPlayMediaCommand } from 'src/app/interfaces/datainterfaces';
+import { DataStoreService } from 'src/app/services/data-store/data-store.service';
 
 @Component({
   selector: 'app-accordion-video-player',
@@ -10,7 +13,9 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class AccordionVideoPlayerComponent implements OnInit {
   public aaa: string;
 
-  constructor(private _iconRegistry: MatIconRegistry, private _sanitizer: DomSanitizer) {
+  constructor(private _iconRegistry: MatIconRegistry, private _sanitizer: DomSanitizer,
+    private appMessagesService:AppMessagesService,
+    private dataStoreService:DataStoreService) {
     this._iconsInit();
   }
   ngOnInit() {
@@ -29,8 +34,10 @@ export class AccordionVideoPlayerComponent implements OnInit {
     this._iconRegistry.addSvgIcon('fast_rewind', this._sanitizer.bypassSecurityTrustResourceUrl('assets/icons/svg/fast_rewind_filled.svg'));
   }
 
-  public mouseClick() {
-    alert('mouse clicked!');
+  public mouseClick(myCommnad:EnumPlayMediaCommand ) {
+    
+    var playMediaMessage :PlayMediaMessage = {command:myCommnad};
+    this.appMessagesService.sendPlayMediaMessage(playMediaMessage);
   }
 
 }

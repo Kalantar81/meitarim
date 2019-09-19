@@ -40,6 +40,7 @@ export class CustomImgComponent implements OnInit,IPlayableMedia {
 
   ngOnInit() {
     this._myOffset= 6;
+    this.myVisibility = 'hidden';
   }
 
 
@@ -135,7 +136,7 @@ export class CustomImgComponent implements OnInit,IPlayableMedia {
   }
 
   public get myValue(): number {
-    return (Math.round (this._myValue*10)/10);
+    return (Math.round (this._myValue*1000)/1000);
   }
   @Input() public set myValue(value: number) {
     this._myValue = value;

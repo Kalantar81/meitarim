@@ -24,14 +24,16 @@
         <div #imageDiv  id="imageDiv"
             [ngStyle]="myStyle" >
         </div>
-        <div
+        <div #imageDivLine
           style="background-color:red; position:relative; height: 2px;"
           [style.top.px]="myTop"
-          [style.width.px]="myWidth">
+          [style.width.px]="myWidth" 
+          [style.visibility]="myVisibility">
         </div>
-        <div
+        <div #imageDivLineInput
           style="position:relative;text-align: right;"
-          [style.top.px]="myTopOfSeconds">
+          [style.top.px]="myTopOfSeconds"
+          [style.visibility]="myVisibility">
             <div style="position:relative;left:54px;">
                 <input
                   type="number"

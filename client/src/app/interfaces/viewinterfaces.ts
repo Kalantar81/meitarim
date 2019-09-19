@@ -25,5 +25,7 @@ export interface IVeiwWindow {
 
     hideSpinner():void;
     showSpinner():void;
-    
+
+    imgSliderChanged(value:number):void
+    getCurrentTime():number;
 }

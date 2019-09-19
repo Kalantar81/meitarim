@@ -2,19 +2,15 @@ import { Injectable } from '@angular/core';
 import {BehaviorSubject} from 'rxjs'
 import {shareReplay, map} from 'rxjs/operators'
 import { Subject } from "rxjs/Rx";
+import { FileData } from 'src/app/interfaces/datainterfaces';
 
-export interface FileData {
-  id?: string;
-  fileName: string;
-  isSelected?: boolean;
-}
+
 
 
 
 @Injectable({
   providedIn: 'root'
 })
-
 export class DataStoreService {
   // - We set the initial state in BehaviorSubject's constructor
   // - Nobody outside the Store should have access to the BehaviorSubject 
@@ -24,6 +20,9 @@ export class DataStoreService {
   //   create a new BehaviorSubject for it, as well as the observable$, and getters/setters
   // _files - a list of availible files
   private readonly _files = new BehaviorSubject<FileData[]>([]);
+
+
+  public currentTimmeOfMedia :number;
 
   // Expose the observable$ part of the _files subject (read only stream)
   readonly files$ = this._files.asObservable();

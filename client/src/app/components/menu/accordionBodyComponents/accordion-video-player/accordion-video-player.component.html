@@ -7,29 +7,32 @@
 <div>
     <mat-icon
       class="iconsDesign"
-      (click) = 'mouseClick()'
+      (click) = "mouseClick('Stop')"
       svgIcon="stop">
     </mat-icon>
     <mat-icon
       class="iconsDesign"
+      (click) = "mouseClick('Pause')"
       svgIcon="pause">
     </mat-icon>
     <mat-icon
       class="iconsDesign"
+      (click) = "mouseClick('Play')"
       svgIcon="play">
     </mat-icon>
     <mat-icon
       class="iconsDesign"
+      (click) = "mouseClick('Rewind')"
       svgIcon="fast_rewind">
     </mat-icon>
     <mat-icon
       class="iconsDesign"
+      (click) = "mouseClick('Forward')"
       svgIcon="fast_foward">
     </mat-icon>
 </div>
 <div>
   <input
     class="timeInputDesign"
-    placeholder="00:00:00"
-    ([ngModel]) = 'aaa'>
+    [ngModel] = "dataStoreService.currentTimmeOfMedia" style="width: 120px">
 </div>

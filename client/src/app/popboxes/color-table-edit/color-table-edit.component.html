@@ -1,0 +1,53 @@
+<h1 mat-dialog-title align="center">Edit {{dataSource.tableName}}</h1>
+Min Value: <input  name="min" [(ngModel)]="dataSource.minValue" type="number" size="5">
+&nbsp;&nbsp;
+Max value: <input   name="max" [(ngModel)]="dataSource.maxValue" type="number"  size="5">
+<div style="padding-top: 5px"></div>
+<div class="example-container mat-elevation-z8">
+    
+        <mat-table #table [dataSource]="dataSource">
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="range">
+            <mat-header-cell *matHeaderCellDef><b>Range</b></mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.range}}</mat-cell>
+          </ng-container>
+    
+        
+          <!-- Comment Column -->
+          <ng-container matColumnDef="color">
+            <mat-header-cell *matHeaderCellDef><b>Color</b></mat-header-cell>
+            <mat-cell [satPopoverAnchor]="p"  *matCellDef="let element" (click)="p.open()">
+              <ng-container *ngIf="element.color">
+                  <div 
+                  [style.width]="'10px'"
+                  [style.height]="'10px'"
+                  [style.background]="element.color"></div>
+              </ng-container>
+              <span class="add-comment" *ngIf="!element.color">
+                Edit color
+              </span>
+              <sat-popover #p
+                  hasBackdrop
+                  xAlign="start"
+                  yAlign="start"
+                  (closed)="update(element, $event)">
+                <app-inline-edit  [value]="element.color"></app-inline-edit>
+              </sat-popover>
+            </mat-cell>
+          </ng-container>
+    
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+    
+      </div>
+      <div style="padding-top: 15px"></div>
+      <div mat-dialog-actions>
+            <div style="padding-right: 10px"></div>
+            <button
+            mat-flat-button color="primary"
+            (click)="onNoClick()">
+            Ok
+          </button>
+    </div>

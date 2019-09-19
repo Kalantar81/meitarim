@@ -1,8 +1,9 @@
 import { IVeiwWindow } from 'src/app/interfaces/viewinterfaces';
 import { Message, ChatService } from 'src/app/services/websocket-chat/chat.service';
 import { SegmentParams } from 'src/app/components/static-image/static-image-interfaces';
-import { DataStoreService, FileData } from 'src/app/services/data-store/data-store.service';
+import { DataStoreService } from 'src/app/services/data-store/data-store.service';
 import { AppMessagesService } from 'src/app/services/app-messages/app-messages.service';
+import { FileData, EnumPlayMediaCommand, PlayMediaMessage } from 'src/app/interfaces/datainterfaces';
 
 export class ViewWindowBl  {
     
@@ -14,6 +15,7 @@ export class ViewWindowBl  {
     private itemsCount:number = ViewWindowBl.ITEMS_TO_LOAD;
     private currentDruation = 15;
     private currentWorkingFile:string;
+    private dataStoreService:DataStoreService;
     //private filesArray:any[];
 
    
@@ -33,6 +35,7 @@ export class ViewWindowBl  {
       dataStoreService:DataStoreService,
       appMessagesService:AppMessagesService){
         
+      this.dataStoreService = dataStoreService;
       this.veiwWindow =   mainView;
       this.chatService = chatService;
       let handleMessage = this.handleMessageWs.bind(this);
@@ -42,8 +45,44 @@ export class ViewWindowBl  {
         this.onFileChangedError.bind(this));
 
       appMessagesService.fileDemoMessage.subscribe(this.setVideo.bind(this)) 
+      appMessagesService.playMediaMessage.subscribe(this.onPlayMediaMessage.bind(this))
     }
-    
+
+   private onPlayMediaMessage(playMediaMessage:PlayMediaMessage){
+        if (playMediaMessage.command == EnumPlayMediaCommand.Play){
+         this.veiwWindow.startPlay();
+        }
+        if (playMediaMessage.command == EnumPlayMediaCommand.Stop){
+          this.veiwWindow.stopUpdateTimer();
+          this.veiwWindow.imgSliderChanged(0);
+        }
+        if (playMediaMessage.command == EnumPlayMediaCommand.Pause){
+          this.veiwWindow.stopUpdateTimer();
+        }
+
+        if (playMediaMessage.command == EnumPlayMediaCommand.Rewind){
+          this.veiwWindow.stopUpdateTimer();
+          if ((this.veiwWindow.getCurrentTime()-1)>0){
+            this.dataStoreService.currentTimmeOfMedia = this.veiwWindow.getCurrentTime()-1;
+            this.veiwWindow.imgSliderChanged(this.dataStoreService.currentTimmeOfMedia);
+          
+          }else{
+            this.dataStoreService.currentTimmeOfMedia = 0;
+            this.veiwWindow.imgSliderChanged(0);
+          }
+        }
+        if (playMediaMessage.command == EnumPlayMediaCommand.Forward){
+          this.veiwWindow.stopUpdateTimer();
+          if ((this.veiwWindow.getCurrentTime()+1)<this.veiwWindow.getCurrentDuration()){
+            this.dataStoreService.currentTimmeOfMedia=this.veiwWindow.getCurrentTime()+1
+            this.veiwWindow.imgSliderChanged(this.dataStoreService.currentTimmeOfMedia);
+          }else{
+            this.dataStoreService.currentTimmeOfMedia=this.veiwWindow.getCurrentDuration()
+            this.veiwWindow.imgSliderChanged(this.dataStoreService.currentTimmeOfMedia);
+          }
+        }  
+    }
+
     private onFileChangedError(err:any){
         alert ("System Error: " + err);
     }

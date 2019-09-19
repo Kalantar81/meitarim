@@ -3,8 +3,9 @@ import { UploadDialogComponent } from 'src/app/popboxes/upload-dialog/upload-dia
 import { ChatService } from 'src/app/services/websocket-chat/chat.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { MatDialog } from '@angular/material/dialog';
-import { DataStoreService, FileData } from 'src/app/services/data-store/data-store.service';
-import { AppMessagesService, FileMessage } from 'src/app/services/app-messages/app-messages.service';
+import { DataStoreService } from 'src/app/services/data-store/data-store.service';
+import { AppMessagesService } from 'src/app/services/app-messages/app-messages.service';
+import { FileData, FileMessage } from 'src/app/interfaces/datainterfaces';
 
 @Component({
   selector: 'app-accordion-edit-mode',

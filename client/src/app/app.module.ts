@@ -52,7 +52,11 @@ import { CustomUploadComponent } from './components/custom-upload/custom-upload.
 import {HttpClientModule, HttpRequest, HttpResponse} from '@angular/common/http';
 import { SearchResultComponent } from './components/menu/accordionBodyComponents/accordion-search/search-result/search-result.component';
 import { UploadDialogComponent } from './popboxes/upload-dialog/upload-dialog.component';
-
+import { AccordionSettingsComponent } from './components/menu/accordionBodyComponents/accordion-settings/accordion-settings.component';
+import { InlineEditComponent } from './components/inline-edit/inline-edit.component';
+import { SatPopoverModule } from '@ncstate/sat-popover';
+import { ColorTableEditComponent } from './popboxes/color-table-edit/color-table-edit.component';
+import { DataStoreSettingsService } from './services/data-store-settings/data-store-settings.service';
 
 @NgModule({
   declarations: [
@@ -84,12 +88,16 @@ import { UploadDialogComponent } from './popboxes/upload-dialog/upload-dialog.co
     InputDemoComponent,
     CustomUploadComponent,
     UploadDialogComponent,
-    SearchResultComponent
+    SearchResultComponent,
+    AccordionSettingsComponent,
+    InlineEditComponent,
+    ColorTableEditComponent
 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    SatPopoverModule,
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
@@ -106,14 +114,16 @@ import { UploadDialogComponent } from './popboxes/upload-dialog/upload-dialog.co
     PopupWithInnerComponentComponent,
     SegmentParamsDialogComponent,
     SliderConfigPopboxComponent,
-    UploadDialogComponent
+    UploadDialogComponent,
+    ColorTableEditComponent
   ],
   providers: [
     ChatService,
     WebsocketService,
     ServerProxyService,
     DataStoreService,
-    AppMessagesService
+    AppMessagesService,
+    DataStoreSettingsService
   ],
   bootstrap: [AppComponent]
 })
