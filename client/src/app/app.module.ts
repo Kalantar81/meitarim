@@ -57,6 +57,7 @@ import { InlineEditComponent } from './components/inline-edit/inline-edit.compon
 import { SatPopoverModule } from '@ncstate/sat-popover';
 import { ColorTableEditComponent } from './popboxes/color-table-edit/color-table-edit.component';
 import { DataStoreSettingsService } from './services/data-store-settings/data-store-settings.service';
+import { RendererComponent } from './drafts/renderer/renderer.component';
 
 @NgModule({
   declarations: [
@@ -91,7 +92,8 @@ import { DataStoreSettingsService } from './services/data-store-settings/data-st
     SearchResultComponent,
     AccordionSettingsComponent,
     InlineEditComponent,
-    ColorTableEditComponent
+    ColorTableEditComponent,
+    RendererComponent
 
   ],
   imports: [
