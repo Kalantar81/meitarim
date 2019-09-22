@@ -25,6 +25,8 @@ export class StaticImageComponent implements OnInit, OnChanges {
   protected segmentParams = new SegmentParams();
   protected selectAreaParams = new SelectAreaParams();
 
+  private isMousDown: boolean = false;
+
 
   @Output()
   myOnAreaSelected:EventEmitter<SegmentParams> = new EventEmitter<SegmentParams>();
@@ -68,33 +70,44 @@ export class StaticImageComponent implements OnInit, OnChanges {
   }
 
   private initSelectedDiv_pr(): void {
-    this.selectAreaDiv.nativeElement.hidden = true;
+    this.selectAreaDiv.nativeElement.style.visibility = 'hidden' ;// = true;
     this.selectAreaDiv.nativeElement.style.border = '2px dotted white';
     this.selectAreaDiv.nativeElement.style.position = 'absolute';
   }
 
 /** #startImageDiv methods */
 
+
+
   private onMouseDown_pr(e) {
-    this.selectAreaDiv.nativeElement.hidden = false;
+    console.log('mouse down');
+    this.isMousDown = true;
+    this.selectAreaDiv.nativeElement.style.visibility = 'visible';// .hidden = false;
     this.selectAreaParams.startPointX = e.clientX;
     this.selectAreaParams.startPointY = e.clientY;
 
     this.segmentParams.startPointX = e.offsetX;
     this.segmentParams.startPointY = 750 - e.offsetY;
 
-    this.reCalc_pr();
+    //this.reCalc_pr();
 
   }
 
   private onMouseMove_pr(e) {
-    this.selectAreaParams.endPointX = e.clientX;
-    this.selectAreaParams.endPointY = e.clientY;
+    if (this.isMousDown ){
+      console.log('mouse move isMousDown=true');
+      this.selectAreaParams.endPointX = e.clientX;
+      this.selectAreaParams.endPointY = e.clientY;
 
-    this.reCalc_pr();
+      this.reCalc_pr();
+    }else{
+      console.log('mouse move isMousDown=false');
+    }
   }
 
   private onMouseUp_pr(e) {
+    this.isMousDown = false;
+    console.log('mouse up');
     const minPointX = Math.min(this.segmentParams.startPointX, e.offsetX);
     const maxPointX = Math.max(this.segmentParams.startPointX, e.offsetX);
     const minPointY = Math.min(this.segmentParams.startPointY, (750 - e.offsetY));
@@ -118,6 +131,8 @@ export class StaticImageComponent implements OnInit, OnChanges {
   public mouseClickAngular() {
     // this.selectAreaDiv.nativeElement.style.background = '#006400';
     // this.selectAreaDiv.nativeElement.style.opacity = '0.3';
+
+    this.isMousDown = false;
     this.selectAreaDiv.nativeElement.style.border = '4px solid white';
 
     this.imageDiv.nativeElement.onmousedown = null;
@@ -128,13 +143,20 @@ export class StaticImageComponent implements OnInit, OnChanges {
   }
 
   private reCalc_pr() {
+
+
+
+
     const startPointX = Math.min(this.selectAreaParams.startPointX, this.selectAreaParams.endPointX);
     const endPointX = Math.max(this.selectAreaParams.startPointX, this.selectAreaParams.endPointX);
     const startPointY = Math.min(this.selectAreaParams.startPointY, this.selectAreaParams.endPointY);
     const endPointY = Math.max(this.selectAreaParams.startPointY, this.selectAreaParams.endPointY);
 
-    this.selectAreaDiv.nativeElement.style.left = startPointX + 'px';
-    this.selectAreaDiv.nativeElement.style.top = startPointY + 'px';
+
+    this.selectAreaParams.endPointY = this.selectAreaParams.endPointY + 2;
+
+    this.selectAreaDiv.nativeElement.style.left = startPointX + 'px' ;//+ 'px';
+    this.selectAreaDiv.nativeElement.style.top = startPointY + 'px';// + 'px';
     this.selectAreaDiv.nativeElement.style.width = endPointX - startPointX + 'px';
     this.selectAreaDiv.nativeElement.style.height = endPointY - startPointY + 'px';
 
@@ -143,6 +165,7 @@ export class StaticImageComponent implements OnInit, OnChanges {
 
   /** #startDialogBox methods */
     public openDialog(): void {
+
       const dialogRef = this.dialog.open(
         SegmentParamsDialogComponent,
         {
@@ -166,10 +189,21 @@ export class StaticImageComponent implements OnInit, OnChanges {
     public resetSelectedDiv(): void {
       this.initSegmentParams_pr();
       this.initImageDiv_pr();
-
-      this.selectAreaDiv.nativeElement.hidden = true;
+      console.log('mouse reset');
+      //this.selectAreaDiv.nativeElement.style.visibility = 'hidden'; // = true;
       this.selectAreaDiv.nativeElement.style.border = '2px dotted white';
       this.selectAreaDiv.nativeElement.style.position = 'absolute';
+      this.selectAreaDiv.nativeElement.style.width = '1px';
+      this.selectAreaDiv.nativeElement.style.height = '1px';
+      this.selectAreaDiv.nativeElement.style.top = '0px';
+      this.selectAreaDiv.nativeElement.style.left = '0px';
+
+      this.selectAreaParams.endPointX = 0;
+      this.selectAreaParams.startPointX = 0;
+      this.selectAreaParams.startPointY = 0;
+      this.selectAreaParams.endPointY = 0 ;
+
+      this.isMousDown = false;
     }
   /** #startDialogBox methods */
 
