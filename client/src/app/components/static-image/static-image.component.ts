@@ -89,7 +89,7 @@ export class StaticImageComponent implements OnInit, OnChanges {
     this.segmentParams.startPointX = e.offsetX;
     this.segmentParams.startPointY = 750 - e.offsetY;
 
-    //this.reCalc_pr();
+    // this.reCalc_pr();
 
   }
 
@@ -100,7 +100,7 @@ export class StaticImageComponent implements OnInit, OnChanges {
       this.selectAreaParams.endPointY = e.clientY;
 
       this.reCalc_pr();
-    }else{
+    } else {
       console.log('mouse move isMousDown=false');
     }
   }
@@ -145,20 +145,31 @@ export class StaticImageComponent implements OnInit, OnChanges {
   private reCalc_pr() {
 
 
-
-
     const startPointX = Math.min(this.selectAreaParams.startPointX, this.selectAreaParams.endPointX);
     const endPointX = Math.max(this.selectAreaParams.startPointX, this.selectAreaParams.endPointX);
     const startPointY = Math.min(this.selectAreaParams.startPointY, this.selectAreaParams.endPointY);
     const endPointY = Math.max(this.selectAreaParams.startPointY, this.selectAreaParams.endPointY);
 
 
-    this.selectAreaParams.endPointY = this.selectAreaParams.endPointY + 2;
 
-    this.selectAreaDiv.nativeElement.style.left = startPointX + 'px' ;//+ 'px';
-    this.selectAreaDiv.nativeElement.style.top = startPointY + 'px';// + 'px';
+    // this.selectAreaParams.endPointY = this.selectAreaParams.endPointY + 4;
+
+    this.selectAreaDiv.nativeElement.style.left = startPointX + 'px' ;
+    this.selectAreaDiv.nativeElement.style.top = startPointY + 'px';
     this.selectAreaDiv.nativeElement.style.width = endPointX - startPointX + 'px';
     this.selectAreaDiv.nativeElement.style.height = endPointY - startPointY + 'px';
+
+    if (this.selectAreaParams.startPointX < this.selectAreaParams.endPointX) {
+      this.selectAreaParams.endPointX = this.selectAreaParams.endPointX + 10;
+    } else {
+      this.selectAreaParams.endPointX = this.selectAreaParams.endPointX - 10;
+    }
+
+    if (this.selectAreaParams.startPointY < this.selectAreaParams.endPointY) {
+      this.selectAreaParams.endPointY = this.selectAreaParams.endPointY + 10;
+    } else {
+      this.selectAreaParams.endPointY = this.selectAreaParams.endPointY - 10;
+    }
 
 }
 
