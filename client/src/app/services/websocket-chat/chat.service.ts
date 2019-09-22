@@ -10,14 +10,13 @@ import { CATCH_STACK_VAR } from '@angular/compiler/src/output/output_ast';
 
 export interface Message {
   clientId:string,
-  fileId: string,
+  sourceFileName: string,
   picDimensions:{
-    x1:number,
-    y1:number,
-    x2:number,
-    y2:number
+    freq1:number,
+    time1:number,
+    freq2:number,
+    time2:number
   },
-  fileName1?:string,
   file?:any
 }
 

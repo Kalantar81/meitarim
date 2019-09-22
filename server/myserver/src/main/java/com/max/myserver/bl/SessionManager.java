@@ -6,7 +6,9 @@ import java.util.concurrent.CompletableFuture;
 import com.max.myserver.data.Constants;
 import com.max.myserver.data.FileData;
 import com.max.myserver.data.QueueItem;
+import com.max.myserver.data.RequestData;
 import com.max.myserver.utils.Logger;
+import com.max.myserver.utils.SerializationUtils;
 
 import akka.NotUsed;
 import akka.dispatch.MessageDispatcher;
@@ -85,7 +87,9 @@ public class SessionManager implements IFileReadyCallBack {
 	    	msgText = TextMessage.create(source).getStrictText();
 		}
 	
-		MediaCreator mediaCreator = new MediaCreator(msgText, this,executionContext);
+	    RequestData userRequest = SerializationUtils.getClassByString(RequestData.class, msgText);
+	    
+		MediaCreator mediaCreator = new MediaCreator(userRequest, this,executionContext);
 		mediaCreator.runAsync().thenApply(
 				a->{
 					System.out.println("File creation Completed ....");

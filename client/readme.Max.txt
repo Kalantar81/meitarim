@@ -1,5 +1,5 @@
 
-npm install -g @angular/cli
+npm install -g @angular/cli@8.1.2
 npm install @angular/cdk@7.0.0-rc.1
 npm install @angular/material@7.0.0-rc.1
 npm install --save @ncstate/sat-popover @angular/cdk

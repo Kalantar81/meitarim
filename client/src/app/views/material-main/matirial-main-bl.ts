@@ -22,12 +22,12 @@ export class ViewWindowBl  {
 
     public message : Message = {
       clientId: "client1",
-      fileId: "this is a test message",
+      sourceFileName:"",
       picDimensions:{
-        x1:100,
-        y1:101,
-        x2:300,
-        y2:500
+        freq1:100,
+        time1:101,
+        freq2:300,
+        time2:500
       }
     };
 
@@ -106,16 +106,15 @@ export class ViewWindowBl  {
 
     private  createMessageBySelectedArea(selectedArea:SegmentParams):Message{
        var newMsg:Message = {
-        clientId: "max",
-        fileId: "this is a test message",
+        clientId: "meitarim",
+        sourceFileName:"",
         picDimensions:{
-          x1:selectedArea.startPointX,
-          y1:selectedArea.startPointY,
-          x2:selectedArea.endPointX,
-          y2:selectedArea.endPointY
+          freq1:selectedArea.startPointX,
+          time1:selectedArea.startPointY,
+          freq2:selectedArea.endPointX,
+          time2:selectedArea.endPointY
         }
        } 
-
        return newMsg;
     }
 
@@ -131,6 +130,7 @@ export class ViewWindowBl  {
         this.currentWorkingFile = selectedArea.fileName;
       }
       var newMsg = this.createMessageBySelectedArea(selectedArea);
+      newMsg.sourceFileName = this.currentWorkingFile;
       this.veiwWindow.showSpinner();
       this.chatService.sendRequest(this.message);
     }

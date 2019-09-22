@@ -5,19 +5,20 @@ import java.util.concurrent.CompletionStage;
 
 import com.max.myserver.data.Constants;
 import com.max.myserver.data.FileData;
+import com.max.myserver.data.RequestData;
 
 import akka.dispatch.MessageDispatcher;
 
 
 public class MediaCreator implements IFileReadyCallBack {
-	private String txtInput = null;
+	private RequestData userRequest = null;
 	int fileCount = 0;
 	
 	MessageDispatcher executionContext = null;
 	IFileReadyCallBack callbackClass = null;
 	
-	public MediaCreator(String input,IFileReadyCallBack callbackClass,MessageDispatcher executionContext) {
-		this.txtInput = input;
+	public MediaCreator(RequestData userRequest,IFileReadyCallBack callbackClass,MessageDispatcher executionContext) {
+		this.userRequest = userRequest;
 		this.callbackClass = callbackClass;
 		this.executionContext = executionContext;
 	}
@@ -30,6 +31,8 @@ public class MediaCreator implements IFileReadyCallBack {
 		CompletableFuture.supplyAsync(  ()->{
 			FilesCreatorMockup filesCreator2 = new FilesCreatorMockup(this);
 			filesCreator2.run();
+			userRequest.getPicDimensions();
+			
 			cf.complete(new Boolean(true));
 			return new Boolean(true);
 		},executionContext);

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {BehaviorSubject} from 'rxjs'
+import {BehaviorSubject, Observable} from 'rxjs'
 import {shareReplay, map} from 'rxjs/operators'
 import { Subject } from "rxjs/Rx";
 import { FileData } from 'src/app/interfaces/datainterfaces';
@@ -30,7 +30,7 @@ export class DataStoreService {
 
   // we'll compose the files$ observable with map operator to create a stream of only completed files
   // tutorial function
-  readonly selectedFile$ = this.files$.pipe(
+  readonly selectedFile$: Observable<FileData[]>= this.files$.pipe(
     map(files => files.filter(file => (file.isSelected!=undefined)? file.isSelected:false  ))
   )
 

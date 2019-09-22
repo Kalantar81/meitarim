@@ -61,12 +61,12 @@ export class CustomMediaHiveComponent implements OnInit {
 
   private message : Message = {
     clientId: "client1",
-    fileId: "this is a test message",
+    sourceFileName:"",
     picDimensions:{
-      x1:100,
-      y1:101,
-      x2:300,
-      y2:500
+      freq1:100,
+      time1:101,
+      freq2:300,
+      time2:500
     }
   };
 

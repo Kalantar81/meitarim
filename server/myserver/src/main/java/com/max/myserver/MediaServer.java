@@ -86,27 +86,10 @@ public class MediaServer {
 	  
 	  final MessageDispatcher executionContext = system.dispatchers().lookup("akka.my-dispatcher");
       SessionManager sessionManager = new SessionManager(materializer,executionContext);
-	  
       final Flow<Message, Message, NotUsed> webSocketFlow = sessionManager.createGreeter();
-      
-	  final List<HttpHeader> corsHeaders = ServerUtils.getCorsHeaders();
-	  
       String uploadPath = Configuration.getUploadPath();// "C:\\Projects\\angular_dima\\meitarim\\server\\myserver\\uploadfiles";
       
-      //cors support response
-      final Route routeOptionsWithCORSHeaders =  respondWithDefaultHeaders(corsHeaders,()->{
-    	  System.out.println("respondWithDefaultHeaders in routeOptions");
-    	  return options(() -> complete(StatusCodes.OK));
-      });
-
-//      final Route routeUploadWithCORSHeaders = respondWithDefaultHeaders(corsHeaders,()->{
-//    	  System.out.println("HERE Upload");
-//    	  //return routeStore;
-//    	   return FileUploadManager.storeUploadedFileTo(uploadPath, materializer);
-//      });
-      
-      //routeOptionsWithCORSHeaders,
-      // options(() -> complete(StatusCodes.OK)),
+      //Main Routng
 	  final Route routeGen = concat(
 			  path("getfile", () -> extractRequest(req -> complete(FileManager.getFile(req)))),
 			  path("mediaChat", () -> handleWebSocketMessages(webSocketFlow)),
@@ -118,13 +101,6 @@ public class MediaServer {
 			  )
 			);
 
-	  final Route routeWithCORS = respondWithDefaultHeaders(corsHeaders,()->{
-    	  System.out.println("routeWithCORS");
-    	  //return routeStore;
-    	   return routeGen;
-      });
-	  
-	  
 	  // Your rejection handler
       final RejectionHandler rejectionHandler = corsRejectionHandler().withFallback(RejectionHandler.defaultHandler());
 
@@ -148,14 +124,7 @@ public class MediaServer {
       // This is required to have the correct CORS headers in the response even when an error occurs.
       
       return handleErrors.apply(()->cors(()->handleErrors.apply(()->routeGen)));
-    		  
-    		  
-      //return handleErrors.apply(() -> cors(() -> handleErrors.apply(() -> route(
-    //		  routeGen
-    //  ))));
-	  
-	  
-	  //return routeWithCORS;
+    		 
   }
  
 	
