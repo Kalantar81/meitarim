@@ -1,13 +1,16 @@
 <form (ngSubmit)="onSubmit()">
-        <div class="mat-subheading-2">Edit color</div>
-        
+  <div  style="text-align: center">
+       <h1 mat-dialog-title align="center">Edit color</h1>
+        <input  style="width:100px" name="color" [(ngModel)]="color" type="color">
         <!-- <mat-form-field> -->
-          <input matInput maxLength="50" name="color" [(ngModel)]="color" type="color">
+        
           <!-- <mat-hint align="end">{{color?.length || 0}}/140</mat-hint> -->
         <!-- </mat-form-field> -->
   
         <div class="actions">
-          <button mat-button type="button" color="primary" (click)="onCancel()">CANCEL</button>
-          <button mat-button type="submit" color="primary">SAVE</button>
+          <button mat-flat-button type="button" color="primary" (click)="onCancel()">CANCEL</button>
+          &nbsp;
+          <button mat-flat-button type="submit" color="primary">SAVE</button>
         </div>
+  </div>
 </form>

@@ -20,8 +20,8 @@ Max value: <input   name="max" [(ngModel)]="dataSource.maxValue" type="number"  
             <mat-cell [satPopoverAnchor]="p"  *matCellDef="let element" (click)="p.open()">
               <ng-container *ngIf="element.color">
                   <div 
-                  [style.width]="'10px'"
-                  [style.height]="'10px'"
+                  [style.width]="'20px'"
+                  [style.height]="'20px'"
                   [style.background]="element.color"></div>
               </ng-container>
               <span class="add-comment" *ngIf="!element.color">

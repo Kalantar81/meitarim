@@ -1,11 +1,12 @@
 
 :host {
-  @include mat-elevation(2);
+  /*@include mat-elevation(2);*/
   display: block;
   background: #f9f9f9;
+  border: solid 1px;
   border-radius: 2px;
-  padding: 16px 24px 8px;
-  width: 150px;
+  padding: 2px;
+  width: 200px;
 }
 
 .mat-subheading-2 {
@@ -19,8 +20,10 @@
 }
 
 .actions {
-  display: flex;
+  text-align: center;
+  margin-top: 10px;
+  /*display: flex;
   justify-content: flex-end;
   margin-top: 8px;
-  margin-right: -16px;
+  margin-right: -16px;*/
 }
