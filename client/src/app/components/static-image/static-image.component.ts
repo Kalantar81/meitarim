@@ -83,23 +83,28 @@ export class StaticImageComponent implements OnInit, OnChanges {
     console.log('mouse down');
     this.isMousDown = true;
     this.selectAreaDiv.nativeElement.style.visibility = 'visible';// .hidden = false;
-    this.selectAreaParams.startPointX = e.offsetX + 200;
-    this.selectAreaParams.startPointY = e.offsetY + 35;
+    // this.selectAreaParams.startPointX = e.offsetX + 200;
+    // this.selectAreaParams.startPointY = e.offsetY + 35;
+    this.selectAreaParams.startPointX = e.clientX;
+    this.selectAreaParams.startPointY = e.clientY;
 
     this.segmentParams.startPointX = e.offsetX;
     this.segmentParams.startPointY = 750 - e.offsetY;
-
-    // this.reCalc_pr();
 
   }
 
   private onMouseMove_pr(e) {
     if (this.isMousDown ){
-      console.log('mouse move isMousDown=true');
-      this.selectAreaParams.endPointX = e.offsetX + 200;
-      this.selectAreaParams.endPointY = e.offsetY + 35;
-
-      this.reCalc_pr();
+      if (
+        (this.selectAreaParams.startPointX > e.clientX && this.selectAreaParams.startPointY > e.clientY)
+         || (this.selectAreaParams.startPointX > e.clientX && this.selectAreaParams.startPointY < e.clientY)) {
+          this.selectAreaParams.endPointX = e.clientX + 4;
+          this.selectAreaParams.endPointY = e.clientY + 4;
+      } else {
+        this.selectAreaParams.endPointX = e.clientX;
+        this.selectAreaParams.endPointY = e.clientY;
+      }
+      setTimeout(() => {this.reCalc_pr();}, 0);
     } else {
       console.log('mouse move isMousDown=false');
     }
@@ -107,7 +112,6 @@ export class StaticImageComponent implements OnInit, OnChanges {
 
   private onMouseUp_pr(e) {
     this.isMousDown = false;
-    console.log('mouse up');
     const minPointX = Math.min(this.segmentParams.startPointX, e.offsetX);
     const maxPointX = Math.max(this.segmentParams.startPointX, e.offsetX);
     const minPointY = Math.min(this.segmentParams.startPointY, (750 - e.offsetY));
@@ -118,10 +122,7 @@ export class StaticImageComponent implements OnInit, OnChanges {
     this.segmentParams.startPointY = minPointY;
     this.segmentParams.endPointY = maxPointY;
 
-    // this.selectAreaDiv.nativeElement.hidden = true;
     this.selectAreaDiv.nativeElement.style.border = '4px solid white';
-    // this.segmentParams.endPointX = e.offsetX;
-    // this.segmentParams.endPointY = 750 - e.offsetY;
     this.openDialog();
     this.imageDiv.nativeElement.onmousemove = null;
   }
@@ -150,26 +151,10 @@ export class StaticImageComponent implements OnInit, OnChanges {
     const startPointY = Math.min(this.selectAreaParams.startPointY, this.selectAreaParams.endPointY);
     const endPointY = Math.max(this.selectAreaParams.startPointY, this.selectAreaParams.endPointY);
 
-
-
-    // this.selectAreaParams.endPointY = this.selectAreaParams.endPointY + 4;
-
     this.selectAreaDiv.nativeElement.style.left = startPointX + 'px' ;
     this.selectAreaDiv.nativeElement.style.top = startPointY + 'px';
     this.selectAreaDiv.nativeElement.style.width = endPointX - startPointX + 'px';
     this.selectAreaDiv.nativeElement.style.height = endPointY - startPointY + 'px';
-
-    // if (this.selectAreaParams.startPointX < this.selectAreaParams.endPointX) {
-    //   this.selectAreaParams.endPointX = this.selectAreaParams.endPointX + 10;
-    // } else {
-    //   this.selectAreaParams.endPointX = this.selectAreaParams.endPointX - 10;
-    // }
-
-    // if (this.selectAreaParams.startPointY < this.selectAreaParams.endPointY) {
-    //   this.selectAreaParams.endPointY = this.selectAreaParams.endPointY + 10;
-    // } else {
-    //   this.selectAreaParams.endPointY = this.selectAreaParams.endPointY - 10;
-    // }
 
 }
 
@@ -191,7 +176,6 @@ export class StaticImageComponent implements OnInit, OnChanges {
           console.log('The dialog was closed');
           this.segmentParams = result;
           this.myOnAreaSelected.emit(this.segmentParams);
-          //alert( ' חתך בשם ' + this.segmentParams + ' נשלח לשרת ');
         }
 
       });
@@ -200,8 +184,6 @@ export class StaticImageComponent implements OnInit, OnChanges {
     public resetSelectedDiv(): void {
       this.initSegmentParams_pr();
       this.initImageDiv_pr();
-      console.log('mouse reset');
-      //this.selectAreaDiv.nativeElement.style.visibility = 'hidden'; // = true;
       this.selectAreaDiv.nativeElement.style.border = '2px dotted white';
       this.selectAreaDiv.nativeElement.style.position = 'absolute';
       this.selectAreaDiv.nativeElement.style.width = '1px';
