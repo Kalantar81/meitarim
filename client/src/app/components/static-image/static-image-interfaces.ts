@@ -19,6 +19,7 @@ export class SegmentParams {
   endPointX: number;
   startPointY: number;
   endPointY: number;
+  firstTimeOpened: boolean;
   fileName?: string;
 }
 

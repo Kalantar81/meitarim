@@ -6,7 +6,7 @@ import { AppMessagesService } from 'src/app/services/app-messages/app-messages.s
 import { FileData, EnumPlayMediaCommand, PlayMediaMessage } from 'src/app/interfaces/datainterfaces';
 
 export class ViewWindowBl  {
-    
+
     private veiwWindow:IVeiwWindow;
     private chatService: ChatService;
     private itemsLoaded = 0;
@@ -18,7 +18,7 @@ export class ViewWindowBl  {
     private dataStoreService:DataStoreService;
     //private filesArray:any[];
 
-   
+
 
     public message : Message = {
       clientId: "client1",
@@ -34,7 +34,7 @@ export class ViewWindowBl  {
     constructor(mainView:IVeiwWindow,chatService: ChatService,
       dataStoreService:DataStoreService,
       appMessagesService:AppMessagesService){
-        
+
       this.dataStoreService = dataStoreService;
       this.veiwWindow =   mainView;
       this.chatService = chatService;
@@ -44,7 +44,7 @@ export class ViewWindowBl  {
       appMessagesService.fileMessage.subscribe(this.onFileChanged.bind(this),
         this.onFileChangedError.bind(this));
 
-      appMessagesService.fileDemoMessage.subscribe(this.setVideo.bind(this)) 
+      appMessagesService.fileDemoMessage.subscribe(this.setVideo.bind(this))
       appMessagesService.playMediaMessage.subscribe(this.onPlayMediaMessage.bind(this))
     }
 
@@ -65,7 +65,7 @@ export class ViewWindowBl  {
           if ((this.veiwWindow.getCurrentTime()-1)>0){
             this.dataStoreService.currentTimmeOfMedia = this.veiwWindow.getCurrentTime()-1;
             this.veiwWindow.imgSliderChanged(this.dataStoreService.currentTimmeOfMedia);
-          
+
           }else{
             this.dataStoreService.currentTimmeOfMedia = 0;
             this.veiwWindow.imgSliderChanged(0);
@@ -80,7 +80,7 @@ export class ViewWindowBl  {
             this.dataStoreService.currentTimmeOfMedia=this.veiwWindow.getCurrentDuration()
             this.veiwWindow.imgSliderChanged(this.dataStoreService.currentTimmeOfMedia);
           }
-        }  
+        }
     }
 
     private onFileChangedError(err:any){
@@ -97,9 +97,10 @@ export class ViewWindowBl  {
         endPointX: 200,
         startPointY: 0,
         endPointY: 500,
+        firstTimeOpened: true,
         fileName:file.fileName
-      
-       } 
+
+       }
 
        this.changeSelectionArea(newSegment);
     }
@@ -114,11 +115,11 @@ export class ViewWindowBl  {
           freq2:selectedArea.endPointX,
           time2:selectedArea.endPointY
         }
-       } 
+       }
        return newMsg;
     }
 
-     
+
     public changeSelectionArea(selectedArea:SegmentParams){
       console.log("changeSelectionArea ", selectedArea);
       //this.filesArray = [];
@@ -141,7 +142,7 @@ export class ViewWindowBl  {
       this.veiwWindow.initItemsLoaded();
       //this.veiwWindow.currentTime = 0;
       //this.chatService.messages.next((this.message));
-      
+
       this.chatService.sendRequest(this.message);
       //this.message = " NEXT ONE";
     }
@@ -155,21 +156,21 @@ export class ViewWindowBl  {
       console.log("handleMessageWs: update file:" + JSON.stringify(msg))
       //this.filesArray.push(msg);
       this.updateFileData (msg);
-      
+
       //},10);
 
       // if (this.filesArray.length == this.ITEMS_TO_LOAD){
       //   setTimeout(()=>{
       //     //TODO  run when it is loaded (ready)
-          
+
       //     //this.veiwWindow.startPlay(); // starts automaticly
       //   },1000);
       //}
     }
-  
+
     private updateFileData(fileDat:any):void{
       try {
-        
+
         if (fileDat.fileName == "dos"){
           this.veiwWindow.dosImage.setOptions (
             {
@@ -182,7 +183,7 @@ export class ViewWindowBl  {
             }
           );
         }
-  
+
         if (fileDat.fileName == "tdo"){
           this.veiwWindow.tdoImage.setOptions(
             {
@@ -208,7 +209,7 @@ export class ViewWindowBl  {
             }
           );
         }
-  
+
         if (fileDat.fileName == "art"){
           this.veiwWindow.artImage.setOptions (
             {
@@ -222,7 +223,7 @@ export class ViewWindowBl  {
             }
           );
         }
-  
+
         if (fileDat.fileName == "arp"){
           this.veiwWindow.arpVideo.setOptions (
             {
@@ -236,7 +237,7 @@ export class ViewWindowBl  {
             }
           );
         }
-        
+
         if (fileDat.fileName == "tcs"){
           this.veiwWindow.tcsVideo.setOptions (
             {
@@ -250,7 +251,7 @@ export class ViewWindowBl  {
             }
           );
         }
-  
+
      } catch (e) {
         alert  (e.message);
       }
@@ -261,12 +262,12 @@ export class ViewWindowBl  {
       this.veiwWindow.hideSpinner();
       console.log("Error while connecting to the server: " + error.target.url);
       alert ("Error while connecting to the server: " + error.target.url);
-     
+
     }
-  
-  
- 
-  
+
+
+
+
     public setVideo() {
       try {
         this.veiwWindow.initItemsLoaded();
@@ -281,7 +282,7 @@ export class ViewWindowBl  {
             // step:  1
           }
         );
-  
+
         this.veiwWindow.tdoImage.setOptions(
           {
             end:  this.currentDruation,
@@ -292,7 +293,7 @@ export class ViewWindowBl  {
             step:  1,
             name: "dos"
           });
-  
+
         this.veiwWindow.arsImage.setOptions (
           {
             end:  this.currentDruation,
@@ -304,7 +305,7 @@ export class ViewWindowBl  {
             name: "ars"
           }
         );
-  
+
         this.veiwWindow.artImage.setOptions (
           {
             end: this.currentDruation,
@@ -316,7 +317,7 @@ export class ViewWindowBl  {
             name: "ars"
           }
         );
-  
+
         this.veiwWindow.arpVideo.setOptions (
           {
             end: this.currentDruation,
@@ -339,11 +340,11 @@ export class ViewWindowBl  {
               name: "arp2"
             }
           );
-  
+
      } catch (e) {
         alert  (e.message);
       }
-  
+
     }
 
     // public setVideoFromServer() {
@@ -360,7 +361,7 @@ export class ViewWindowBl  {
     //         // step:  1
     //       }
     //     );
-  
+
     //     this.veiwWindow.tdoImage.setOptions(
     //       {
     //         end:  this.currentDruation,
@@ -371,7 +372,7 @@ export class ViewWindowBl  {
     //         step:  1,
     //         name: "dos"
     //       });
-  
+
     //     this.veiwWindow.arsImage.setOptions (
     //       {
     //         end:  this.currentDruation,
@@ -383,7 +384,7 @@ export class ViewWindowBl  {
     //         name: "ars"
     //       }
     //     );
-  
+
     //     this.veiwWindow.artImage.setOptions (
     //       {
     //         end: this.currentDruation,
@@ -395,7 +396,7 @@ export class ViewWindowBl  {
     //         name: "ars"
     //       }
     //     );
-  
+
     //     this.veiwWindow.arpVideo.setOptions (
     //       {
     //         end: this.currentDruation,
@@ -418,10 +419,10 @@ export class ViewWindowBl  {
     //           name: "arp2"
     //         }
     //       );
-  
+
     //  } catch (e) {
     //     alert  (e.message);
     //   }
-  
+
     // }
-} 
+}

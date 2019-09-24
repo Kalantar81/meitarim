@@ -1,5 +1,23 @@
+#inlineDiv {
+  text-align: center;
+}
+
 #selectAreaDiv {
   border: 2px dotted white;
   position: absolute;
 }
+
+.divForSvgIcon {
+  float:right;
+  background-color: rgb(175, 174, 174);
+  width: 17px;
+  height: 17px
+}
+
+.svg-icon path,
+.svg-icon polygon,
+.svg-icon rect {
+  fill: black;
+}
+
 

@@ -27,6 +27,8 @@ export class StaticImageComponent implements OnInit, OnChanges {
 
   private isMousDown: boolean = false;
 
+  public closeSelectedAreaDivIndicator = false;
+
 
   @Output()
   myOnAreaSelected:EventEmitter<SegmentParams> = new EventEmitter<SegmentParams>();
@@ -54,7 +56,6 @@ export class StaticImageComponent implements OnInit, OnChanges {
 
   private initImageDiv_pr(): void {
     this.imageDiv.nativeElement.style.display = 'inline-block';
-
     this.imageDiv.nativeElement.onmousedown = this.onMouseDown_pr.bind(this);
     this.imageDiv.nativeElement.onmousemove = this.onMouseMove_pr.bind(this);
     this.imageDiv.nativeElement.onmouseup = this.onMouseUp_pr.bind(this);
@@ -65,12 +66,13 @@ export class StaticImageComponent implements OnInit, OnChanges {
     this.segmentParams.startPointY = 0;
     this.segmentParams.endPointX = 0;
     this.segmentParams.endPointY = 0;
+    this.segmentParams.firstTimeOpened = true;
     this.segmentParams.createdBy = 'Dima';
     this.segmentParams.date = new Date();
   }
 
   private initSelectedDiv_pr(): void {
-    this.selectAreaDiv.nativeElement.style.visibility = 'hidden' ;// = true;
+    this.selectAreaDiv.nativeElement.style.visibility = 'hidden' ;
     this.selectAreaDiv.nativeElement.style.border = '2px dotted white';
     this.selectAreaDiv.nativeElement.style.position = 'absolute';
   }
@@ -111,6 +113,7 @@ export class StaticImageComponent implements OnInit, OnChanges {
   }
 
   private onMouseUp_pr(e) {
+    this.closeSelectedAreaDivIndicator = true;
     this.isMousDown = false;
     const minPointX = Math.min(this.segmentParams.startPointX, e.offsetX);
     const maxPointX = Math.max(this.segmentParams.startPointX, e.offsetX);
@@ -158,6 +161,14 @@ export class StaticImageComponent implements OnInit, OnChanges {
 
 }
 
+private _initSelectAreaDiv(): void {
+  this.selectAreaDiv.nativeElement.style.border = '2px dotted white';
+  this.selectAreaDiv.nativeElement.style.position = 'absolute';
+  this.selectAreaDiv.nativeElement.style.width = '1px';
+  this.selectAreaDiv.nativeElement.style.height = '1px';
+  this.selectAreaDiv.nativeElement.style.top = '0px';
+  this.selectAreaDiv.nativeElement.style.left = '0px';
+}
 
   /** #startDialogBox methods */
     public openDialog(): void {
@@ -184,12 +195,7 @@ export class StaticImageComponent implements OnInit, OnChanges {
     public resetSelectedDiv(): void {
       this.initSegmentParams_pr();
       this.initImageDiv_pr();
-      this.selectAreaDiv.nativeElement.style.border = '2px dotted white';
-      this.selectAreaDiv.nativeElement.style.position = 'absolute';
-      this.selectAreaDiv.nativeElement.style.width = '1px';
-      this.selectAreaDiv.nativeElement.style.height = '1px';
-      this.selectAreaDiv.nativeElement.style.top = '0px';
-      this.selectAreaDiv.nativeElement.style.left = '0px';
+      this._initSelectAreaDiv();
 
       this.selectAreaParams.endPointX = 0;
       this.selectAreaParams.startPointX = 0;
@@ -197,6 +203,7 @@ export class StaticImageComponent implements OnInit, OnChanges {
       this.selectAreaParams.endPointY = 0 ;
 
       this.isMousDown = false;
+      this.closeSelectedAreaDivIndicator = false;
     }
   /** #startDialogBox methods */
 
