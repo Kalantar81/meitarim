@@ -8,14 +8,13 @@ import { FileData, EnumPlayMediaCommand, PlayMediaMessage } from 'src/app/interf
 export class ViewWindowBl  {
     
     private veiwWindow:IVeiwWindow;
-    private chatService: ChatService;
+   
     private itemsLoaded = 0;
     public static ITEMS_TO_LOAD:number =6;
     public static ITEMS_TO_LOAD_DYNAMIC_COMPONENTS:number =4;
     private itemsCount:number = ViewWindowBl.ITEMS_TO_LOAD;
     private currentDruation = 15;
     private currentWorkingFile:string;
-    private dataStoreService:DataStoreService;
     //private filesArray:any[];
 
    
@@ -31,13 +30,12 @@ export class ViewWindowBl  {
       }
     };
 
-    constructor(mainView:IVeiwWindow,chatService: ChatService,
-      dataStoreService:DataStoreService,
-      appMessagesService:AppMessagesService){
-        
-      this.dataStoreService = dataStoreService;
+    constructor(mainView:IVeiwWindow,
+      private chatService: ChatService,
+      private dataStoreService:DataStoreService,
+      private appMessagesService:AppMessagesService){
+
       this.veiwWindow =   mainView;
-      this.chatService = chatService;
       let handleMessage = this.handleMessageWs.bind(this);
       let handleError = this.onErrorWs.bind(this);
       chatService.messages.subscribe(handleMessage,handleError);
