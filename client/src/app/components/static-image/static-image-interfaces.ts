@@ -21,6 +21,9 @@ export class SegmentParams {
   endPointY: number;
   firstTimeOpened: boolean;
   fileName?: string;
+  cancel?: boolean;
+  loadCurrentSegment?: boolean;
+  saveSegment?: boolean;
 }
 
 export class SelectAreaParams {

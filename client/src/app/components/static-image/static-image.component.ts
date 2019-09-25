@@ -17,7 +17,7 @@ export class StaticImageComponent implements OnInit {
   public imageDiv: ElementRef<HTMLElement>;
 
   @ViewChild('selectAreaDiv', {static: true})
-  /** duv, that select aspecific segment from the full image */
+  /** div, that select aspecific segment from the full image */
   public selectAreaDiv: ElementRef<HTMLElement>;
 
   @ViewChild('inlineDiv', {static: true})
@@ -110,6 +110,9 @@ export class StaticImageComponent implements OnInit {
       this._segmentParams.endPointY = 0;
       this._segmentParams.firstTimeOpened = true;
       this._segmentParams.createdBy = 'Dima';
+      this._segmentParams.cancel = false;
+      this._segmentParams.loadCurrentSegment = false;
+      this._segmentParams.saveSegment = false;
       this._segmentParams.date = new Date();
     }
 
@@ -230,6 +233,14 @@ export class StaticImageComponent implements OnInit {
           this.myOnAreaSelected.emit(this._segmentParams);
         }
 
+        if (this._segmentParams.cancel) {
+          this.resetSelectedDiv();
+        } else if (this._segmentParams.saveSegment) {
+          alert('saving and cleaning...');
+          this.resetSelectedDiv();
+        } else if (this._segmentParams.loadCurrentSegment) {
+          alert('loading Segment...');
+        }
       });
     }
   //#region DialogBox methods
