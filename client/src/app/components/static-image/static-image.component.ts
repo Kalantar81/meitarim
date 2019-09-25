@@ -13,21 +13,28 @@ import { IStaticImageOptions, IImageStyle, SegmentParams, SelectAreaParams } fro
 
 export class StaticImageComponent implements OnInit {
   @ViewChild('imageDiv', {static: true})
+  /** div with image, thats come from server */
   public imageDiv: ElementRef<HTMLElement>;
 
   @ViewChild('selectAreaDiv', {static: true})
+  /** duv, that select aspecific segment from the full image */
   public selectAreaDiv: ElementRef<HTMLElement>;
 
   @ViewChild('inlineDiv', {static: true})
   public inlineDiv: ElementRef<HTMLElement>;
 
+  /** Indicator for showing an X (close icon) on selected div */
   public closeSelectedAreaDivIndicator = false;
 
-  private _imageStyle: IImageStyle;
+  /** Params for dialog of start/end points of time and frequency lines
+   * (0,0)= (down,left)
+   */
   private _segmentParams = new SegmentParams();
+  /** params(x,y) of selected div */
   private _selectAreaParams = new SelectAreaParams();
 
-  private _isMousDown = false;
+  /** activated, when _onMouseDown event works */
+  private _isMouseDown = false;
 
 
   @Output()
@@ -67,14 +74,14 @@ export class StaticImageComponent implements OnInit {
       this._selectAreaParams.startPointY = 0;
       this._selectAreaParams.endPointY = 0 ;
 
-      this._isMousDown = false;
+      this._isMouseDown = false;
       this.closeSelectedAreaDivIndicator = false;
     }
 
     public dbClickOnSelectedDiv(): void {
       if (!this.closeSelectedAreaDivIndicator) {
         this.closeSelectedAreaDivIndicator = true;
-        this._isMousDown = false;
+        this._isMouseDown = false;
         this.selectAreaDiv.nativeElement.style.border = '4px solid white';
         this._nullifyImageDivEvents();
       }
@@ -115,7 +122,7 @@ export class StaticImageComponent implements OnInit {
 
     /** Checks if mouseDown event was activated, gives to end points (x, y) of selectedDiv params of mouse location */
     private _onMouseMove(e) {
-      if (this._isMousDown ) {
+      if (this._isMouseDown ) {
         if (
           (this._selectAreaParams.startPointX > e.clientX && this._selectAreaParams.startPointY > e.clientY)
           || (this._selectAreaParams.startPointX > e.clientX && this._selectAreaParams.startPointY < e.clientY)) {
@@ -134,7 +141,7 @@ export class StaticImageComponent implements OnInit {
     /** Make a selectAreaDiv visible. Gives to selectAreaDiv start points (x, y) coordinates on the place, where the mouse was clicked */
     private _onMouseDown(e) {
       console.log('mouse down');
-      this._isMousDown = true;
+      this._isMouseDown = true;
       this.selectAreaDiv.nativeElement.style.visibility = 'visible';
       this._selectAreaParams.startPointX = e.clientX;
       this._selectAreaParams.startPointY = e.clientY;
@@ -150,7 +157,7 @@ export class StaticImageComponent implements OnInit {
      */
     private _onMouseUp(e) {
       this.closeSelectedAreaDivIndicator = true;
-      this._isMousDown = false;
+      this._isMouseDown = false;
 
       const minPointX = Math.min(this._segmentParams.startPointX, e.offsetX);
       const maxPointX = Math.max(this._segmentParams.startPointX, e.offsetX);
