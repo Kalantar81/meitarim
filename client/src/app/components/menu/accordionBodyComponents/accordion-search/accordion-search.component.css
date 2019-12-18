@@ -31,4 +31,9 @@
   /* border: 1px solid gainsboro; */
 }
 
+.searchIconDesign {
+  background-color: gainsboro; 
+  padding-top: 9px; 
+  padding-bottom: 9px;
+}
 

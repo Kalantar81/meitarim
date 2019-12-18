@@ -1,27 +1,33 @@
-.example-card {
-  max-width: 100px;
-  height: 150px;
-}
-
-.example-header-image {
-  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-  background-size: cover;
-}
 
 .imageDesign {
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
+  padding-bottom: 3px
 }
 
 .searchResultContainer {
-  width: 90%;
+  width: 95%;
   height: 100%;
-  background-color: gray;
-  margin: 5px 0px 5px 0px;
-  text-align:center;
+  background-color: #b3b3b3;
+  
 }
 
 #bloc1, #bloc2
 {
     display:inline;
+}
+
+.title {
+  color: #3333cc;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', 'Arial';
+  font-size: 14px;
+  margin-bottom: 2px;
+}
+
+.text {
+  color: #3333cc;
+  font-size: 10px;
+  line-height: initial;
+  margin-left: 3px;
+  margin-right: 3px;
 }

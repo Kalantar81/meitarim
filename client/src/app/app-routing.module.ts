@@ -12,12 +12,19 @@ import { AccordionDemoComponent } from './drafts/accordion-demo/accordion-demo.c
 import { AccordionEditModeComponent } from './components/menu/accordionBodyComponents/accordion-edit-mode/accordion-edit-mode.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { IconsDemoComponent } from './drafts/icons-demo/icons-demo.component';
+import { TextDesignComponent } from './drafts/text-design/text-design.component';
+import { TreeDemoComponent } from './drafts/tree-demo/tree-demo.component';
+import { SimpleTreeComponent } from './drafts/simple-tree/simple-tree.component';
+import { DivLayerComponent } from './drafts/div-layer/div-layer.component';
+import { ScaleSliderComponent } from './drafts/scale-slider/scale-slider.component';
+import { VerticalScaleSliderComponent } from './drafts/vertical-scale-slider/vertical-scale-slider.component';
+import { VerticalScaleComponent } from './drafts/vertical-scale/vertical-scale.component';
 
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/indexMaterial',
+    redirectTo: '/tree',
     pathMatch: 'full'
   },
   {
@@ -63,12 +70,35 @@ const routes: Routes = [
   {
     path: 'menu',
     component: MenuComponent,
-  }
-  //,
-  //{
-  //  path: 'icons',
-  //  component: IconsDemoComponent,
-  //}
+  },
+  {
+   path: 'textDesign',
+   component: TextDesignComponent,
+  },
+  {
+    path: 'tree',
+    component: TreeDemoComponent,
+   },
+  {
+    path: 'simpleTree',
+    component: SimpleTreeComponent,
+  },
+  {
+    path: 'divLayer',
+    component: DivLayerComponent,
+   },
+   {
+    path: 'horizontalScaleSlider',
+    component: ScaleSliderComponent,
+   },
+   {
+    path: 'verticalScaleSlider',
+    component: VerticalScaleSliderComponent,
+   },
+   {
+    path: 'verticalScale',
+    component: VerticalScaleComponent,
+   }
 ];
 
 @NgModule({

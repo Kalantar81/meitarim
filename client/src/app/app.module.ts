@@ -58,6 +58,14 @@ import { SatPopoverModule } from '@ncstate/sat-popover';
 import { ColorTableEditComponent } from './popboxes/color-table-edit/color-table-edit.component';
 import { DataStoreSettingsService } from './services/data-store-settings/data-store-settings.service';
 import { RendererComponent } from './drafts/renderer/renderer.component';
+import { TextDesignComponent } from './drafts/text-design/text-design.component';
+import { TreeDemoComponent } from './drafts/tree-demo/tree-demo.component';
+import { CheckListDatabase } from './drafts/tree-demo/check-list-database.service';
+import { SimpleTreeComponent } from './drafts/simple-tree/simple-tree.component';
+import { DivLayerComponent } from './drafts/div-layer/div-layer.component';
+import { ScaleSliderComponent } from './drafts/scale-slider/scale-slider.component';
+import { VerticalScaleSliderComponent } from './drafts/vertical-scale-slider/vertical-scale-slider.component';
+import { VerticalScaleComponent } from './drafts/vertical-scale/vertical-scale.component';
 
 @NgModule({
   declarations: [
@@ -93,7 +101,14 @@ import { RendererComponent } from './drafts/renderer/renderer.component';
     AccordionSettingsComponent,
     InlineEditComponent,
     ColorTableEditComponent,
-    RendererComponent
+    RendererComponent,
+    TextDesignComponent,
+    TreeDemoComponent,
+    SimpleTreeComponent,
+    DivLayerComponent,
+    ScaleSliderComponent,
+    VerticalScaleSliderComponent,
+    VerticalScaleComponent
 
   ],
   imports: [
@@ -125,7 +140,8 @@ import { RendererComponent } from './drafts/renderer/renderer.component';
     ServerProxyService,
     DataStoreService,
     AppMessagesService,
-    DataStoreSettingsService
+    DataStoreSettingsService,
+    CheckListDatabase
   ],
   bootstrap: [AppComponent]
 })

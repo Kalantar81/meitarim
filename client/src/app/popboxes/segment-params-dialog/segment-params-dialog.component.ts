@@ -35,8 +35,24 @@ export class SegmentParamsDialogComponent implements OnInit {
 
   }
 
-  onNoClick(): void {
+  cancelBtnAction(): void {
+    this.data.cancel = true;
+    this.data.loadCurrentSegment = false;
+    this.data.saveSegment = false;
     this.dialogRef.close();
   }
 
+  saveSegmentBtnAction(): void {
+    this.data.cancel = false;
+    this.data.loadCurrentSegment = false;
+    this.data.saveSegment = true;
+    this.dialogRef.close(this.data);
+  }
+
+  loadCurrentSegmentBtnAction(): void {
+    this.data.cancel = false;
+    this.data.loadCurrentSegment = true;
+    this.data.saveSegment = false;
+    this.dialogRef.close(this.data);
+  }
 }

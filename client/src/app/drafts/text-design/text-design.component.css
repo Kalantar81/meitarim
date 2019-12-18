@@ -1,0 +1,27 @@
+#container{
+  width: 400px;
+  background: yellow;
+}
+#floated{
+  float: left;
+  width: 225px;
+  background: red;
+}
+
+
+.rectangle {
+  width: 400px;
+  height: 250px;
+  color: #111;
+  text-align: center;
+  font-size: 90px;
+  float: left;
+  shape-outside: rectangle();
+  padding: 10px;
+  background-color: MediumPurple;
+  background-clip: content-box;
+}
+span {
+  padding-top: 70px;
+  display: inline-block;
+}

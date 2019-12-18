@@ -104,6 +104,7 @@
       mat-flat-button color="primary"
       [mat-dialog-close]="data"
       cdkFocusInitial
+      (click) = "loadCurrentSegmentBtnAction()"
       matTooltip="load segment on the page">
       load current segment
     </button>
@@ -112,14 +113,15 @@
       mat-flat-button color="primary"
       [mat-dialog-close]="data"
       cdkFocusInitial
+      (click) = "saveSegmentBtnAction()"
       matTooltip="save current segment in database">
       save segment
     </button>
     <div style="padding-right: 10px"></div>
       <button
-      mat-flat-button color="primary"
-      (click)="onNoClick()">
-      cancel
-    </button>
+        mat-flat-button color="primary"
+        (click)="cancelBtnAction()">
+        cancel
+      </button>
   </div>
 </div>

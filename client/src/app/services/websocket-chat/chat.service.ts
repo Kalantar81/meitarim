@@ -90,7 +90,6 @@ export class ChatService {
          },1500)
        }else{
         alert ("Error while connecting to the server. Please try again later.");
-        this.myMessages.error(ex)
        }
     }
   }
