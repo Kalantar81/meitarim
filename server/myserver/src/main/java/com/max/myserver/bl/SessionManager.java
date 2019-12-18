@@ -56,7 +56,8 @@ public class SessionManager implements IFileReadyCallBack {
 	 
 	}
 
-
+	StringBuilder sb = new StringBuilder();
+	
 	
 	/*
 	 * Initialize array of files to create
@@ -85,6 +86,19 @@ public class SessionManager implements IFileReadyCallBack {
 	    } else { // ... this would suffice to handle all text messages in a streaming fashion
 	    	Source<String,NotUsed> source = Source.single("").concat(msg.asTextMessage().getStreamedText()); 
 	    	msgText = TextMessage.create(source).getStrictText();
+	    	
+	    	 //TextMessage.create(source).toStrict(10000,materializer).toCompletableFuture().get().getStrictText();
+	    	 TextMessage.create(source).getStreamedText().fold("", (s1,s2)->(s1+s2)).toString();
+	    	 
+	    	 
+	    	 
+	    	 msg.asTextMessage().getStreamedText()
+	    	     .runForeach((msgPart)->sb.append(msgPart), materializer)
+	    	     .thenAccept((don1)->{
+	    	    	 String clientMsgText = sb.toString();
+	    	    	 //user of clientMsgText;
+	    	     });
+	    	 
 		}
 	
 	    RequestData userRequest = SerializationUtils.getClassByString(RequestData.class, msgText);

@@ -6,7 +6,9 @@ import { CATCH_STACK_VAR } from '@angular/compiler/src/output/output_ast';
 
 
 
-
+export interface ErrorMessage{
+  errorDesc:string
+}
 
 export interface Message {
   clientId:string,
@@ -17,7 +19,8 @@ export interface Message {
     freq2:number,
     time2:number
   },
-  file?:any
+  file?:any,
+  error?:any
 }
 
 
