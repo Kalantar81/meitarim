@@ -1,4 +1,4 @@
-package com.max.myserver;
+package com.max.myserver.app;
 
 
 import java.util.List;
